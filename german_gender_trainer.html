@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professioneller Deutsch-Nomen-Trainer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f0f2f5;
+            --card-bg: #ffffff;
+            --text-color: #1c1e21;
+            --primary-blue: #0056b3;
+            --primary-red: #d9534f;
+            --primary-green: #5cb85c;
+            --primary-grey: #6c757d;
+            --light-grey: #ced4da;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+        }
+
+        /* --- Base & Layout --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { font-size: 16px; }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+        }
+        .app-container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .dashboard {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .sidebar {
+            flex: 1;
+            min-width: 280px;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .main-content {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            min-width: 300px;
+        }
+
+        /* --- Header --- */
+        header {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        header h1 {
+            font-family: 'Roboto', sans-serif;
+            color: var(--primary-blue);
+            font-size: clamp(1.8rem, 5vw, 2.5rem); /* Responsive font size */
+        }
+        header p {
+            font-size: clamp(1rem, 3vw, 1.1rem);
+            color: var(--primary-grey);
+        }
+
+        /* --- Controls & Progress Panels --- */
+        .panel {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+        .panel-title {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--primary-grey);
+            font-size: 1.2rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.75rem;
+        }
+        .control-group {
+            margin-bottom: 1.5rem;
+        }
+        .control-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .control-group select, .control-btn {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--light-grey);
+            font-size: 1rem;
+            cursor: pointer;
+            background-color: #fff;
+        }
+        .control-btn {
+            background-color: var(--primary-blue);
+            color: #fff;
+            border: none;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+        .control-btn:hover { background-color: #004494; }
+        .control-btn:active { transform: scale(0.98); }
+        .control-btn.active {
+            background-color: var(--primary-green);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.15);
+        }
+        .progress-box { text-align: center; }
+        .progress-box:not(:last-child) { margin-bottom: 1.5rem; }
+        .progress-box h3 { font-size: 1rem; color: var(--primary-grey); font-weight: 400; }
+        .progress-count {
+            font-family: 'Roboto', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        #progress-total { color: var(--primary-blue); }
+        #progress-known { color: var(--primary-green); }
+        #progress-practice { color: var(--primary-red); }
+        #restart-practice-btn {
+            display: block;
+            width: 100%;
+            margin-top: 1rem;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+            background-color: var(--primary-red);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: opacity 0.2s ease, transform 0.1s ease;
+        }
+        #restart-practice-btn:hover { opacity: 0.8; }
+        #restart-practice-btn:active { transform: scale(0.98); }
+        #restart-practice-btn.active { opacity: 1; }
+
+        /* --- Flashcard Deck & Cards --- */
+        .flashcard-deck-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-grow: 1;
+        }
+        .flashcard-deck {
+            position: relative;
+            height: 400px;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+        .flashcard {
+            background-color: var(--card-bg);
+            width: 100%; height: 100%;
+            position: absolute;
+            top: 0; left: 0;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            perspective: 1500px;
+            transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+            transform-origin: center center;
+            opacity: 1;
+        }
+        .flashcard.is-flipped .flashcard-inner { transform: rotateY(180deg); }
+        .flashcard.swiped-right { transform: translateX(150%) rotate(15deg); opacity: 0; }
+        .flashcard.swiped-left { transform: translateX(-150%) rotate(-15deg); opacity: 0; }
+        .flashcard-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; }
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            width: 100%; height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            text-align: center;
+            border-radius: var(--border-radius);
+            border: 1px solid #e0e0e0;
+        }
+        .flashcard-front { background-color: var(--card-bg); }
+        .flashcard-back { background-color: var(--card-bg); transform: rotateY(180deg); }
+        .flashcard-word {
+            font-family: 'Roboto', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .article-der { border-top: 10px solid var(--primary-blue); }
+        .article-die { border-top: 10px solid var(--primary-red); }
+        .article-das { border-top: 10px solid var(--primary-green); }
+        .article-text { font-family: 'Roboto', sans-serif; font-size: clamp(2rem, 6vw, 2.5rem); font-weight: 500; margin-bottom: 0.5rem; }
+        .article-text.der { color: var(--primary-blue); }
+        .article-text.die { color: var(--primary-red); }
+        .article-text.das { color: var(--primary-green); }
+        .plural-text { font-size: clamp(1.2rem, 4vw, 1.5rem); color: var(--primary-grey); margin-bottom: 1rem; }
+        .english-text { font-size: clamp(1rem, 3.5vw, 1.2rem); font-style: italic; }
+        .listen-btn {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            background: none; border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--primary-grey);
+            transition: color 0.2s, transform 0.2s;
+        }
+        .listen-btn:hover { color: var(--primary-blue); transform: scale(1.1); }
+        #empty-deck-message { display: none; text-align: center; font-size: 1.5rem; color: var(--primary-grey); padding: 3rem; }
+
+        /* --- Assessment Buttons --- */
+        .assessment-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 600px;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s 0.3s, opacity 0.3s ease;
+        }
+        .assessment-buttons.visible {
+            visibility: visible;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+        .assess-btn {
+            flex-grow: 1;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            border: 2px solid;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .assess-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
+        #btn-know { border-color: var(--primary-green); color: var(--primary-green); background-color: #fff; }
+        #btn-know:hover { background-color: var(--primary-green); color: #fff; }
+        #btn-practice { border-color: var(--primary-red); color: var(--primary-red); background-color: #fff; }
+        #btn-practice:hover { background-color: var(--primary-red); color: #fff; }
+
+        /* --- Responsive Design for Mobile --- */
+        @media (max-width: 768px) {
+            .dashboard { flex-direction: column; }
+            .sidebar { min-width: unset; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <header>
+            <h1>Professioneller Deutsch-Nomen-Trainer</h1>
+            <p>Meistern Sie deutsche Nomen, Artikel und Pluralformen.</p>
+        </header>
+
+        <div class="dashboard">
+            <aside class="sidebar">
+                <div class="panel">
+                    <h2 class="panel-title">Einstellungen</h2>
+                    <div class="control-group">
+                        <label for="category-filter">Thema wählen:</label>
+                        <select id="category-filter"></select>
+                    </div>
+                    <div class="control-group">
+                        <label for="gender-filter">Genus wählen:</label>
+                        <select id="gender-filter">
+                            <option value="all">Alle (der, die, das)</option>
+                            <option value="der">der (Maskulin)</option>
+                            <option value="die">die (Feminin)</option>
+                            <option value="das">das (Neutrum)</option>
+                        </select>
+                    </div>
+                     <div class="control-group">
+                        <label>Modus:</label>
+                        <button id="shuffle-btn" class="control-btn">Mischen</button>
+                    </div>
+                </div>
+                <div class="panel">
+                    <h2 class="panel-title">Fortschritt</h2>
+                    <div class="progress-box">
+                        <h3>Verbleibend</h3>
+                        <p id="progress-total" class="progress-count">0</p>
+                    </div>
+                    <div class="progress-box">
+                        <h3>Gekonnt</h3>
+                        <p id="progress-known" class="progress-count">0</p>
+                    </div>
+                    <div class="progress-box">
+                        <h3>Nochmal Üben</h3>
+                        <p id="progress-practice" class="progress-count">0</p>
+                        <button id="restart-practice-btn" title="Klicken, um die 'Üben'-Karten wieder in den Stapel zu legen">Übungspool neu starten</button>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="main-content">
+                <div class="flashcard-deck-container">
+                    <div class="flashcard-deck" id="flashcard-deck">
+                        <div id="empty-deck-message">
+                            <p>Sehr gut! Alle Karten in dieser Runde sind gelernt.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="assessment-buttons" id="assessment-buttons">
+                        <button id="btn-practice" class="assess-btn">Nochmal üben</button>
+                        <button id="btn-know" class="assess-btn">Wusste ich!</button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+    // --- DATABASE ---
+    const allWords = [
+        { category: "Personen & Beruf", noun: "Architekt", gender: "der", plural: "die Architekten", english: "architect" },
+        { category: "Personen & Beruf", noun: "Journalist", gender: "der", plural: "die Journalisten", english: "journalist" },
+        { category: "Personen & Beruf", noun: "Apotheker", gender: "der", plural: "die Apotheker", english: "pharmacist" },
+        { category: "Personen & Beruf", noun: "Arzt", gender: "der", plural: "die Ärzte", english: "doctor" },
+        { category: "Personen & Beruf", noun: "Lehrer", gender: "der", plural: "die Lehrer", english: "teacher" },
+        { category: "Personen & Beruf", noun: "Freund", gender: "der", plural: "die Freunde", english: "friend" },
+        { category: "Personen & Beruf", noun: "Name", gender: "der", plural: "die Namen", english: "name" },
+        { category: "Personen & Beruf", noun: "Beruf", gender: "der", plural: "die Berufe", english: "profession" },
+        { category: "Personen & Beruf", noun: "Mann", gender: "der", plural: "die Männer", english: "man, husband" },
+        { category: "Personen & Beruf", noun: "Student", gender: "der", plural: "die Studenten", english: "student (m)" },
+        { category: "Personen & Beruf", noun: "Kollege", gender: "der", plural: "die Kollegen", english: "colleague (m)" },
+        { category: "Personen & Beruf", noun: "Nachbar", gender: "der", plural: "die Nachbarn", english: "neighbor (m)" },
+        { category: "Personen & Beruf", noun: "Chef", gender: "der", plural: "die Chefs", english: "boss" },
+        { category: "Personen & Beruf", noun: "Frau", gender: "die", plural: "die Frauen", english: "woman, wife" },
+        { category: "Personen & Beruf", noun: "Person", gender: "die", plural: "die Personen", english: "person" },
+        { category: "Personen & Beruf", noun: "Familie", gender: "die", plural: "die Familien", english: "family" },
+        { category: "Personen & Beruf", noun: "Sprache", gender: "die", plural: "die Sprachen", english: "language" },
+        { category: "Personen & Beruf", noun: "Architektin", gender: "die", plural: "die Architektinnen", english: "architect (f)" },
+        { category: "Personen & Beruf", noun: "Ärztin", gender: "die", plural: "die Ärztinnen", english: "doctor (f)" },
+        { category: "Personen & Beruf", noun: "Studentin", gender: "die", plural: "die Studentinnen", english: "student (f)" },
+        { category: "Personen & Beruf", noun: "Kollegin", gender: "die", plural: "die Kolleginnen", english: "colleague (f)" },
+        { category: "Personen & Beruf", noun: "Nachbarin", gender: "die", plural: "die Nachbarinnen", english: "neighbor (f)" },
+        { category: "Personen & Beruf", noun: "Kind", gender: "das", plural: "die Kinder", english: "child" },
+        { category: "Personen & Beruf", noun: "Mädchen", gender: "das", plural: "die Mädchen", english: "girl" },
+        
+        { category: "Freizeit & Stadt", noun: "Tag", gender: "der", plural: "die Tage", english: "day" },
+        { category: "Freizeit & Stadt", noun: "Montag", gender: "der", plural: "die Montage", english: "Monday" },
+        { category: "Freizeit & Stadt", noun: "Abend", gender: "der", plural: "die Abende", english: "evening" },
+        { category: "Freizeit & Stadt", noun: "Sport", gender: "der", plural: "die Sportarten", english: "sport" },
+        { category: "Freizeit & Stadt", noun: "Film", gender: "der", plural: "die Filme", english: "movie" },
+        { category: "Freizeit & Stadt", noun: "Bahnhof", gender: "der", plural: "die Bahnhöfe", english: "train station" },
+        { category: "Freizeit & Stadt", noun: "Park", gender: "der", plural: "die Parks", english: "park" },
+        { category: "Freizeit & Stadt", noun: "Geburtstag", gender: "der", plural: "die Geburtstage", english: "birthday" },
+        { category: "Freizeit & Stadt", noun: "Urlaub", gender: "der", plural: "die Urlaube", english: "vacation" },
+        { category: "Freizeit & Stadt", noun: "Fußball", gender: "der", plural: "die Fußbälle", english: "football" },
+        { category: "Freizeit & Stadt", noun: "Musik", gender: "die", plural: "(no plural)", english: "music" },
+        { category: "Freizeit & Stadt", noun: "Woche", gender: "die", plural: "die Wochen", english: "week" },
+        { category: "Freizeit & Stadt", noun: "Stadt", gender: "die", plural: "die Städte", english: "city" },
+        { category: "Freizeit & Stadt", noun: "Party", gender: "die", plural: "die Partys", english: "party" },
+        { category: "Freizeit & Stadt", noun: "Kneipe", gender: "die", plural: "die Kneipen", english: "pub" },
+        { category: "Freizeit & Stadt", noun: "Oper", gender: "die", plural: "die Opern", english: "opera" },
+        { category: "Freizeit & Stadt", noun: "Zeit", gender: "die", plural: "(no plural)", english: "time" },
+        { category: "Freizeit & Stadt", noun: "Stunde", gender: "die", plural: "die Stunden", english: "hour" },
+        { category: "Freizeit & Stadt", noun: "Minute", gender: "die", plural: "die Minuten", english: "minute" },
+        { category: "Freizeit & Stadt", noun: "Hobby", gender: "das", plural: "die Hobbys", english: "hobby" },
+        { category: "Freizeit & Stadt", noun: "Wochenende", gender: "das", plural: "die Wochenenden", english: "weekend" },
+        { category: "Freizeit & Stadt", noun: "Kino", gender: "das", plural: "die Kinos", english: "cinema" },
+        { category: "Freizeit & Stadt", noun: "Theater", gender: "das", plural: "die Theater", english: "theater" },
+        { category: "Freizeit & Stadt", noun: "Konzert", gender: "das", plural: "die Konzerte", english: "concert" },
+        { category: "Freizeit & Stadt", noun: "Museum", gender: "das", plural: "die Museen", english: "museum" },
+        { category: "Freizeit & Stadt", noun: "Restaurant", gender: "das", plural: "die Restaurants", english: "restaurant" },
+        { category: "Freizeit & Stadt", noun: "Café", gender: "das", plural: "die Cafés", english: "café" },
+        { category: "Freizeit & Stadt", noun: "Schwimmbad", gender: "das", plural: "die Schwimmbäder", english: "swimming pool" },
+        { category: "Freizeit & Stadt", noun: "Fest", gender: "das", plural: "die Feste", english: "festival, party" },
+        
+        { category: "Essen & Einkaufen", noun: "Apfel", gender: "der", plural: "die Äpfel", english: "apple" },
+        { category: "Essen & Einkaufen", noun: "Kaffee", gender: "der", plural: "die Kaffees", english: "coffee" },
+        { category: "Essen & Einkaufen", noun: "Käse", gender: "der", plural: "(no plural)", english: "cheese" },
+        { category: "Essen & Einkaufen", noun: "Reis", gender: "der", plural: "(no plural)", english: "rice" },
+        { category: "Essen & Einkaufen", noun: "Salat", gender: "der", plural: "die Salate", english: "salad" },
+        { category: "Essen & Einkaufen", noun: "Tee", gender: "der", plural: "die Tees", english: "tea" },
+        { category: "Essen & Einkaufen", noun: "Wein", gender: "der", plural: "die Weine", english: "wine" },
+        { category: "Essen & Einkaufen", noun: "Zucker", gender: "der", plural: "(no plural)", english: "sugar" },
+        { category: "Essen & Einkaufen", noun: "Kuchen", gender: "der", plural: "die Kuchen", english: "cake" },
+        { category: "Essen & Einkaufen", noun: "Fisch", gender: "der", plural: "die Fische", english: "fish" },
+        { category: "Essen & Einkaufen", noun: "Saft", gender: "der", plural: "die Säfte", english: "juice" },
+        { category: "Essen & Einkaufen", noun: "Supermarkt", gender: "der", plural: "die Supermärkte", english: "supermarket" },
+        { category: "Essen & Einkaufen", noun: "Markt", gender: "der", plural: "die Märkte", english: "market" },
+        { category: "Essen & Einkaufen", noun: "Joghurt", gender: "der", plural: "die Joghurts", english: "yogurt" },
+        { category: "Essen & Einkaufen", noun: "Honig", gender: "der", plural: "(no plural)", english: "honey" },
+        { category: "Essen & Einkaufen", noun: "Banane", gender: "die", plural: "die Bananen", english: "banana" },
+        { category: "Essen & Einkaufen", noun: "Butter", gender: "die", plural: "(no plural)", english: "butter" },
+        { category: "Essen & Einkaufen", noun: "Gurke", gender: "die", plural: "die Gurken", english: "cucumber" },
+        { category: "Essen & Einkaufen", noun: "Kartoffel", gender: "die", plural: "die Kartoffeln", english: "potato" },
+        { category: "Essen & Einkaufen", noun: "Milch", gender: "die", plural: "(no plural)", english: "milk" },
+        { category: "Essen & Einkaufen", noun: "Orange", gender: "die", plural: "die Orangen", english: "orange" },
+        { category: "Essen & Einkaufen", noun: "Pizza", gender: "die", plural: "die Pizzen/Pizzas", english: "pizza" },
+        { category: "Essen & Einkaufen", noun: "Tomate", gender: "die", plural: "die Tomaten", english: "tomato" },
+        { category: "Essen & Einkaufen", noun: "Wurst", gender: "die", plural: "die Würste", english: "sausage" },
+        { category: "Essen & Einkaufen", noun: "Suppe", gender: "die", plural: "die Suppen", english: "soup" },
+        { category: "Essen & Einkaufen", noun: "Zwiebel", gender: "die", plural: "die Zwiebeln", english: "onion" },
+        { category: "Essen & Einkaufen", noun: "Schokolade", gender: "die", plural: "die Schokoladen", english: "chocolate" },
+        { category: "Essen & Einkaufen", noun: "Limonade", gender: "die", plural: "die Limonaden", english: "lemonade" },
+        { category: "Essen & Einkaufen", noun: "Bäckerei", gender: "die", plural: "die Bäckereien", english: "bakery" },
+        { category: "Essen & Einkaufen", noun: "Metzgerei", gender: "die", plural: "die Metzgereien", english: "butcher shop" },
+        { category: "Essen & Einkaufen", noun: "Brot", gender: "das", plural: "die Brote", english: "bread" },
+        { category: "Essen & Einkaufen", noun: "Bier", gender: "das", plural: "die Biere", english: "beer" },
+        { category: "Essen & Einkaufen", noun: "Ei", gender: "das", plural: "die Eier", english: "egg" },
+        { category: "Essen & Einkaufen", noun: "Fleisch", gender: "das", plural: "(no plural)", english: "meat" },
+        { category: "Essen & Einkaufen", noun: "Gemüse", gender: "das", plural: "(no plural)", english: "vegetables" },
+        { category: "Essen & Einkaufen", noun: "Obst", gender: "das", plural: "(no plural)", english: "fruit" },
+        { category: "Essen & Einkaufen", noun: "Wasser", gender: "das", plural: "die Wässer", english: "water" },
+        { category: "Essen & Einkaufen", noun: "Hähnchen", gender: "das", plural: "die Hähnchen", english: "chicken" },
+        { category: "Essen & Einkaufen", noun: "Brötchen", gender: "das", plural: "die Brötchen", english: "bread roll" },
+        { category: "Essen & Einkaufen", noun: "Salz", gender: "das", plural: "(no plural)", english: "salt" },
+        { category: "Essen & Einkaufen", noun: "Öl", gender: "das", plural: "die Öle", english: "oil" },
+        
+        { category: "Wohnen & Möbel", noun: "Tisch", gender: "der", plural: "die Tische", english: "table" },
+        { category: "Wohnen & Möbel", noun: "Stuhl", gender: "der", plural: "die Stühle", english: "chair" },
+        { category: "Wohnen & Möbel", noun: "Schrank", gender: "der", plural: "die Schränke", english: "closet, cupboard" },
+        { category: "Wohnen & Möbel", noun: "Kühlschrank", gender: "der", plural: "die Kühlschränke", english: "refrigerator" },
+        { category: "Wohnen & Möbel", noun: "Balkon", gender: "der", plural: "die Balkone", english: "balcony" },
+        { category: "Wohnen & Möbel", noun: "Garten", gender: "der", plural: "die Gärten", english: "garden" },
+        { category: "Wohnen & Möbel", noun: "Flur", gender: "der", plural: "die Flure", english: "hallway" },
+        { category: "Wohnen & Möbel", noun: "Stock", gender: "der", plural: "die Stöcke", english: "floor (level)" },
+        { category: "Wohnen & Möbel", noun: "Herd", gender: "der", plural: "die Herde", english: "stove" },
+        { category: "Wohnen & Möbel", noun: "Sessel", gender: "der", plural: "die Sessel", english: "armchair" },
+        { category: "Wohnen & Möbel", noun: "Teppich", gender: "der", plural: "die Teppiche", english: "carpet, rug" },
+        { category: "Wohnen & Möbel", noun: "Schlüssel", gender: "der", plural: "die Schlüssel", english: "key" },
+        { category: "Wohnen & Möbel", noun: "Lampe", gender: "die", plural: "die Lampen", english: "lamp" },
+        { category: "Wohnen & Möbel", noun: "Küche", gender: "die", plural: "die Küchen", english: "kitchen" },
+        { category: "Wohnen & Möbel", noun: "Wohnung", gender: "die", plural: "die Wohnungen", english: "apartment" },
+        { category: "Wohnen & Möbel", noun: "Tür", gender: "die", plural: "die Türen", english: "door" },
+        { category: "Wohnen & Möbel", noun: "Couch", gender: "die", plural: "die Couchen", english: "couch" },
+        { category: "Wohnen & Möbel", noun: "Badewanne", gender: "die", plural: "die Badewannen", english: "bathtub" },
+        { category: "Wohnen & Möbel", noun: "Dusche", gender: "die", plural: "die Duschen", english: "shower" },
+        { category: "Wohnen & Möbel", noun: "Garage", gender: "die", plural: "die Garagen", english: "garage" },
+        { category: "Wohnen & Möbel", noun: "Wand", gender: "die", plural: "die Wände", english: "wall" },
+        { category: "Wohnen & Möbel", noun: "Treppe", gender: "die", plural: "die Treppen", english: "stairs" },
+        { category: "Wohnen & Möbel", noun: "Bett", gender: "das", plural: "die Betten", english: "bed" },
+        { category: "Wohnen & Möbel", noun: "Sofa", gender: "das", plural: "die Sofas", english: "sofa" },
+        { category: "Wohnen & Möbel", noun: "Regal", gender: "das", plural: "die Regale", english: "shelf" },
+        { category: "Wohnen & Möbel", noun: "Haus", gender: "das", plural: "die Häuser", english: "house" },
+        { category: "Wohnen & Möbel", noun: "Zimmer", gender: "das", plural: "die Zimmer", english: "room" },
+        { category: "Wohnen & Möbel", noun: "Wohnzimmer", gender: "das", plural: "die Wohnzimmer", english: "living room" },
+        { category: "Wohnen & Möbel", noun: "Schlafzimmer", gender: "das", plural: "die Schlafzimmer", english: "bedroom" },
+        { category: "Wohnen & Möbel", noun: "Badezimmer", gender: "das", plural: "die Badezimmer", english: "bathroom" },
+        { category: "Wohnen & Möbel", noun: "Fenster", gender: "das", plural: "die Fenster", english: "window" },
+        { category: "Wohnen & Möbel", noun: "Bild", gender: "das", plural: "die Bilder", english: "picture, image" },
+    ];
+    
+    // --- STATE MANAGEMENT ---
+    let currentDeck = [];
+    let knownWords = [];
+    let practiceWords = [];
+    let isShuffled = false;
+
+    // --- DOM ELEMENTS ---
+    const categoryFilter = document.getElementById('category-filter');
+    const genderFilter = document.getElementById('gender-filter');
+    const shuffleBtn = document.getElementById('shuffle-btn');
+    const flashcardDeck = document.getElementById('flashcard-deck');
+    const emptyDeckMessage = document.getElementById('empty-deck-message');
+    const assessmentButtons = document.getElementById('assessment-buttons');
+    const knowBtn = document.getElementById('btn-know');
+    const practiceBtn = document.getElementById('btn-practice');
+    const totalCountEl = document.getElementById('progress-total');
+    const knownCountEl = document.getElementById('progress-known');
+    const practiceCountEl = document.getElementById('progress-practice');
+    const restartPracticeBtn = document.getElementById('restart-practice-btn');
+
+    // --- CORE FUNCTIONS ---
+
+    function populateCategories() {
+        const categories = [...new Set(allWords.map(word => word.category))];
+        categoryFilter.innerHTML = '<option value="all">Alle Themen</option>';
+        categories.sort().forEach(cat => {
+            const option = document.createElement('option');
+            option.value = cat;
+            option.textContent = cat;
+            categoryFilter.appendChild(option);
+        });
+    }
+
+    function resetAndBuildDeck() {
+        const selectedCategory = categoryFilter.value;
+        const selectedGender = genderFilter.value;
+        
+        currentDeck = allWords.filter(word => {
+            const categoryMatch = selectedCategory === 'all' || word.category === selectedCategory;
+            const genderMatch = selectedGender === 'all' || word.gender === selectedGender;
+            return categoryMatch && genderMatch;
+        });
+
+        if (isShuffled) {
+            shuffleArray(currentDeck);
+        }
+
+        knownWords = [];
+        practiceWords = [];
+        renderNextCard();
+        updateProgress();
+    }
+    
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    function createCardElement(wordData) {
+        const card = document.createElement('div');
+        card.className = 'flashcard';
+
+        const inner = document.createElement('div');
+        inner.className = 'flashcard-inner';
+
+        const front = document.createElement('div');
+        front.className = 'flashcard-front';
+        front.innerHTML = `<h2 class="flashcard-word">${wordData.noun}</h2>`;
+
+        const back = document.createElement('div');
+        back.className = `flashcard-back article-${wordData.gender}`;
+        back.innerHTML = `
+            <button class="listen-btn" title="Aussprache anhören">🔊</button>
+            <p class="article-text ${wordData.gender}">${wordData.gender}</p>
+            <h2 class="flashcard-word">${wordData.noun}</h2>
+            <p class="plural-text">${wordData.plural}</p>
+            <p class="english-text">${wordData.english}</p>
+        `;
+
+        back.querySelector('.listen-btn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            speak(wordData.noun);
+        });
+
+        inner.appendChild(front);
+        inner.appendChild(back);
+        card.appendChild(inner);
+        
+        card.addEventListener('click', () => {
+            if (!card.classList.contains('is-flipped')) {
+                card.classList.add('is-flipped');
+                assessmentButtons.classList.add('visible');
+            }
+        });
+        
+        return card;
+    }
+
+    function renderNextCard() {
+        flashcardDeck.innerHTML = '';
+        flashcardDeck.appendChild(emptyDeckMessage);
+        assessmentButtons.classList.remove('visible');
+
+        if (currentDeck.length === 0) {
+            emptyDeckMessage.style.display = 'block';
+            return;
+        }
+        
+        emptyDeckMessage.style.display = 'none';
+        const wordData = currentDeck[currentDeck.length - 1];
+        const cardEl = createCardElement(wordData);
+        flashcardDeck.appendChild(cardEl);
+    }
+    
+    function updateProgress() {
+        totalCountEl.textContent = currentDeck.length;
+        knownCountEl.textContent = knownWords.length;
+        practiceCountEl.textContent = practiceWords.length;
+        
+        restartPracticeBtn.classList.toggle('active', practiceWords.length > 0);
+    }
+
+    function handleAssessment(knewIt) {
+        const topCard = flashcardDeck.querySelector('.flashcard');
+        if (!topCard || !topCard.classList.contains('is-flipped')) return;
+
+        const removedWord = currentDeck.pop();
+        
+        if (knewIt) {
+            knownWords.push(removedWord);
+            topCard.classList.add('swiped-right');
+        } else {
+            practiceWords.push(removedWord);
+            topCard.classList.add('swiped-left');
+        }
+        
+        assessmentButtons.classList.remove('visible');
+        
+        setTimeout(() => {
+            renderNextCard();
+            updateProgress();
+        }, 400); // Wait for swipe animation to finish
+    }
+    
+    function handleShuffle() {
+        isShuffled = !isShuffled;
+        shuffleBtn.classList.toggle('active', isShuffled);
+        shuffleBtn.textContent = isShuffled ? 'Mischen (Aktiv)' : 'Mischen';
+        resetAndBuildDeck();
+    }
+
+    function restartPracticePile() {
+        if (practiceWords.length > 0) {
+            currentDeck.push(...practiceWords);
+            practiceWords = [];
+            if (isShuffled) {
+                shuffleArray(currentDeck);
+            }
+            renderNextCard();
+            updateProgress();
+        }
+    }
+
+    function speak(text) {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel(); // Cancel any previous speech
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'de-DE';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        } else {
+            alert("Entschuldigung, Ihr Browser unterstützt keine Sprachausgabe.");
+        }
+    }
+
+    // --- EVENT LISTENERS ---
+    categoryFilter.addEventListener('change', resetAndBuildDeck);
+    genderFilter.addEventListener('change', resetAndBuildDeck);
+    shuffleBtn.addEventListener('click', handleShuffle);
+    knowBtn.addEventListener('click', () => handleAssessment(true));
+    practiceBtn.addEventListener('click', () => handleAssessment(false));
+    restartPracticeBtn.addEventListener('click', restartPracticePile);
+
+    // --- INITIALIZATION ---
+    populateCategories();
+    resetAndBuildDeck();
+
+    </script>
+</body>
+</html>

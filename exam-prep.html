@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prüfungsvorbereitung A1.1</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <h1>Deutsch A1.1 Kurs</h1>
+        <nav class="main-nav">
+            <div class="menu-toggle" id="menu-toggle">☰</div>
+            <ul id="nav-links">
+                <li><a href="index.html">Start</a></li>
+                <li><a href="kapitel1.html">Kapitel 1</a></li>
+                <li><a href="kapitel2.html">Kapitel 2</a></li>
+                <li><a href="kapitel3.html">Kapitel 3</a></li>
+                <li><a href="kapitel4.html">Kapitel 4</a></li>
+                <li><a href="kapitel5.html">Kapitel 5</a></li>
+                <li><a href="kapitel6.html">Kapitel 6</a></li>
+                <li><a href="kapitel7.html">Kapitel 7</a></li>
+                <li><a href="kapitel8.html">Kapitel 8</a></li>
+                <li><a href="kapitel9.html">Kapitel 9</a></li>
+                <li><a href="exam-prep.html" class="active exam-link">Prüfungsvorbereitung</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="chapter">
+            <h2>Prüfungsvorbereitung (Exam Preparation)</h2>
+            <p class="chapter-summary">
+                Dieser Bereich dient zur gezielten Vorbereitung auf die A1.1-Prüfung. Hier können Sie die wichtigsten Prüfungsformate trainieren: Schreiben (E-Mail, Formular), Grammatik und Sprechen. Nehmen Sie sich Zeit für jede Aufgabe und vergleichen Sie Ihre Lösungen.
+            </p>
+
+            <!-- ========= SCHREIBEN / WRITING ========= -->
+            <div class="sub-section exam-task">
+                <h3>Teil 1: Schreiben (Writing)</h3>
+                
+                <h4>Aufgabe A: E-Mail verfassen</h4>
+                <div class="task-box">
+                    <p><strong>Situation:</strong> Sie waren letztes Wochenende bei Ihrer Freundin Erika in Berlin. Schreiben Sie ihr eine E-Mail (ca. 30 Wörter).</p>
+                    <p><strong>Schreiben Sie zu allen drei Punkten:</strong></p>
+                    <ul>
+                        <li>Bedanken Sie sich für das Wochenende.</li>
+                        <li>Sagen Sie, wie es war (z.B. die Stadt, das Essen).</li>
+                        <li>Machen Sie einen Vorschlag für nächstes Wochenende (z.B. Paris).</li>
+                    </ul>
+                </div>
+                <div class="writing-exercise">
+                    <p><strong>Ihre E-Mail:</strong></p>
+                    <div class="email-template">
+                        <p>Liebe Erika,</p>
+                        <textarea id="email-input" rows="6" placeholder="Schreiben Sie hier Ihre E-Mail..."></textarea>
+                        <p>Liebe Grüße,<br>[Ihr Name]</p>
+                    </div>
+                    <button class="quiz-check-btn" id="check-email-btn">Musterlösung anzeigen</button>
+                    <div id="email-solution" class="solution-box" style="display:none;">
+                        <h5>Musterlösung:</h5>
+                        <p>Liebe Erika,</p>
+                        <p>vielen Dank für das tolle Wochenende! Es war sehr schön bei dir in Berlin. Die Stadt und das Essen waren super.</p>
+                        <p>Wollen wir nächstes Wochenende zusammen nach Paris fahren?</p>
+                        <p>Liebe Grüße,<br>[Dein Name]</p>
+                        <p><strong>Wichtige Punkte:</strong> Anrede und Gruß sind korrekt. Alle drei Inhaltspunkte sind erwähnt. Die Sätze sind einfach, aber grammatikalisch richtig.</p>
+                    </div>
+                </div>
+
+                <h4 class="mt-5">Aufgabe B: Formular ausfüllen</h4>
+                <div class="task-box">
+                    <p><strong>Situation:</strong> Ihre Schwester, Nina Kawalski, kann kein Deutsch. Sie füllt ein Formular für einen Deutschkurs aus. Helfen Sie ihr. Lesen Sie den Text und tragen Sie die Informationen in das Formular ein.</p>
+                    <p><strong>Text:</strong> Nina Kawalski kommt aus New York, USA. Sie möchte für 2 Wochen (14 Tage) einen Deutschkurs in Berlin machen. Sie reist alleine, ihre zwei Kinder, Theo (5) und Anna (7), sind nicht dabei. Sie braucht kein Hotel, weil sie bei Freunden schlafen kann.</p>
+                </div>
+                <div class="form-exercise">
+                    <form id="registration-form">
+                        <h5>Registrierung Deutschkurs</h5>
+                        <div class="form-group">
+                            <label for="form-name">1. Familienname, Vorname:</label>
+                            <input type="text" id="form-name" placeholder="Antwort hier...">
+                        </div>
+                        <div class="form-group">
+                            <label for="form-persons">2. Anzahl der Personen:</label>
+                            <input type="text" id="form-persons" placeholder="Antwort hier...">
+                        </div>
+                        <div class="form-group">
+                            <label for="form-children">3. Davon Kinder:</label>
+                            <input type="text" id="form-children" placeholder="Antwort hier...">
+                        </div>
+                        <div class="form-group">
+                            <label>4. Kurszentrum:</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="location" value="Berlin"> Berlin</label>
+                                <label><input type="radio" name="location" value="Frankfurt"> Frankfurt</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>5. Brauchen Sie ein Hotel?</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="hotel" value="Ja"> Ja</label>
+                                <label><input type="radio" name="hotel" value="Nein"> Nein</label>
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label>6. Wie lange?</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="duration" value="2 Tage"> 2 Tage</label>
+                                <label><input type="radio" name="duration" value="14 Tage"> 14 Tage</label>
+                                <label><input type="radio" name="duration" value="7 Tage"> 7 Tage</label>
+                            </div>
+                        </div>
+                    </form>
+                    <button class="quiz-check-btn" id="check-form-btn">Antworten prüfen</button>
+                </div>
+            </div>
+
+            <!-- ========= GRAMMATIK / GRAMMAR ========= -->
+            <div class="sub-section exam-task">
+                <h3>Teil 2: Grammatik</h3>
+                <h4>Aufgabe: Sätze korrigieren</h4>
+                <div class="task-box">
+                    <p>Die folgenden Sätze enthalten Fehler. Finden Sie die Fehler und schreiben Sie den korrekten Satz.</p>
+                </div>
+                <div class="grammar-exercise" id="grammar-container">
+                    <!-- Grammar questions will be inserted here by JS -->
+                </div>
+                <button class="quiz-check-btn" id="check-grammar-btn">Lösungen anzeigen</button>
+            </div>
+
+            <!-- ========= SPRECHEN / SPEAKING ========= -->
+            <div class="sub-section exam-task">
+                <h3>Teil 3: Sprechen (Speaking)</h3>
+                <p>In der mündlichen Prüfung müssen Sie verschiedene Aufgaben lösen. Hier können Sie sich darauf vorbereiten. Sprechen Sie die Antworten laut!</p>
+                
+                <h4>Aufgabe A: Sich vorstellen</h4>
+                <div class="task-box">
+                    <p>Stellen Sie sich vor. Nennen Sie die folgenden Punkte:</p>
+                    <ul class="speaking-prompts">
+                        <li>Name</li>
+                        <li>Alter</li>
+                        <li>Land</li>
+                        <li>Wohnort</li>
+                        <li>Sprachen</li>
+                        <li>Beruf</li>
+                        <li>Hobby</li>
+                    </ul>
+                    <button class="quiz-check-btn" id="show-self-intro-solution">Musterlösung anzeigen</button>
+                    <div id="self-intro-solution" class="solution-box" style="display:none;">
+                        <h5>Muster-Vorstellung:</h5>
+                        <p>"Guten Tag. Ich heiße [Max Mustermann]. Ich bin [30] Jahre alt. Ich komme aus [Deutschland] und wohne in [Berlin]. Ich spreche [Deutsch] und [Englisch]. Ich bin [Ingenieur] von Beruf. Mein Hobby ist Fußball spielen."</p>
+                    </div>
+                </div>
+
+                <h4>Aufgabe B: Themenkarten & Fragen formulieren</h4>
+                <div class="task-box">
+                    <p>Sie bekommen eine Karte mit einem Thema und einem Wort. Formulieren Sie eine Frage dazu. Klicken Sie auf "Nächste Karte", um zu üben.</p>
+                </div>
+                <div class="speaking-exercise">
+                    <div id="speaking-flashcard-container">
+                        <!-- Speaking flashcard will be inserted here -->
+                    </div>
+                    <button class="quiz-check-btn" id="next-speaking-card-btn">Nächste Karte</button>
+                </div>
+
+                <h4>Aufgabe C: Bitten formulieren</h4>
+                 <div class="task-box">
+                    <p>Sie sehen ein Bild. Formulieren Sie eine Bitte oder Frage dazu. Klicken Sie auf "Nächstes Bild", um zu üben.</p>
+                </div>
+                <div class="speaking-exercise">
+                    <div id="speaking-image-card-container">
+                        <!-- Speaking image card will be inserted here -->
+                    </div>
+                    <button class="quiz-check-btn" id="next-speaking-image-btn">Nächstes Bild</button>
+                </div>
+
+            </div>
+
+        </section>
+    </main>
+    
+    <footer class="site-footer-main">
+        <p>© 2025 Professioneller Deutschkurs. Alle Rechte vorbehalten.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/exam-prep.js"></script>
+</body>
+</html>
