@@ -1,185 +1,225 @@
-// --- DATA FOR EXAM PREP PAGE ---
+// --- DATA FOR EXAM PREPARATION PAGE ---
+
+const reading_questions = [
+    { question: "Where was Julia last weekend?", options: ["In Berlin, at home", "In a big city", "In the mountains"], answer: "In the mountains" },
+    { question: "What was the weather like?", options: ["Cold and rainy", "Nice, but cold", "Hot and sunny"], answer: "Nice, but cold" },
+    { question: "Why didn't Thomas eat pizza?", options: ["He doesn't like Italian food.", "He was not hungry.", "He doesn't like salami."], answer: "He doesn't like salami." },
+    { question: "What did Julia and her friends do on Saturday evening?", options: ["They went hiking.", "They went to bed early.", "They went to a party."], answer: "They went to bed early." }
+];
+
+const form_solutions = {
+    persons: "4",
+    date: "10.08.",
+    pets: "nein",
+    price: "85 Euro",
+    contact: "08821 12345"
+};
 
 const grammar_questions = [
-    { sentence: "Ihr kannt sehr gut tanzen.", answer: "Ihr könnt sehr gut tanzen." },
-    { sentence: "Ich könne wirklich toll singen.", answer: "Ich kann wirklich toll singen." },
-    { sentence: "Ich wolle nicht Tennis spielen.", answer: "Ich will nicht Tennis spielen." },
-    { sentence: "Das Fest fängt am 13 Uhr an.", answer: "Das Fest fängt um 13 Uhr an." },
-    { sentence: "Sieht ihr am Abend gern fern?", answer: "Seht ihr am Abend gern fern?" },
-    { sentence: "Heute kaufen wir im Supermarkt auf.", answer: "Heute kaufen wir im Supermarkt ein." },
-    { sentence: "Timo ist gestern im Kino gewesen.", answer: "Timo war gestern im Kino." },
-    { sentence: "Im Wochenende spiele ich Fußball.", answer: "Am Wochenende spiele ich Fußball." },
-    { sentence: "Er möchtet Pizza essen.", answer: "Er möchte Pizza essen." },
-    { sentence: "Ich habe einen Laptop und zwei Maus.", answer: "Ich habe einen Laptop und zwei Mäuse." }
+    { sentence_start: "Ich habe", options: ["ein", "einen", "eine"], sentence_end: "Hund.", answer: "einen", explanation: "The verb 'haben' takes the accusative case. 'Hund' is masculine (der Hund), so 'ein' becomes 'einen'." },
+    { sentence_start: "Gestern", options: ["ich war", "war ich", "bin ich"], sentence_end: "müde.", answer: "war ich", explanation: "In a sentence starting with a time element, the verb must be in position 2, followed by the subject (Verb-Subject Inversion)." },
+    { sentence_start: "Er möchte", options: ["am", "um", "in"], sentence_end: "Abend einen Film sehen.", answer: "am", explanation: "For times of the day (Morgen, Mittag, Abend), we use the preposition 'am'." },
+    { sentence_start: "Sie kann sehr gut", options: ["kocht", "kochen", "koche"], sentence_end: ".", answer: "kochen", explanation: "With a modal verb like 'können', the main verb goes to the end of the sentence in its infinitive form." },
+    { sentence_start: "Wir fahren", options: ["in den", "ins", "in die"], sentence_end: "Berge.", answer: "in die", explanation: "'Berge' (mountains) is plural (die Berge). The preposition 'in' with accusative for a plural destination requires 'in die'." },
+    { sentence_start: "Das ist nicht", options: ["mein", "meine", "meinen"], sentence_end: "Fahrrad.", answer: "mein", explanation: "'Fahrrad' is neuter (das Fahrrad). The possessive article in nominative neuter has no ending." },
+    { sentence_start: "Ich rufe dich später", options: ["anrufen", "an", "rufe an"], sentence_end: ".", answer: "an", explanation: "With the separable verb 'anrufen', the prefix 'an' goes to the end of the sentence." },
+    { sentence_start: "Wo ist die Tasse", options: ["von dem", "von", "von der"], sentence_end: "Lehrerin?", answer: "von der", explanation: "The preposition 'von' always takes the dative case. 'Lehrerin' is feminine (die), so the dative form is 'der'." }
 ];
 
-const speaking_cards_theme = [
-    { theme: "Essen & Trinken", word: "Frühstück", solution: "Was isst du gern zum Frühstück?" },
-    { theme: "Freizeit", word: "Wochenende", solution: "Was machst du am Wochenende?" },
-    { theme: "Wohnen", word: "Garten", solution: "Haben Sie einen Garten?" },
-    { theme: "Sport", word: "Fahrrad", solution: "Fährst du oft Fahrrad?" },
-    { theme: "Beruf", word: "arbeiten", solution: "Wo arbeiten Sie?" },
-    { theme: "Einkaufen", word: "kosten", solution: "Was kostet der Apfel?" },
-    { theme: "Reisen", word: "Urlaub", solution: "Wohin fährst du im Urlaub?" }
+const spelling_number_prompts = [
+    { type: "spell", prompt: "Ihren Nachnamen (your last name)" },
+    { type: "spell", prompt: "Ihren Wohnort (your city of residence)" },
+    { type: "spell", prompt: "Deutschland" },
+    { type: "spell", prompt: "Wochenende" },
+    { type: "say", prompt: "Ihre Telefonnummer (your phone number)" },
+    { type: "say", prompt: "das heutige Datum (today's date)" },
+    { type: "say", prompt: "den Preis: 19,50 €" },
+    { type: "say", prompt: "die Hausnummer: 85" }
 ];
 
-const speaking_cards_image = [
-    { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/A_glass_of_water.jpg/800px-A_glass_of_water.jpg", alt: "Glas Wasser", solution: "Kann ich bitte ein Glas Wasser haben?" },
-    { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Open_book_on_a_table.jpg/1280px-Open_book_on_a_table.jpg", alt: "Offenes Buch", solution: "Können Sie das bitte buchstabieren?" },
-    { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Penne_with_pesto.jpg/1280px-Penne_with_pesto.jpg", alt: "Teller Nudeln", solution: "Können wir bitte zahlen?" },
-    { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Gesloten_deur.jpg/800px-Gesloten_deur.jpg", alt: "Geschlossene Tür", solution: "Können Sie bitte die Tür zumachen?" },
-    { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Stift-Bleistift-Pencil-2.jpg/1280px-Stift-Bleistift-Pencil-2.jpg", alt: "Stift", solution: "Haben Sie einen Kugelschreiber?" }
+const speaking_cards = [
+    { theme: "Essen & Trinken", word: "Frühstück", exampleQuestion: "Was isst du zum Frühstück?" },
+    { theme: "Freizeit", word: "Wochenende", exampleQuestion: "Was machst du am Wochenende?" },
+    { theme: "Beruf", word: "Arbeit", exampleQuestion: "Wo arbeiten Sie?" },
+    { theme: "Wohnen", word: "Lieblingszimmer", exampleQuestion: "Was ist dein Lieblingszimmer?" },
+    { theme: "Urlaub", word: "Sommer", exampleQuestion: "Fährst du im Sommer in den Urlaub?" },
+    { theme: "Sport", word: "Fahrrad", exampleQuestion: "Fährst du oft Fahrrad?" }
 ];
 
-// --- EVENT LISTENERS AND FUNCTIONS FOR EXAM PREP PAGE ---
+// --- FUNCTIONS FOR EXAM PREP PAGE ---
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Check if we are on the exam prep page
-    if (document.querySelector('.exam-task')) {
-        initializeExamPage();
-    }
-});
+function createReadingQuiz() {
+    const container = document.getElementById('reading-quiz-container');
+    if (!container) return;
+    container.innerHTML = reading_questions.map((item, index) => {
+        const shuffledOptions = [...item.options].sort(() => Math.random() - 0.5);
+        const optionsHtml = shuffledOptions.map(option => `
+            <label><input type="radio" name="read-q${index}" value="${option}"> ${option}</label>
+        `).join('');
+        return `<div class="quiz-question" id="read-q${index}"><p><strong>Statement ${index + 1}:</strong> Julia war letztes Wochenende in Berlin.</p><div class="quiz-options">${optionsHtml}</div></div>`;
+    }).join('');
+    // This part is static for this specific exercise format
+    const statements = [
+        "Julia was in Berlin last weekend.",
+        "The weather was bad.",
+        "Thomas ate pizza with salami.",
+        "Julia and her friends went to bed late."
+    ];
+    const correctAnswers = ["Falsch", "Falsch", "Falsch", "Richtig"]; // Example answers for a true/false quiz based on the text
+    const quizQuestionsHTML = statements.map((stmt, i) => `
+        <div class="quiz-question" id="read-q${i}">
+            <p><strong>Statement ${i+1}:</strong> ${stmt}</p>
+            <div class="quiz-options">
+                <label><input type="radio" name="read-q${i}" value="Richtig"> Richtig (Correct)</label>
+                <label><input type="radio" name="read-q${i}" value="Falsch"> Falsch (Incorrect)</label>
+            </div>
+        </div>
+    `).join('');
+    container.innerHTML = quizQuestionsHTML;
+}
 
-function initializeExamPage() {
-    // Email Button
-    const checkEmailBtn = document.getElementById('check-email-btn');
-    if (checkEmailBtn) {
-        checkEmailBtn.addEventListener('click', () => {
-            document.getElementById('email-solution').style.display = 'block';
-        });
-    }
-
-    // Form Button
-    const checkFormBtn = document.getElementById('check-form-btn');
-    if (checkFormBtn) {
-        checkFormBtn.addEventListener('click', checkForm);
-    }
-
-    // Grammar Section
-    populateGrammarSection();
-    const checkGrammarBtn = document.getElementById('check-grammar-btn');
-    if(checkGrammarBtn) {
-        // We use the globally defined checkGrammar function here
-        checkGrammarBtn.addEventListener('click', checkGrammar);
-    }
-
-    // Self Introduction Button
-    const selfIntroBtn = document.getElementById('show-self-intro-solution');
-    if(selfIntroBtn) {
-        selfIntroBtn.addEventListener('click', () => {
-             document.getElementById('self-intro-solution').style.display = 'block';
-        });
-    }
-
-    // Speaking Cards
-    const nextSpeakingCardBtn = document.getElementById('next-speaking-card-btn');
-    if (nextSpeakingCardBtn) {
-        showRandomSpeakingCard(); // Show one initially
-        nextSpeakingCardBtn.addEventListener('click', showRandomSpeakingCard);
-    }
-    
-    // Speaking Image Cards
-    const nextSpeakingImageBtn = document.getElementById('next-speaking-image-btn');
-    if (nextSpeakingImageBtn) {
-        showRandomSpeakingImageCard(); // Show one initially
-        nextSpeakingImageBtn.addEventListener('click', showRandomSpeakingImageCard);
-    }
+function checkReadingQuiz() {
+    const correctAnswers = ["Falsch", "Falsch", "Falsch", "Richtig"]; // The actual answers based on the text
+    correctAnswers.forEach((answer, index) => {
+        const qDiv = document.getElementById(`read-q${index}`);
+        const selected = qDiv.querySelector(`input[name="read-q${index}"]:checked`);
+        const labels = qDiv.querySelectorAll('label');
+        labels.forEach(l => l.classList.remove('correct', 'incorrect'));
+        if (selected) {
+            if (selected.value === answer) {
+                selected.parentElement.classList.add('correct');
+            } else {
+                selected.parentElement.classList.add('incorrect');
+                const correctLabel = qDiv.querySelector(`input[value="${answer}"]`).parentElement;
+                if(correctLabel) correctLabel.classList.add('correct');
+            }
+        }
+    });
 }
 
 function checkForm() {
-    const solutions = {
-        'form-name': "Kawalski, Nina",
-        'form-persons': "1",
-        'form-children': "0",
-        'location': "Berlin",
-        'hotel': "Nein",
-        'duration': "14 Tage"
+    const checkField = (id, solution) => {
+        const input = document.getElementById(id);
+        input.classList.remove('correct-input', 'incorrect-input');
+        if (input.value.trim().toLowerCase() === solution.toLowerCase()) {
+            input.classList.add('correct-input');
+        } else {
+            input.classList.add('incorrect-input');
+        }
     };
-
-    for (const id in solutions) {
-        const element = document.getElementById(id);
-        if (element) {
-            if (element.type === 'text') {
-                if (element.value.trim().toLowerCase() === solutions[id].toLowerCase()) {
-                    element.className = 'correct-input';
-                } else {
-                    element.className = 'incorrect-input';
-                    if(!element.parentElement.querySelector('.solution-text')) {
-                       const sol = document.createElement('span');
-                       sol.className = 'solution-text';
-                       sol.style.color = 'var(--success-color)';
-                       sol.textContent = `  (Richtige Antwort: ${solutions[id]})`;
-                       element.parentElement.appendChild(sol);
-                    }
-                }
-            }
-        }
-    }
-    // Check radio buttons
-    document.querySelectorAll('input[type="radio"]').forEach(radio => {
-        if(radio.checked && radio.value === solutions[radio.name]) {
-            radio.parentElement.classList.add('correct-radio');
-        } else if (radio.value === solutions[radio.name]) {
-            // Highlight the correct answer even if not selected
-            radio.parentElement.classList.add('correct-radio');
-        }
-    });
+    checkField('form-persons', form_solutions.persons);
+    checkField('form-date', form_solutions.date);
+    checkField('form-pets', form_solutions.pets);
+    checkField('form-price', form_solutions.price);
+    checkField('form-contact', form_solutions.contact);
 }
 
-function populateGrammarSection() {
+function createGrammarExercise() {
     const container = document.getElementById('grammar-container');
     if (!container) return;
+    container.innerHTML = grammar_questions.map((item, index) => `
+        <div class="grammar-item" id="g${index}">
+            <p class="sentence-to-fix">
+                ${item.sentence_start}
+                <select id="g-select-${index}">
+                    <option value="">-- ? --</option>
+                    ${[...item.options].sort(() => Math.random() - 0.5).map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+                </select>
+                ${item.sentence_end}
+            </p>
+            <div class="solution-box">
+                <h5>Why?</h5>
+                <p>${item.explanation}</p>
+            </div>
+        </div>
+    `).join('');
+}
 
+function checkGrammar() {
     grammar_questions.forEach((item, index) => {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'grammar-item';
-        itemDiv.id = `g${index}`;
-        itemDiv.innerHTML = `
-            <p>${index + 1}. ${item.sentence}</p>
-            <input type="text" placeholder="Schreiben Sie den korrekten Satz hier...">
-            <div class="grammar-solution" style="display:none;"></div>
-        `;
-        container.appendChild(itemDiv);
+        const itemDiv = document.getElementById(`g${index}`);
+        const select = itemDiv.querySelector('select');
+        const solutionDiv = itemDiv.querySelector('.solution-box');
+        
+        select.classList.remove('correct-input', 'incorrect-input');
+        if (select.value === item.answer) {
+            select.classList.add('correct-input');
+        } else {
+            select.classList.add('incorrect-input');
+        }
+        solutionDiv.style.display = 'block';
     });
 }
 
-function showRandomSpeakingCard() {
+let currentSpellingIndex = -1;
+function showNextSpellingNumberCard() {
+    const container = document.getElementById('spelling-number-container');
+    if(!container) return;
+    currentSpellingIndex = (currentSpellingIndex + 1) % spelling_number_prompts.length;
+    const cardData = spelling_number_prompts[currentSpellingIndex];
+    
+    container.innerHTML = `
+        <div class="speaking-card">
+            <p class="theme">Task: ${cardData.type === 'spell' ? 'Buchstabieren' : 'Zahlen sagen'}</p>
+            <p class="word">${cardData.prompt}</p>
+            <input type="text" class="speaking-input" placeholder="Type your answer here...">
+        </div>
+    `;
+}
+
+let currentSpeakingCardIndex = -1;
+function showNextSpeakingCard() {
     const container = document.getElementById('speaking-flashcard-container');
-    if (!container) return;
-
-    const randomIndex = Math.floor(Math.random() * speaking_cards_theme.length);
-    const cardData = speaking_cards_theme[randomIndex];
-
+    if(!container) return;
+    currentSpeakingCardIndex = (currentSpeakingCardIndex + 1) % speaking_cards.length;
+    const cardData = speaking_cards[currentSpeakingCardIndex];
+    
     container.innerHTML = `
-        <div class="speaking-card">
-            <div class="theme">${cardData.theme}</div>
-            <div class="word">${cardData.word}</div>
-            <div class="solution" style="display:none;">Mögliche Frage: "${cardData.solution}"</div>
-            <button class="quiz-check-btn solution-btn">Lösung anzeigen</button>
+        <div class="speaking-card flashcard" onclick="this.classList.toggle('is-flipped')">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">
+                    <p class="theme">Thema: ${cardData.theme}</p>
+                    <p class="word">${cardData.word}</p>
+                    <span class="instruction">(Formulate a question)</span>
+                </div>
+                <div class="flashcard-back">
+                     <p class="theme">Example Question:</p>
+                     <p class="solution">${cardData.exampleQuestion}</p>
+                </div>
+            </div>
         </div>
     `;
-    container.querySelector('.solution-btn').addEventListener('click', (e) => {
-        e.target.style.display = 'none'; // Hide button
-        container.querySelector('.solution').style.display = 'block'; // Show solution
-    });
 }
 
-function showRandomSpeakingImageCard() {
-    const container = document.getElementById('speaking-image-card-container');
-    if (!container) return;
-
-    const randomIndex = Math.floor(Math.random() * speaking_cards_image.length);
-    const cardData = speaking_cards_image[randomIndex];
-
-    container.innerHTML = `
-        <div class="speaking-card">
-            <img src="${cardData.image}" alt="${cardData.alt}">
-            <div class="solution" style="display:none;">Mögliche Bitte: "${cardData.solution}"</div>
-            <button class="quiz-check-btn solution-btn">Lösung anzeigen</button>
-        </div>
-    `;
-    container.querySelector('.solution-btn').addEventListener('click', (e) => {
-        e.target.style.display = 'none'; // Hide button
-        container.querySelector('.solution').style.display = 'block'; // Show solution
+// --- INITIALIZE PAGE ---
+document.addEventListener('DOMContentLoaded', () => {
+    // Event listeners for buttons
+    document.getElementById('check-email-btn')?.addEventListener('click', () => {
+        document.getElementById('email-solution').classList.toggle('visible');
     });
+    document.getElementById('check-form-btn')?.addEventListener('click', checkForm);
+    document.getElementById('check-grammar-btn')?.addEventListener('click', checkGrammar);
+    document.getElementById('next-speaking-card-btn')?.addEventListener('click', showNextSpeakingCard);
+    document.getElementById('next-spelling-number-btn')?.addEventListener('click', showNextSpellingNumberCard);
+
+    // Initial population of dynamic content
+    createReadingQuiz();
+    createGrammarExercise();
+    showNextSpeakingCard();
+    showNextSpellingNumberCard();
+});
+
+// --- Add this function to the global script.js or keep it here ---
+function handleMobileMenu() {
+    const menuToggle = document.getElementById('menu-toggle');
+    const nav = document.querySelector('.main-nav');
+    if (menuToggle && nav) {
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+    }
 }
+
+// Call it on this page as well
+document.addEventListener('DOMContentLoaded', handleMobileMenu);

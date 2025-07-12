@@ -1,0 +1,331 @@
+/* ---
+   Professional CSS Overhaul for German Vocabulary Trainer
+   Focus: Intuitive 3-Column Desktop Layout, Mobile-First, Modern UI
+--- */
+
+/* --- 1. Global Design System & Variables (Consistent with main site) --- */
+:root {
+    --bg-color: #f0f2f5;
+    --card-bg: #ffffff;
+    --text-color: #1c1e21;
+    --primary-blue: #0056b3; /* der */
+    --primary-red: #c9302c;  /* die */
+    --primary-green: #449d44;/* das */
+    --primary-grey: #6c757d;
+    --light-grey: #ced4da;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --border-radius: 12px;
+    --font-heading: 'Roboto', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+}
+
+/* --- 2. Base & Layout --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    padding: 2rem 1rem;
+    min-height: 100vh;
+}
+.app-container {
+    width: 100%;
+    max-width: 1400px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* --- 3. Header --- */
+header { text-align: center; margin-bottom: 1rem; }
+header h1 { font-family: var(--font-heading); color: var(--primary-blue); font-size: clamp(1.8rem, 5vw, 2.5rem); }
+header p { font-size: clamp(1rem, 3vw, 1.1rem); color: var(--primary-grey); }
+
+/* --- 4. Dashboard Layout --- */
+.dashboard {
+    display: grid;
+    /* Mobile: Single column */
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+/* Desktop: Three columns */
+@media (min-width: 1024px) {
+    .dashboard {
+        grid-template-columns: 300px 1fr 300px;
+    }
+}
+
+/* --- 5. Panels (Settings & Progress) --- */
+.panel {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+.panel-title {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: var(--primary-grey);
+    font-size: 1.2rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.75rem;
+}
+.control-group { margin-bottom: 1.5rem; }
+.control-group:last-child { margin-bottom: 0; }
+.control-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; }
+.control-group select, .control-btn {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--light-grey);
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #fff;
+    font-family: var(--font-body);
+}
+.control-btn {
+    background-color: var(--primary-blue);
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+.control-btn:hover { background-color: #004494; }
+.control-btn:active { transform: scale(0.98); }
+.control-btn.active { background-color: var(--primary-green); box-shadow: inset 0 2px 4px rgba(0,0,0,0.15); }
+
+.progress-box { text-align: center; padding: 0.5rem 0; }
+.progress-box:not(:last-child) { border-bottom: 1px dashed #eee; margin-bottom: 1rem; }
+.progress-box h3 { font-size: 1rem; color: var(--primary-grey); font-weight: 400; text-transform: uppercase; letter-spacing: 0.5px; }
+.progress-count { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 700; line-height: 1.2; }
+#progress-total { color: var(--primary-blue); }
+#progress-known { color: var(--primary-green); }
+#progress-practice { color: var(--primary-red); }
+#restart-practice-btn {
+    display: block; width: 100%; margin-top: 1rem; padding: 0.75rem; font-size: 0.9rem;
+    background-color: var(--primary-red); color: white; border: none; border-radius: 8px;
+    cursor: pointer; opacity: 0.6; transition: all 0.2s ease;
+    font-weight: 600;
+}
+#restart-practice-btn:hover { opacity: 1; }
+#restart-practice-btn:disabled { background-color: var(--primary-grey); cursor: not-allowed; opacity: 0.4; }
+#restart-practice-btn.active { opacity: 1; }
+
+/* --- 6. Main Content Area (Flashcards & Word List) --- */
+.main-content { min-width: 0; }
+.flashcard-deck-container { display: flex; flex-direction: column; align-items: center; justify-content: space-between; flex-grow: 1; min-height: 550px; }
+.flashcard-deck { position: relative; height: 400px; width: 100%; max-width: 600px; margin: 0 auto; }
+.flashcard {
+    background-color: var(--card-bg);
+    width: 100%; height: 100%;
+    position: absolute; top: 0; left: 0;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    perspective: 1500px;
+    transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+    transform-origin: center center;
+    opacity: 1;
+}
+.flashcard.is-flipped .flashcard-inner { transform: rotateY(180deg); }
+.flashcard.swiped-right { transform: translateX(150%) rotate(15deg); opacity: 0; }
+.flashcard.swiped-left { transform: translateX(-150%) rotate(-15deg); opacity: 0; }
+.flashcard-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; }
+.flashcard-front, .flashcard-back {
+    position: absolute; width: 100%; height: 100%;
+    -webkit-backface-visibility: hidden; backface-visibility: hidden;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    padding: 2rem; text-align: center; border-radius: var(--border-radius); border: 1px solid #e0e0e0;
+}
+.flashcard-front { background-color: var(--card-bg); }
+.flashcard-back { background-color: var(--card-bg); transform: rotateY(180deg); }
+.flashcard-word { font-family: var(--font-heading); font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 700; margin-bottom: 1rem; word-break: break-word; }
+.article-der, .flashcard-back.article-der { border-top: 10px solid var(--primary-blue); }
+.article-die, .flashcard-back.article-die { border-top: 10px solid var(--primary-red); }
+.article-das, .flashcard-back.article-das { border-top: 10px solid var(--primary-green); }
+.article-text { font-family: var(--font-heading); font-size: clamp(2rem, 6vw, 2.5rem); font-weight: 500; margin-bottom: 0.5rem; }
+.article-text.der { color: var(--primary-blue); }
+.article-text.die { color: var(--primary-red); }
+.article-text.das { color: var(--primary-green); }
+.plural-text { font-size: clamp(1.2rem, 4vw, 1.5rem); color: var(--primary-grey); margin-bottom: 1rem; }
+.english-text { font-size: clamp(1rem, 3.5vw, 1.2rem); font-style: italic; }
+.listen-btn { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--primary-grey); transition: color 0.2s, transform 0.2s; }
+.listen-btn:hover { color: var(--primary-blue); transform: scale(1.1); }
+#empty-deck-message { display: none; text-align: center; font-size: 1.5rem; color: var(--primary-grey); padding: 3rem; }
+
+/* --- 7. Assessment Buttons --- */
+.assessment-buttons { display: flex; justify-content: center; gap: 1.5rem; width: 100%; max-width: 600px; margin-top: 2rem; visibility: hidden; opacity: 0; transition: visibility 0s 0.3s, opacity 0.3s ease; }
+.assessment-buttons.visible { visibility: visible; opacity: 1; transition: opacity 0.3s ease; }
+.assess-btn { flex-grow: 1; padding: 1rem; font-size: 1.1rem; font-family: var(--font-heading); font-weight: 500; border: 2px solid; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+.assess-btn .icon { font-size: 1.5rem; }
+.assess-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
+#btn-know { border-color: var(--primary-green); color: var(--primary-green); background-color: #fff; }
+#btn-know:hover { background-color: var(--primary-green); color: #fff; }
+#btn-practice { border-color: var(--primary-red); color: var(--primary-red); background-color: #fff; }
+#btn-practice:hover { background-color: var(--primary-red); color: #fff; }
+
+/* --- 8. Word List View --- */
+#word-list-container { display: none; background: var(--card-bg); padding: 1.5rem; border-radius: var(--border-radius); box-shadow: var(--shadow); }
+#word-list-search { width: 100%; max-width: 400px; padding: 0.75rem; border: 1px solid var(--light-grey); border-radius: 8px; font-size: 1rem; margin-bottom: 1.5rem; }
+.table-wrapper { max-height: 60vh; overflow-y: auto; }
+.word-list-table { width: 100%; border-collapse: collapse; }
+.word-list-table th, .word-list-table td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #eee; }
+.word-list-table th { font-family: var(--font-heading); cursor: pointer; position: sticky; top: 0; background-color: #f8f9fa; }
+.word-list-table th::after { content: ''; position: absolute; right: 5px; top: 50%; transform: translateY(-50%); opacity: 0.5; }
+.word-list-table th.sort-asc::after { content: ' ▲'; }
+.word-list-table th.sort-desc::after { content: ' ▼'; }
+.gender-dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; }
+.gender-dot.der { background-color: var(--primary-blue); }
+.gender-dot.die { background-color: var(--primary-red); }
+.gender-dot.das { background-color: var(--primary-green); }
+
+/* --- 9. Mobile Responsive Design --- */
+@media (max-width: 1023px) {
+    .dashboard { grid-template-columns: 1fr; }
+    .settings-sidebar, .progress-sidebar {
+        position: static;
+        order: 3; /* Move settings and progress to the bottom */
+    }
+    .main-content {
+        order: 1;
+    }
+    .progress-sidebar {
+        order: 2;
+    }
+    .assess-btn .text { display: none; }
+    .assess-btn { padding: 0.75rem; }
+}
+
+@media (max-width: 768px) {
+    body { padding: 1rem 0.5rem; }
+    .flashcard-deck { height: 350px; }
+    .assess-btn { font-size: 1rem; }
+}
+
+/* --- Add these new rules to your existing flashcard.css file --- */
+
+/* --- 11. Main Site Header (for cross-site navigation) --- */
+.site-header {
+    background-color: #0D204E; /* Using var(--color-primary) from main site */
+    color: #FFFFFF;
+    padding: 0 1.5rem;
+    height: 70px;
+    position: fixed; /* Fixed at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.site-header .logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    font-family: 'Roboto', sans-serif;
+    color: #FFFFFF;
+    text-decoration: none;
+    transition: color 0.2s ease-out;
+}
+.site-header .logo:hover {
+    color: #FFB300; /* var(--color-accent) */
+}
+
+.main-nav ul {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.main-nav li {
+    margin: 0;
+    height: 100%;
+}
+
+.main-nav a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0 1rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    transition: color 0.2s ease-out, background-color 0.2s ease-out;
+}
+
+.main-nav a:hover {
+    color: #FFFFFF;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.main-nav a.active {
+    color: #FFB300; /* var(--color-accent) */
+    font-weight: 700;
+    border-bottom: 4px solid #FFB300; /* var(--color-accent) */
+}
+
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: #FFFFFF;
+    z-index: 1001;
+}
+
+/* --- Adjustments for this page --- */
+body {
+    padding-top: calc(70px + 2rem); /* Add padding to body to account for fixed header */
+}
+
+header.page-header {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* --- Mobile Navigation Styles (same as main site) --- */
+@media (max-width: 1024px) {
+    .menu-toggle { display: block; }
+    .main-nav {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 300px;
+        height: 100%;
+        background-color: #1c2e5a;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+        transform: translateX(100%);
+        transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        overflow-y: auto;
+    }
+    .main-nav.active { transform: translateX(0); }
+    .main-nav ul {
+        flex-direction: column;
+        padding: calc(70px + 1.5rem) 1rem;
+        height: auto;
+        align-items: flex-start;
+    }
+    .main-nav li { width: 100%; }
+    .main-nav a {
+        display: block;
+        width: 100%;
+        padding: 1rem;
+        border-radius: 8px;
+    }
+    .main-nav a.active {
+        background-color: #FFB300;
+        color: #0D204E;
+        border-bottom: none;
+    }
+}

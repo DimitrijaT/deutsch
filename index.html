@@ -1,94 +1,251 @@
 <!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deutsch A1.1 Lernkurs - Startseite</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A1.1 German Course - Homepage & Grammar Cockpit</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
     <header class="site-header">
-        <h1>Deutsch A1.1 Kurs</h1>
-        <nav class="main-nav">
-            <div class="menu-toggle" id="menu-toggle">☰</div>
-            <ul id="nav-links">
-                <li><a href="index.html" class="active">Start</a></li>
-                <li><a href="kapitel1.html">Kapitel 1</a></li>
-                <li><a href="kapitel2.html">Kapitel 2</a></li>
-                <li><a href="kapitel3.html">Kapitel 3</a></li>
-                <li><a href="kapitel4.html">Kapitel 4</a></li>
-                <li><a href="kapitel5.html">Kapitel 5</a></li>
-                <li><a href="kapitel6.html">Kapitel 6</a></li>
-                <li><a href="kapitel7.html">Kapitel 7</a></li>
-                <li><a href="kapitel8.html">Kapitel 8</a></li>
-                <li><a href="kapitel9.html">Kapitel 9</a></li>
-                <li><a href="exam-prep.html" class="exam-link">Prüfungsvorbereitung</a></li>
-            </ul>
-        </nav>
+      <a href="index.html" class="logo">A1.1 German Course</a>
+      <nav class="main-nav">
+        <ul id="nav-links">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="kapitel1.html">Chapter 1</a></li>
+          <li><a href="kapitel2.html">Chapter 2</a></li>
+          <li><a href="kapitel3.html">Chapter 3</a></li>
+          <li><a href="kapitel4.html">Chapter 4</a></li>
+          <li><a href="kapitel5.html">Chapter 5</a></li>
+          <li><a href="kapitel6.html">Chapter 6</a></li>
+          <li><a href="kapitel7.html">Chapter 7</a></li>
+          <li><a href="kapitel8.html">Chapter 8</a></li>
+          <li><a href="kapitel9.html">Chapter 9</a></li>
+        </ul>
+      </nav>
+      <div class="menu-toggle" id="menu-toggle">☰</div>
     </header>
 
     <main class="homepage">
-        <section class="welcome-section">
-            <h2>Willkommen zum A1.1 Deutschkurs!</h2>
-            <p>Dieser interaktive Kurs begleitet Sie auf Ihren ersten Schritten in der deutschen Sprache. Jedes Kapitel baut auf dem vorherigen auf und enthält Vokabeln, Grammatikregeln, Beispiele, interaktive Lernkarten und ein kleines Quiz, um Ihr Wissen zu testen.</p>
-            <p>Wählen Sie ein Kapitel aus, um zu beginnen.</p>
-            <a href="german_gender_trainer.html"
-             class="start-button">German Word Trainer</a>
-        </section>
+      <section class="welcome-section">
+        <h1>Welcome to the A1.1 German Course!</h1>
+        <p>
+          This interactive course will guide you through your first steps in the
+          German language. Choose a chapter to begin a detailed lesson, or use
+          the "Grammar Cockpit" below for a quick review of key concepts.
+        </p>
 
-        <section class="chapter-grid">
-            <a href="kapitel1.html" class="chapter-card">
-                <h3>Kapitel 1</h3>
-                <p>Hallo, ich bin …</p>
-                <span>Begrüßungen, sich vorstellen, Kontaktdaten</span>
-            </a>
-            <a href="kapitel2.html" class="chapter-card">
-                <h3>Kapitel 2</h3>
-                <p>Menschen in Deutschland</p>
-                <span>Berufe, Artikel, Plural, Negation</span>
-            </a>
-            <a href="kapitel3.html" class="chapter-card">
-                <h3>Kapitel 3</h3>
-                <p>Freunde und Co.</p>
-                <span>Hobbys, Wochentage, Zeitangaben, ein/kein</span>
-            </a>
-            <a href="kapitel4.html" class="chapter-card">
-                <h3>Kapitel 4</h3>
-                <p>In der Stadt unterwegs</p>
-                <span>Essen bestellen, Akkusativ, Uhrzeit, "es gibt"</span>
-            </a>
-            <a href="kapitel5.html" class="chapter-card">
-                <h3>Kapitel 5</h3>
-                <p>Einkaufen und Essen</p>
-                <span>Lebensmittel, Mengenangaben, Imperativ</span>
-            </a>
-            <a href="kapitel6.html" class="chapter-card">
-                <h3>Kapitel 6</h3>
-                <p>Mein Alltag</p>
-                <span>Modalverben, Tagesroutine, Datum</span>
-            </a>
-            <a href="kapitel7.html" class="chapter-card">
-                <h3>Kapitel 7</h3>
-                <p>Kommst du mit?</p>
-                <span>Einladungen, trennbare Verben, Pronomen im Akkusativ</span>
-            </a>
-            <a href="kapitel8.html" class="chapter-card">
-                <h3>Kapitel 8</h3>
-                <p>Deine Wohnung ist schön</p>
-                <span>Zimmer, Möbel, Possessivartikel</span>
-            </a>
-            <a href="kapitel9.html" class="chapter-card">
-                <h3>Kapitel 9</h3>
-                <p>Das war sehr schön</p>
-                <span>Vergangenheit (Präteritum), E-Mails, Genitiv-s</span>
-            </a>
-        </section>
+        <!-- NEW ACTION BUTTON SECTION -->
+        <div class="welcome-actions">
+          <a href="flashcards.html" class="action-button"
+            >🚀 Launch Vocabulary Trainer</a
+          >
+          <!-- NEW BUTTON -->
+          <!-- <a href="exam-prep.html" class="action-button secondary">🎓 Exam Preparation</a> -->
+        </div>
+      </section>
+
+      <section class="chapter-grid">
+        <!-- Chapter 1 Card -->
+        <div class="chapter-card-container">
+          <a href="kapitel1.html" class="chapter-card">
+            <h3>Chapter 1</h3>
+            <p>Hallo, ich bin …</p>
+            <span>Greetings, Introductions, Contact Details</span>
+          </a>
+          <div class="grammar-links">
+            <span class="grammar-link" data-concept="c1-verb-conjugation"
+              >Verb Conjugation (Present)</span
+            >
+            <span class="grammar-link" data-concept="c1-w-questions"
+              >W-Questions</span
+            >
+            <span class="grammar-link" data-concept="c1-formal-informal"
+              >Du vs. Sie</span
+            >
+          </div>
+        </div>
+
+        <!-- Chapter 2 Card -->
+        <div class="chapter-card-container">
+          <a href="kapitel2.html" class="chapter-card">
+            <h3>Chapter 2</h3>
+            <p>Menschen in Deutschland</p>
+            <span>Professions, Articles, Plurals, Negation</span>
+          </a>
+          <div class="grammar-links">
+            <span class="grammar-link" data-concept="c2-articles"
+              >Definite/Indefinite Articles</span
+            >
+            <span class="grammar-link" data-concept="c2-plurals"
+              >Noun Plurals</span
+            >
+            <span class="grammar-link" data-concept="c2-negation"
+              >Negation (nicht)</span
+            >
+          </div>
+        </div>
+
+        <!-- Chapter 3 Card -->
+        <div class="chapter-card-container">
+          <a href="kapitel3.html" class="chapter-card">
+            <h3>Chapter 3</h3>
+            <p>Freunde und Co.</p>
+            <span>Hobbies, Time Prepositions, kein/keine</span>
+          </a>
+          <div class="grammar-links">
+            <span class="grammar-link" data-concept="c3-gern"
+              >Using "gern"</span
+            >
+            <span class="grammar-link" data-concept="c3-time-prepositions"
+              >Time Prepositions (am/um)</span
+            >
+            <span class="grammar-link" data-concept="c3-negation-kein"
+              >Negation (kein/keine)</span
+            >
+          </div>
+        </div>
+
+        <!-- Chapter 4 Card -->
+        <div class="chapter-card-container">
+          <a href="kapitel4.html" class="chapter-card">
+            <h3>Chapter 4</h3>
+            <p>In der Stadt unterwegs</p>
+            <span>Ordering Food, Accusative Case, Telling Time</span>
+          </a>
+          <div class="grammar-links">
+            <span class="grammar-link" data-concept="c4-accusative"
+              >The Accusative Case</span
+            >
+            <span class="grammar-link" data-concept="c4-es-gibt"
+              >"Es gibt" + Accusative</span
+            >
+            <span class="grammar-link" data-concept="c4-time"
+              >Telling Time</span
+            >
+          </div>
+        </div>
+
+        <!-- Chapter 5 Card -->
+        <div class="chapter-card-container">
+          <a href="kapitel5.html" class="chapter-card">
+            <h3>Chapter 5</h3>
+            <p>Einkaufen und Essen</p>
+            <span>Groceries, Quantities, The Imperative</span>
+          </a>
+          <div class="grammar-links">
+            <span class="grammar-link" data-concept="c5-irregular-verbs"
+              >Irregular Verbs (essen, nehmen)</span
+            >
+            <span class="grammar-link" data-concept="c5-imperative"
+              >The Imperative Mood</span
+            >
+            <span class="grammar-link" data-concept="c5-quantities"
+              >Quantities & Packaging</span
+            >
+          </div>
+        </div>
+
+        <!-- Chapter 6 Card -->
+        <div class="chapter-card-container">
+          <a href="kapitel6.html" class="chapter-card">
+            <h3>Chapter 6</h3>
+            <p>Mein Alltag</p>
+            <span>Modal Verbs, Daily Routine, Dates</span>
+          </a>
+          <div class="grammar-links">
+            <span class="grammar-link" data-concept="c6-modal-verbs"
+              >Modal Verbs (können, müssen)</span
+            >
+            <span class="grammar-link" data-concept="c6-inversion"
+              >Sentence Inversion</span
+            >
+            <span class="grammar-link" data-concept="c6-dates"
+              >Ordinal Numbers & Dates</span
+            >
+          </div>
+        </div>
+
+        <!-- Chapter 7 Card -->
+        <div class="chapter-card-container">
+          <a href="kapitel7.html" class="chapter-card">
+            <h3>Chapter 7</h3>
+            <p>Kommst du mit?</p>
+            <span>Invitations, Separable Verbs, Accusative Pronouns</span>
+          </a>
+          <div class="grammar-links">
+            <span class="grammar-link" data-concept="c7-separable-verbs"
+              >Separable Verbs</span
+            >
+            <span class="grammar-link" data-concept="c7-accusative-pronouns"
+              >Accusative Pronouns</span
+            >
+            <span class="grammar-link" data-concept="c7-invitations"
+              >Making Suggestions</span
+            >
+          </div>
+        </div>
+
+        <!-- Chapter 8 Card -->
+        <div class="chapter-card-container">
+          <a href="kapitel8.html" class="chapter-card">
+            <h3>Chapter 8</h3>
+            <p>Deine Wohnung ist schön</p>
+            <span>Rooms, Furniture, Possessive Articles</span>
+          </a>
+          <div class="grammar-links">
+            <span class="grammar-link" data-concept="c8-possessive-nominative"
+              >Possessive Articles (Nom.)</span
+            >
+            <span class="grammar-link" data-concept="c8-possessive-accusative"
+              >Possessive Articles (Acc.)</span
+            >
+            <span class="grammar-link" data-concept="c8-gefallen"
+              >Using "gefallen"</span
+            >
+          </div>
+        </div>
+
+        <!-- Chapter 9 Card -->
+        <div class="chapter-card-container">
+          <a href="kapitel9.html" class="chapter-card">
+            <h3>Chapter 9</h3>
+            <p>Das war sehr schön</p>
+            <span>Past Tense (Präteritum), Emails, Genitive-s</span>
+          </a>
+          <div class="grammar-links">
+            <span class="grammar-link" data-concept="c9-praeteritum"
+              >Past Tense (sein/haben)</span
+            >
+            <span class="grammar-link" data-concept="c9-emails"
+              >Writing Emails</span
+            >
+            <span class="grammar-link" data-concept="c9-genitive-s"
+              >Genitive 's' with Names</span
+            >
+          </div>
+        </div>
+      </section>
     </main>
-    
+
+    <!-- Modal for Grammar Examples -->
+    <div id="grammar-modal" class="modal">
+      <div class="modal-content">
+        <span class="modal-close">×</span>
+        <h3 id="modal-title">Grammar Concept</h3>
+        <div id="modal-body">
+          <!-- Example sentences will be injected here -->
+        </div>
+      </div>
+    </div>
+
     <footer class="site-footer-main">
-        <p>© 2025 Professioneller Deutschkurs. Alle Rechte vorbehalten.</p>
+      <p>
+        © 2025 Dimitrija Timeski - Professional German Course. All rights
+        reserved.
+      </p>
     </footer>
 
     <script src="js/script.js"></script>
-</body>
+  </body>
 </html>
