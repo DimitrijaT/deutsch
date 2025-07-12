@@ -487,3 +487,212 @@ tbody tr:hover { background-color: #f1f3f5; }
 .grammar-solution.visible {
     display: block;
 }
+/* --- Add these new rules to your existing style.css --- */
+
+/* --- Verb Conjugation Page Styles --- */
+.verb-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-lg);
+    background-color: var(--color-card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+#verb-search {
+    flex-grow: 1;
+    padding: var(--spacing-md);
+    font-size: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+}
+
+.practice-toggle-container {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.practice-label {
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+/* The switch - a checkbox with a slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+input:checked + .slider {
+    background-color: var(--color-success);
+}
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--color-success);
+}
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+.slider.round { border-radius: 34px; }
+.slider.round:before { border-radius: 50%; }
+
+/* Verb Table Styles */
+.verb-category-section {
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Rules to hide table content when section is collapsed */
+.verb-category-section.collapsed .verb-table thead tr:nth-child(2),
+.verb-category-section.collapsed .verb-table tbody {
+    display: none;
+}
+
+.verb-table {
+    width: 100%;
+    min-width: 100px; /* Ensure the table is wide enough for all columns */
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border-radius: var(--border-radius);
+    /* --- KEY CHANGE FOR STABLE COLUMNS --- */
+    table-layout: fixed; /* Force the browser to use a fixed layout algorithm */
+}
+
+/* --- DEFINE COLUMN WIDTHS FOR THE FIXED LAYOUT --- */
+/* We target the second header row's cells to set the widths */
+.verb-table thead tr:nth-child(2) th:nth-child(1) {
+    width: 28%; /* Wider column for the infinitive and English translation */
+}
+.verb-table thead tr:nth-child(2) th:nth-child(n+2) {
+    width: 12%; /* Equal width for the 6 conjugation columns (6 * 12% = 72%) */
+}
+
+
+.verb-table th, .verb-table td {
+    padding: 0; /* Padding is now handled by inner elements */
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: middle;
+}
+
+.verb-table th {
+    padding: var(--spacing-md); /* Restore padding for header cells */
+}
+
+/* Shared styles for all header cells */
+.verb-table thead th {
+    background-color: var(--color-primary);
+    color: var(--color-header-text);
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+}
+
+/* Specific styles for the main category header to make it collapsible */
+.verb-table thead tr:first-child th {
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+}
+
+/* The +/- indicator for collapsible sections */
+.verb-table thead tr:first-child th::after {
+    content: '−';
+    position: absolute;
+    right: var(--spacing-lg);
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.8rem;
+    line-height: 1;
+    font-weight: normal;
+}
+
+.verb-category-section.collapsed .verb-table thead tr:first-child th::after {
+    content: '+';
+}
+
+.verb-table tbody tr {
+    background-color: var(--color-card-bg);
+    transition: background-color var(--transition-fast);
+}
+
+.verb-table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.verb-table .verb-infinitive {
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: var(--spacing-md);
+}
+
+/* --- PRACTICE MODE LOGIC --- */
+
+/* 1. Style the new inner div. This is our target for all styling. */
+.verb-table .conjugation-cell > div {
+    padding: var(--spacing-xs); /* The padding is now on this element */
+    border-radius: 4px;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+    height: 100%; /* Ensure the clickable area fills the cell */
+}
+
+/* 2. HIDDEN state in practice mode: Hide text and show a colored block */
+.practice-mode .conjugation-cell > div {
+    padding: var(--spacing-md);
+    font-size: 0; /* Foolproof way to hide text content, including spans */
+    background-color: var(--color-text-light);
+    cursor: pointer;
+    user-select: none;
+}
+.practice-mode .conjugation-cell > div:hover {
+    background-color: var(--color-primary);
+}
+
+/* 3. REVEALED state in practice mode: Restore text and remove block color */
+.practice-mode .conjugation-cell.revealed > div {
+     padding: var(--spacing-xs);
+    font-size: inherit; /* Restore the font size */
+    background-color: transparent;
+    cursor: default;
+}
+
+.verb-table .prefix {
+    font-weight: bold;
+    color: var(--color-danger);
+}
+
+.english-text{
+    font-style: italic;
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    margin-top: var(--spacing-xs);
+}

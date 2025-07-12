@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A1.1 Verb Conjugation Trainer</title>
+    <!-- Use the main site's CSS file -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <a href="index.html" class="logo">A1.1 German Course</a>
+        <nav class="main-nav">
+            <ul id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="kapitel1.html">Chapter 1</a></li>
+                <li><a href="kapitel2.html">Chapter 2</a></li>
+                <li><a href="kapitel3.html">Chapter 3</a></li>
+                <li><a href="kapitel4.html">Chapter 4</a></li>
+                <li><a href="kapitel5.html">Chapter 5</a></li>
+                <li><a href="kapitel6.html">Chapter 6</a></li>
+                <li><a href="kapitel7.html">Chapter 7</a></li>
+                <li><a href="kapitel8.html">Chapter 8</a></li>
+                <li><a href="kapitel9.html">Chapter 9</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle" id="menu-toggle">☰</div>
+    </header>
+
+    <main>
+        <section class="chapter">
+            <div class="exam-prep-header">
+                <h1>Verb Conjugation Trainer</h1>
+                <p class="chapter-summary">
+                    Master verb endings—a key to speaking German fluently. Review all verbs from the course, and use "Practice Mode" to test your knowledge by hiding the conjugations.
+                </p>
+            </div>
+
+            <div class="verb-controls">
+                <input type="text" id="verb-search" placeholder="🔎 Search for a verb (e.g., 'gehen')...">
+                <div class="practice-toggle-container">
+                    <label for="practice-mode-toggle" class="practice-label">Practice Mode:</label>
+                    <label class="switch">
+                        <input type="checkbox" id="practice-mode-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- The container for all our verb tables -->
+            <div id="verb-tables-container"></div>
+
+        </section>
+    </main>
+    
+    <footer class="site-footer-main">
+        <p>© 2025 Professional German Course. All rights reserved.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/verb-conjugations.js"></script>
+</body>
+</html>
