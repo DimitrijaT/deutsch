@@ -100,7 +100,6 @@ a:hover { color: var(--color-accent-hover); text-decoration: underline; }
     align-items: center;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
-
 .site-header .logo {
     font-size: 1.4rem;
     font-weight: 700;
@@ -111,19 +110,16 @@ a:hover { color: var(--color-accent-hover); text-decoration: underline; }
 .site-header .logo:hover {
     color: var(--color-accent);
 }
-
 .main-nav ul {
     list-style-type: none;
     display: flex;
     align-items: center;
     height: 100%;
 }
-
 .main-nav li {
     margin: 0;
     height: 100%;
 }
-
 .main-nav a {
     color: #e0e0e0;
     text-decoration: none;
@@ -148,150 +144,24 @@ a:hover { color: var(--color-accent-hover); text-decoration: underline; }
 
 /* --- 5. Main Content Layout --- */
 main {
-    max-width: 960px;
+    max-width: 960px; /* Default for most pages */
     margin: var(--spacing-xl) auto;
     padding: 0 var(--spacing-md);
 }
+/* Specific main content width for the Flashcards page */
+.flashcards-page main {
+    max-width: 1200px; /* Wider for more flashcards per row on large screens */
+    padding: 0 var(--spacing-lg); /* Adjust padding for wider layout */
+}
 
-/* --- 6. Homepage Specific Styles --- */
+/* --- 6. Homepage & General Components --- */
 .homepage { text-align: center; }
 .welcome-section p { font-size: 1.15rem; max-width: 700px; margin: 0 auto var(--spacing-lg) auto; color: var(--color-text-light); }
-.chapter-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: var(--spacing-lg); text-align: left; }
-.chapter-card-container { display: flex; flex-direction: column; background-color: var(--color-card-bg); border-radius: var(--border-radius); box-shadow: var(--shadow); transition: transform var(--transition-fast), box-shadow var(--transition-fast); }
-.chapter-card-container:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); }
-.chapter-card { padding: var(--spacing-lg); text-decoration: none; color: var(--color-text); flex-grow: 1; }
-.chapter-card h3 { margin: 0 0 var(--spacing-sm) 0; }
-.chapter-card h3::before { content: '📚 '; }
-.chapter-card p { color: var(--color-text-light); margin-bottom: var(--spacing-sm); }
-.chapter-card span { font-size: 0.9rem; color: #90a4ae; font-style: italic; }
-.grammar-links { border-top: 1px solid var(--color-border); padding: var(--spacing-md); background-color: #fafafa; border-radius: 0 0 var(--border-radius) var(--border-radius); }
-.grammar-link { display: inline-block; background-color: #e8eaf6; color: var(--color-primary); padding: var(--spacing-xs) var(--spacing-md); margin: var(--spacing-xs); border-radius: 15px; font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: background-color var(--transition-fast), transform var(--transition-fast); }
-.grammar-link:hover { background-color: #c5cae9; transform: translateY(-1px); }
-
-/* --- 7. Chapter Page Styles --- */
-.chapter { background-color: var(--color-card-bg); padding: var(--spacing-xl); border-radius: var(--border-radius); box-shadow: var(--shadow); }
-.chapter-summary { font-style: italic; background-color: #e8eaf6; padding: var(--spacing-lg); border-radius: var(--border-radius); margin-bottom: var(--spacing-xl); border-left: 5px solid var(--color-primary); }
-.chapter-summary::before { content: '💡 '; font-style: normal; font-weight: bold; }
-table { width: 100%; border-collapse: collapse; }
-th, td { padding: var(--spacing-sm) var(--spacing-md); text-align: left; border-bottom: 1px solid var(--color-border); }
-th { background-color: #f8f9fa; font-family: var(--font-heading); }
-tbody tr:hover { background-color: #f1f3f5; }
-.grammar-rule, .kultur-tipp, .sprech-training { padding: var(--spacing-lg); margin: var(--spacing-lg) 0; border-radius: var(--border-radius); border-left-width: 5px; border-left-style: solid; }
-.grammar-rule { background-color: var(--color-info-bg); border-left-color: var(--color-info-border); }
-.kultur-tipp { background-color: var(--color-kultur-bg); border-left-color: var(--color-kultur-border); }
-.sprech-training { background-color: var(--color-sprech-bg); border-left-color: var(--color-sprech-border); }
-.info-box-title { font-family: var(--font-heading); font-weight: bold; display: block; margin-bottom: var(--spacing-sm); font-size: 1.1rem; }
-.info-box-title::before { margin-right: var(--spacing-sm); font-size: 1.2rem; }
-.grammar-rule .info-box-title::before { content: '📜'; }
-.kultur-tipp .info-box-title::before { content: '🌍'; }
-.sprech-training .info-box-title::before { content: '🗣️'; }
-.example-text { background: #fafafa; border: 1px solid #eee; padding: var(--spacing-md); margin: var(--spacing-md) 0; border-radius: var(--border-radius); font-style: italic; }
-.irregular { color: #c62828; font-weight: bold; }
-.verb-ending { color: #1565c0; font-weight: bold; }
-
-/* --- 8. Interactive Elements (Flashcards, Quiz, Modal) --- */
-.interactive-section { margin-top: var(--spacing-xl); padding-top: var(--spacing-lg); border-top: 1px dashed var(--color-border); }
-.flashcard-container { display: flex; flex-wrap: wrap; gap: var(--spacing-lg); justify-content: center; margin-top: var(--spacing-lg); }
-.flashcard { background-color: transparent; width: 280px; height: 160px; perspective: 1000px; cursor: pointer; }
-.flashcard-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; box-shadow: var(--shadow); border-radius: var(--border-radius); }
-.flashcard.is-flipped .flashcard-inner { transform: rotateY(180deg); }
-.flashcard-front, .flashcard-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; display: flex; justify-content: center; align-items: center; padding: 20px; border-radius: var(--border-radius); font-size: 1.2rem; text-align: center; }
-.flashcard-front { background-color: var(--color-card-bg); border: 1px solid var(--color-border); color: var(--color-primary); }
-.flashcard-back { background-color: var(--color-primary); color: white; transform: rotateY(180deg); }
-
-.quiz-question { margin-bottom: var(--spacing-lg); background: #fafafa; padding: var(--spacing-lg); border-radius: var(--border-radius); border: 1px solid var(--color-border); }
-.quiz-question p { font-weight: bold; margin-bottom: var(--spacing-sm); }
-.quiz-options label { display: block; margin-bottom: var(--spacing-sm); cursor: pointer; padding: var(--spacing-md); border-radius: var(--border-radius); transition: background-color var(--transition-fast); border: 1px solid var(--color-border); }
-.quiz-options label:hover { background-color: #e9ecef; }
-.quiz-options input { margin-right: 10px; accent-color: var(--color-primary); transform: scale(1.2); }
-.quiz-check-btn { display: inline-block; margin-top: var(--spacing-lg); padding: 0.8rem 2rem; background-color: var(--color-accent); color: var(--color-primary); border: none; border-radius: var(--border-radius); cursor: pointer; font-size: 1.1rem; font-weight: bold; transition: background-color var(--transition-fast), transform var(--transition-fast); }
-.quiz-check-btn:hover { background-color: var(--color-accent-hover); transform: translateY(-2px); }
-.correct { background-color: var(--color-success-bg) !important; border-color: var(--color-success) !important; color: var(--color-success); font-weight: bold; }
-.correct::before { content: '✔ '; }
-.incorrect { background-color: var(--color-danger-bg) !important; border-color: var(--color-danger) !important; color: var(--color-danger); font-weight: bold; }
-.incorrect::before { content: '✖ '; }
-
-.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(5px); animation: fadeIn 0.3s; }
-.modal-content { background-color: var(--color-card-bg); margin: 10vh auto; padding: var(--spacing-xl); border-radius: var(--border-radius); box-shadow: 0 5px 25px rgba(0,0,0,0.3); width: 90%; max-width: 600px; position: relative; animation: slideIn 0.4s; }
-.modal-close { position: absolute; top: var(--spacing-md); right: var(--spacing-md); color: #aaa; font-size: 2rem; font-weight: bold; cursor: pointer; transition: color var(--transition-fast), transform var(--transition-fast); }
-.modal-close:hover { color: var(--color-text); transform: rotate(90deg); }
-.modal-content h3 { margin-top: 0; color: var(--color-primary); }
-.modal-body ul { list-style-type: none; padding: 0; }
-.modal-body li { background-color: var(--color-secondary); border-left: 3px solid var(--color-accent); padding: var(--spacing-md); margin-bottom: var(--spacing-sm); border-radius: 4px; }
-@keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
-@keyframes slideIn { from {transform: translateY(-50px); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
-
-/* --- 9. Footer --- */
-.site-footer-main { background: #343a40; color: #ced4da; text-align: center; padding: var(--spacing-xl); margin-top: var(--spacing-xl); }
-
-/* --- 10. Mobile Navigation & Responsive --- */
-.menu-toggle {
-    display: none;
-    cursor: pointer;
-    font-size: 2rem;
-    background: none;
-    border: none;
-    color: var(--color-header-text);
-    z-index: 1001; /* Above the nav panel */
-    transition: transform 0.3s ease;
-}
-
-@media (max-width: 1024px) {
-    .menu-toggle { display: block; }
-    .main-nav {
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 300px;
-        height: 100%;
-        background-color: #1c2e5a; /* Slightly lighter for depth */
-        box-shadow: -5px 0 15px rgba(0,0,0,0.2);
-        transform: translateX(100%);
-        transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        overflow-y: auto; /* Allow scrolling for many chapters */
-    }
-    .main-nav.active { transform: translateX(0); }
-    .main-nav ul {
-        flex-direction: column;
-        padding: calc(var(--header-height) + var(--spacing-lg)) var(--spacing-md);
-        height: auto;
-        align-items: flex-start;
-    }
-    .main-nav li {
-        width: 100%;
-        height: auto;
-    }
-    .main-nav a {
-        display: block;
-        width: 100%;
-        padding: var(--spacing-md);
-        border-radius: var(--border-radius);
-        color: var(--color-header-text);
-    }
-    .main-nav a.active {
-        background-color: var(--color-accent);
-        color: var(--color-primary);
-        border-bottom: none;
-    }
-    .main-nav a:hover {
-        background-color: rgba(255, 255, 255, 0.15);
-    }
-}
-
-@media (max-width: 576px) {
-    body { font-size: 16px; }
-    main { margin: var(--spacing-lg) auto; }
-    h1 { font-size: 1.8rem; }
-    h2 { font-size: 1.5rem; }
-    .chapter { padding: var(--spacing-lg); }
-    .modal-content { padding: var(--spacing-lg); }
-}
 
 .welcome-actions {
     margin-top: 1.5rem;
     margin-bottom: 2.5rem;
 }
-
 .action-button {
     display: inline-block;
     padding: 0.8rem 2rem;
@@ -306,7 +176,6 @@ tbody tr:hover { background-color: #f1f3f5; }
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
-
 .action-button:hover {
     background-color: var(--color-accent-hover);
     color: var(--color-primary);
@@ -314,424 +183,71 @@ tbody tr:hover { background-color: #f1f3f5; }
     box-shadow: 0 7px 20px rgba(0, 0, 0, 0.15);
     text-decoration: none;
 }
-
 .action-button:active {
     transform: translateY(-1px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
-
-/* --- Add these new rules to your existing style.css --- */
-
-/* --- Welcome Section Buttons on Homepage --- */
 .action-button.secondary {
     background-color: transparent;
     color: var(--color-primary);
     border-color: var(--color-primary);
 }
-
 .action-button.secondary:hover {
     background-color: var(--color-primary);
     color: var(--color-header-text);
 }
 
-/* --- Exam Preparation Page Styles --- */
-.exam-prep-header {
-    text-align: center;
-    margin-bottom: var(--spacing-xl);
-}
+.chapter-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: var(--spacing-lg); text-align: left; }
+.chapter-card-container { display: flex; flex-direction: column; background-color: var(--color-card-bg); border-radius: var(--border-radius); box-shadow: var(--shadow); transition: transform var(--transition-fast), box-shadow var(--transition-fast); }
+.chapter-card-container:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); }
+.chapter-card { padding: var(--spacing-lg); text-decoration: none; color: var(--color-text); flex-grow: 1; }
+.chapter-card h3 { margin: 0 0 var(--spacing-sm) 0; }
+.chapter-card h3::before { content: '📚 '; }
+.chapter-card p { color: var(--color-text-light); margin-bottom: var(--spacing-sm); }
+.chapter-card span { font-size: 0.9rem; color: #90a4ae; font-style: italic; }
+.grammar-links { border-top: 1px solid var(--color-border); padding: var(--spacing-md); background-color: #fafafa; border-radius: 0 0 var(--border-radius) var(--border-radius); }
+.grammar-link { display: inline-block; background-color: #e8eaf6; color: var(--color-primary); padding: var(--spacing-xs) var(--spacing-md); margin: var(--spacing-xs); border-radius: 15px; font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: background-color var(--transition-fast), transform var(--transition-fast); }
+.grammar-link:hover { background-color: #c5cae9; transform: translateY(-1px); }
 
-.exam-task {
-    background-color: var(--color-card-bg);
-    padding: var(--spacing-lg) var(--spacing-xl);
-    margin-bottom: var(--spacing-xl);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-}
+/* --- 7. Chapter & Content Page Styles --- */
+.chapter { background-color: var(--color-card-bg); padding: var(--spacing-xl); border-radius: var(--border-radius); box-shadow: var(--shadow); }
+.chapter-summary { font-style: italic; background-color: #e8eaf6; padding: var(--spacing-lg); border-radius: var(--border-radius); margin-bottom: var(--spacing-xl); border-left: 5px solid var(--color-primary); }
+.chapter-summary::before { content: '💡 '; font-style: normal; font-weight: bold; }
 
-.exam-task h3 {
-    margin-top: 0;
-    margin-bottom: var(--spacing-md);
-    border-bottom: 2px solid var(--color-border);
-    padding-bottom: var(--spacing-sm);
-}
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: var(--spacing-sm) var(--spacing-md); text-align: left; border-bottom: 1px solid var(--color-border); }
+th { background-color: #f8f9fa; font-family: var(--font-heading); }
+tbody tr:hover { background-color: #f1f3f5; }
 
-.exam-task h3::before {
-    margin-right: var(--spacing-sm);
-}
+.grammar-rule, .kultur-tipp, .sprech-training { padding: var(--spacing-lg); margin: var(--spacing-lg) 0; border-radius: var(--border-radius); border-left-width: 5px; border-left-style: solid; }
+.grammar-rule { background-color: var(--color-info-bg); border-left-color: var(--color-info-border); }
+.kultur-tipp { background-color: var(--color-kultur-bg); border-left-color: var(--color-kultur-border); }
+.sprech-training { background-color: var(--color-sprech-bg); border-left-color: var(--color-sprech-border); }
+.info-box-title { font-family: var(--font-heading); font-weight: bold; display: block; margin-bottom: var(--spacing-sm); font-size: 1.1rem; }
+.info-box-title::before { margin-right: var(--spacing-sm); font-size: 1.2rem; }
+.grammar-rule .info-box-title::before { content: '📜'; }
+.kultur-tipp .info-box-title::before { content: '🌍'; }
+.sprech-training .info-box-title::before { content: '🗣️'; }
+.example-text { background: #fafafa; border: 1px solid #eee; padding: var(--spacing-md); margin: var(--spacing-md) 0; border-radius: var(--border-radius); font-style: italic; }
+.irregular { color: #c62828; font-weight: bold; }
+.verb-ending { color: #1565c0; font-weight: bold; }
 
-.task-hören h3::before { content: '🎧'; }
-.task-lesen h3::before { content: '📖'; }
-.task-schreiben h3::before { content: '✍️'; }
-.task-grammatik h3::before { content: '🔧'; }
-.task-sprechen h3::before { content: '💬'; }
+/* --- 8. Interactive Elements (Flashcards, Quiz, Modal, etc.) --- */
+.interactive-section { margin-top: var(--spacing-xl); padding-top: var(--spacing-lg); border-top: 1px dashed var(--color-border); }
 
-
-/* Task-specific styles */
-.task-box {
-    background-color: #f8f9fa;
-    border-left: 4px solid var(--color-primary);
-    padding: var(--spacing-lg);
-    margin: var(--spacing-lg) 0;
-    border-radius: var(--border-radius);
-}
-
-.task-box ul {
-    list-style-position: inside;
-    padding-left: 0;
-}
-
-/* Writing & Form Exercise Styles */
-.writing-exercise, .form-exercise, .grammar-exercise, .speaking-exercise {
-    margin-top: var(--spacing-lg);
-}
-.email-template {
-    border: 1px solid var(--color-border);
-    padding: var(--spacing-md);
-    border-radius: var(--border-radius);
-    background-color: #fdfdfd;
-}
-.email-template textarea {
-    width: 100%;
-    min-height: 150px;
-    border: 1px solid var(--color-border);
-    padding: var(--spacing-md);
-    font-family: var(--font-body);
-    font-size: 1rem;
-    margin: var(--spacing-sm) 0;
-    border-radius: var(--border-radius);
-    resize: vertical;
-}
-
-.solution-box {
-    background-color: var(--color-sprech-bg);
-    border: 1px solid var(--color-sprech-border);
-    padding: var(--spacing-lg);
-    margin-top: var(--spacing-lg);
-    border-radius: var(--border-radius);
-    display: none; /* Initially hidden */
-}
-.solution-box h5 {
-    color: var(--color-success);
-    margin-top: 0;
-    margin-bottom: var(--spacing-sm);
-}
-.solution-box.visible {
-    display: block;
-}
-
-/* Form Exercise Styles */
-.form-group {
-    margin-bottom: var(--spacing-lg);
-}
-.form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: var(--spacing-sm);
-}
-.form-group input[type="text"] {
-    width: 100%;
-    padding: var(--spacing-md);
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius);
-    font-size: 1rem;
-}
-.form-group .radio-group label {
-    font-weight: normal;
-    display: block; /* Stack them for clarity */
-    margin-bottom: var(--spacing-sm);
-}
-.form-group input.correct-input, .form-group select.correct-input {
-    background-color: var(--color-success-bg);
-    border-color: var(--color-success);
-}
-.form-group input.incorrect-input, .form-group select.incorrect-input {
-    background-color: var(--color-danger-bg);
-    border-color: var(--color-danger);
-}
-.form-group .feedback {
-    font-weight: bold;
-    font-size: 0.9rem;
-    margin-left: 1rem;
-}
-.feedback.correct { color: var(--color-success); }
-.feedback.incorrect { color: var(--color-danger); }
-
-/* Grammar Exercise Styles */
-.grammar-item {
-    margin-bottom: var(--spacing-lg);
-    padding-bottom: var(--spacing-lg);
-    border-bottom: 1px dashed var(--color-border);
-}
-.grammar-item:last-child { border-bottom: none; }
-.grammar-item p.sentence-to-fix {
-    font-style: italic;
-    color: var(--color-text-light);
-    background-color: #f8f9fa;
-    padding: var(--spacing-sm);
-    border-radius: var(--border-radius);
-}
-.grammar-item input {
-    width: 100%;
-    padding: var(--spacing-md);
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius);
-    margin-top: var(--spacing-sm);
-    font-size: 1rem;
-}
-.grammar-solution {
-    margin-top: var(--spacing-sm);
-    font-weight: bold;
-    color: var(--color-success);
-    display: none;
-}
-.grammar-solution.visible {
-    display: block;
-}
-/* --- Add these new rules to your existing style.css --- */
-
-/* --- Verb Conjugation Page Styles --- */
-.verb-controls {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-xl);
-    padding: var(--spacing-lg);
-    background-color: var(--color-card-bg);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-}
-
-#verb-search {
-    flex-grow: 1;
-    padding: var(--spacing-md);
-    font-size: 1rem;
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius);
-}
-
-.practice-toggle-container {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
-}
-
-.practice-label {
-    font-weight: 600;
-    color: var(--color-primary);
-}
-
-/* The switch - a checkbox with a slider */
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-}
-.switch input { 
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-}
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-}
-input:checked + .slider {
-    background-color: var(--color-success);
-}
-input:focus + .slider {
-    box-shadow: 0 0 1px var(--color-success);
-}
-input:checked + .slider:before {
-    transform: translateX(26px);
-}
-.slider.round { border-radius: 34px; }
-.slider.round:before { border-radius: 50%; }
-
-/* Verb Table Styles */
-.verb-category-section {
-    margin-bottom: var(--spacing-xl);
-}
-
-/* Rules to hide table content when section is collapsed */
-.verb-category-section.collapsed .verb-table thead tr:nth-child(2),
-.verb-category-section.collapsed .verb-table tbody {
-    display: none;
-}
-
-.verb-table {
-    width: 100%;
-    min-width: 100px; /* Ensure the table is wide enough for all columns */
-    border-collapse: collapse;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    border-radius: var(--border-radius);
-    /* --- KEY CHANGE FOR STABLE COLUMNS --- */
-    table-layout: fixed; /* Force the browser to use a fixed layout algorithm */
-}
-
-/* --- DEFINE COLUMN WIDTHS FOR THE FIXED LAYOUT --- */
-/* We target the second header row's cells to set the widths */
-.verb-table thead tr:nth-child(2) th:nth-child(1) {
-    width: 28%; /* Wider column for the infinitive and English translation */
-}
-.verb-table thead tr:nth-child(2) th:nth-child(n+2) {
-    width: 12%; /* Equal width for the 6 conjugation columns (6 * 12% = 72%) */
-}
-
-
-.verb-table th, .verb-table td {
-    padding: 0; /* Padding is now handled by inner elements */
-    text-align: left;
-    border-bottom: 1px solid var(--color-border);
-    vertical-align: middle;
-}
-
-.verb-table th {
-    padding: var(--spacing-md); /* Restore padding for header cells */
-}
-
-/* Shared styles for all header cells */
-.verb-table thead th {
-    background-color: var(--color-primary);
-    color: var(--color-header-text);
-    font-family: var(--font-heading);
-    font-size: 1.1rem;
-}
-
-/* Specific styles for the main category header to make it collapsible */
-.verb-table thead tr:first-child th {
-    cursor: pointer;
-    user-select: none;
-    position: relative;
-}
-
-/* The +/- indicator for collapsible sections */
-.verb-table thead tr:first-child th::after {
-    content: '−';
-    position: absolute;
-    right: var(--spacing-lg);
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.8rem;
-    line-height: 1;
-    font-weight: normal;
-}
-
-.verb-category-section.collapsed .verb-table thead tr:first-child th::after {
-    content: '+';
-}
-
-.verb-table tbody tr {
-    background-color: var(--color-card-bg);
-    transition: background-color var(--transition-fast);
-}
-
-.verb-table tbody tr:hover {
-    background-color: #f8f9fa;
-}
-
-.verb-table .verb-infinitive {
-    font-weight: 700;
-    font-size: 1.1rem;
-    padding: var(--spacing-md);
-}
-
-/* --- PRACTICE MODE LOGIC --- */
-
-/* 1. Style the new inner div. This is our target for all styling. */
-.verb-table .conjugation-cell > div {
-    padding: var(--spacing-xs); /* The padding is now on this element */
-    border-radius: 4px;
-    transition: background-color var(--transition-fast), color var(--transition-fast);
-    height: 100%; /* Ensure the clickable area fills the cell */
-}
-
-/* 2. HIDDEN state in practice mode: Hide text and show a colored block */
-.practice-mode .conjugation-cell > div {
-    padding: var(--spacing-md);
-    font-size: 0; /* Foolproof way to hide text content, including spans */
-    background-color: var(--color-text-light);
-    cursor: pointer;
-    user-select: none;
-}
-.practice-mode .conjugation-cell > div:hover {
-    background-color: var(--color-primary);
-}
-
-/* 3. REVEALED state in practice mode: Restore text and remove block color */
-.practice-mode .conjugation-cell.revealed > div {
-     padding: var(--spacing-xs);
-    font-size: inherit; /* Restore the font size */
-    background-color: transparent;
-    cursor: default;
-}
-
-.verb-table .prefix {
-    font-weight: bold;
-    color: var(--color-danger);
-}
-
-.english-text{
-    font-style: italic;
-    color: var(--color-text-light);
-    font-size: 0.9rem;
-    margin-top: var(--spacing-xs);
-}
-
-
-
-/* --- 5. Main Content Layout (Add this block here to target specific page main) --- */
-main {
-    max-width: 960px; /* Default for most pages */
-    margin: var(--spacing-xl) auto;
-    padding: 0 var(--spacing-md);
-}
-
-/* Specific main content width for the Flashcards page */
-.flashcards-page main {
-    max-width: 1200px; /* Wider for more flashcards per row on large screens */
-    padding: 0 var(--spacing-lg); /* Adjust padding for wider layout */
-}
-
-
-/* --- 8. Interactive Elements (Flashcards, Quiz, Modal) --- */
-
-/* Flashcard Categories Container (uses CSS Grid now) */
+/* --- 8a. Flashcards --- */
 .flashcard-categories {
     display: grid;
-    /* Try to fit as many cards as possible, each at least 180px wide.
-       This allows 5-6 cards on a 1200px width, dynamically adjusting. */
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: var(--spacing-lg); /* Consistent spacing between cards */
+    gap: var(--spacing-lg);
     margin-top: var(--spacing-lg);
     margin-bottom: var(--spacing-xl);
-    justify-items: center; /* Center cards horizontally within their grid cells */
+    justify-items: center;
 }
-
-/* Base flashcard styling */
 .flashcard {
-    background-color: transparent; /* Allows inner elements to define background */
-    width: 100%; /* Ensure it fills its grid cell */
-    height: 140px; /* Fixed height for consistent appearance */
+    background-color: transparent;
+    width: 100%;
+    height: 140px;
     perspective: 1000px;
     cursor: pointer;
 }
@@ -747,1186 +263,249 @@ main {
 .flashcard.is-flipped .flashcard-inner {
     transform: rotateY(180deg);
 }
-
-/* Front and Back of the Flashcard */
 .flashcard-front, .flashcard-back {
     position: absolute;
     width: 100%;
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    display: flex; /* Use flexbox for centering content */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    padding: var(--spacing-sm); /* General padding for content (8px) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-sm);
     border-radius: var(--border-radius);
     text-align: center;
-    box-sizing: border-box; /* Crucial: padding included in width/height */
-    word-break: break-word; /* Allows long words to break and wrap */
-    overflow-wrap: break-word; /* Ensures long words don't overflow */
-}
-.flashcard-front {
-    background-color: var(--color-card-bg);
-    border: 1px solid var(--color-border);
-    color: var(--color-primary);
-    font-size: 1.7rem; /* Adjusted for new card size */
-    font-weight: 700;
-    line-height: 1.2; /* Tighter line height for single word */
-}
-.flashcard-back {
-    background-color: var(--color-primary); /* Changed to primary color for stronger branding */
-    color: white;
-    transform: rotateY(180deg);
-    flex-direction: column; /* Stack content vertically */
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    font-size: 0.95rem; /* Base font size for back of card */
-    line-height: 1.3;
-    padding: var(--spacing-xs) var(--spacing-sm); /* More narrow vertical padding (4px top/bottom, 8px left/right) */
-}
-
-/* Specific styles for elements inside the flashcard-back */
-.flashcard-back .gender {
-    font-weight: 700;
-    font-size: 1.15rem; /* Slightly larger for the main word */
-    margin-bottom: 4px; /* Reduced margin */
-    line-height: 1.2;
-}
-.flashcard-back div { /* Targets plural, mk, en divs */
-    margin: 2px 0; /* Reduced margin */
-    font-size: 0.85rem; /* Smaller font for translations */
-    line-height: 1.2;
-}
-
-/* --- Additional Flashcard Specific Styles for Gender Colors (added for flashcards.html) --- */
-.flashcard-back .male {
-    color: #007bff; /* A clear blue, consistent with Bootstrap info color */
-}
-.flashcard-back .female {
-    color: #dc3545; /* A clear red, consistent with Bootstrap danger color */
-}
-.flashcard-back .neuter {
-    color: #28a745; /* A clear green, consistent with Bootstrap success color */
-}
-
-/* Override body background from original flashcard HTML to use design system */
-body {
-    background-color: var(--color-secondary); /* Enforce design system background */
-}
-
-/* --- Responsive Adjustments for Flashcards --- */
-/* These media queries help scale cards down gracefully on smaller screens */
-@media (max-width: 1200px) { /* Adjust max-width of main for smaller desktops/large tablets */
-    .flashcards-page main {
-        max-width: 960px; /* Revert to default max-width for main */
-        padding: 0 var(--spacing-md); /* Revert to default padding */
-    }
-    .flashcard-categories {
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* Will typically show 4-5 cards */
-    }
-    .flashcard {
-        height: 130px;
-    }
-    .flashcard-front {
-        font-size: 1.5rem;
-    }
-    .flashcard-back .gender {
-        font-size: 1.1rem;
-    }
-    .flashcard-back div {
-        font-size: 0.8rem;
-    }
-}
-
-@media (max-width: 768px) { /* Tablets and smaller */
-    .flashcard-categories {
-        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* At least 2-3 per row */
-        gap: var(--spacing-md);
-    }
-    .flashcard {
-        height: 110px;
-    }
-    .flashcard-front {
-        font-size: 1.3rem;
-    }
-    .flashcard-back .gender {
-        font-size: 1rem;
-    }
-    .flashcard-back div {
-        font-size: 0.75rem;
-    }
-}
-
-@media (max-width: 576px) { /* Phones */
-    .flashcard-categories {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* 2-3 per row minimum on very small screens */
-        gap: var(--spacing-sm);
-    }
-    .flashcard {
-        height: 90px;
-    }
-    .flashcard-front {
-        font-size: 1rem;
-    }
-    .flashcard-back .gender {
-        font-size: 0.85rem;
-    }
-    .flashcard-back div {
-        font-size: 0.65rem;
-    }
-}
-
-
-
-
-/* ---
-   Professional CSS Refactor for A1.1 German Course
-   Designer: Your AI Assistant
-   Focus: Readability, Modern UI/UX, Mobile-First Navigation
---- */
-
-/* --- 1. Global Design System & Variables --- */
-:root {
-    /* Color Palette */
-    --color-primary: #0D204E; /* A deeper, more professional navy blue */
-    --color-secondary: #F8F9FA; /* A very light, clean gray for backgrounds */
-    --color-accent: #FFB300; /* A vibrant, warm amber for highlights */
-    --color-accent-hover: #FFC107;
-    --color-text: #212529; /* High-contrast dark gray for readability */
-    --color-text-light: #6c757d; /* Lighter text for subtitles */
-    --color-header-text: #FFFFFF;
-    --color-border: #DEE2E6;
-    --color-success: #198754;
-    --color-danger: #DC3545;
-    --color-success-bg: #D1E7DD;
-    --color-danger-bg: #F8D7DA;
-    --color-info-bg: #E3F2FD;
-    --color-info-border: #64B5F6;
-    --color-kultur-bg: #FFF8E1;
-    --color-kultur-border: #FFD54F;
-    --color-sprech-bg: #E8F5E9;
-    --color-sprech-border: #81C784;
-    --color-card-bg: #FFFFFF;
-    
-    /* Typography */
-    --font-heading: 'Roboto', 'Helvetica Neue', sans-serif;
-    --font-body: 'Lato', 'Arial', sans-serif;
-    
-    /* Spacing & Sizing */
-    --spacing-xs: 0.25rem;
-    --spacing-sm: 0.5rem;
-    --spacing-md: 1rem;
-    --spacing-lg: 1.5rem;
-    --spacing-xl: 2.5rem;
-    --header-height: 70px;
-    
-    /* Effects */
-    --shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
-    --border-radius: 8px;
-    --transition-fast: 0.2s ease-out;
-}
-
-/* --- 2. Base & Reset --- */
-*, *::before, *::after {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: var(--header-height);
-}
-
-body {
-    font-family: var(--font-body);
-    line-height: 1.7;
-    background-color: var(--color-secondary);
-    color: var(--color-text);
-    font-size: 17px;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-/* --- 3. Typography Styles --- */
-h1, h2, h3, h4 {
-    font-family: var(--font-heading);
-    font-weight: 700;
-    color: var(--color-primary);
-    line-height: 1.3;
-}
-h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); margin-bottom: var(--spacing-md); }
-h2 { font-size: clamp(1.6rem, 4vw, 2.1rem); border-bottom: 3px solid var(--color-accent); padding-bottom: var(--spacing-sm); margin: var(--spacing-xl) 0 var(--spacing-lg) 0; }
-h3 { font-size: clamp(1.3rem, 3.5vw, 1.6rem); margin: var(--spacing-xl) 0 var(--spacing-lg) 0; }
-h4 { font-size: 1.15rem; margin: var(--spacing-lg) 0 var(--spacing-sm) 0; color: #34495e; }
-p, ul, ol, table { margin-bottom: var(--spacing-md); }
-ul, ol { padding-left: 25px; }
-li { margin-bottom: var(--spacing-sm); }
-code { background-color: #e9ecef; padding: 0.2em 0.5em; border-radius: 4px; font-family: 'Fira Code', 'Courier New', monospace; font-size: 0.9em; }
-a { color: var(--color-primary); text-decoration: none; transition: color var(--transition-fast); }
-a:hover { color: var(--color-accent-hover); text-decoration: underline; }
-
-/* --- 4. Header & Navigation --- */
-.site-header {
-    background-color: var(--color-primary);
-    color: var(--color-header-text);
-    padding: 0 var(--spacing-lg);
-    height: var(--header-height);
-    position: sticky;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
-
-.site-header .logo {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--color-header-text);
-    text-decoration: none;
-    transition: color var(--transition-fast);
-}
-.site-header .logo:hover {
-    color: var(--color-accent);
-}
-
-.main-nav ul {
-    list-style-type: none;
-    display: flex;
-    align-items: center;
-    height: 100%;
-}
-
-.main-nav li {
-    margin: 0;
-    height: 100%;
-}
-
-.main-nav a {
-    color: #e0e0e0;
-    text-decoration: none;
-    font-weight: 500;
-    padding: 0 var(--spacing-md);
-    height: 100%;
-    display: flex;
-    align-items: center;
-    position: relative;
-    transition: color var(--transition-fast), background-color var(--transition-fast);
-}
-.main-nav a:hover {
-    color: var(--color-header-text);
-    background-color: rgba(255, 255, 255, 0.1);
-    text-decoration: none;
-}
-.main-nav a.active {
-    color: var(--color-accent);
-    font-weight: 700;
-    border-bottom: 4px solid var(--color-accent);
-}
-
-/* --- 5. Main Content Layout --- */
-main {
-    max-width: 960px;
-    margin: var(--spacing-xl) auto;
-    padding: 0 var(--spacing-md);
-}
-
-/* --- 6. Homepage Specific Styles --- */
-.homepage { text-align: center; }
-.welcome-section p { font-size: 1.15rem; max-width: 700px; margin: 0 auto var(--spacing-lg) auto; color: var(--color-text-light); }
-.chapter-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: var(--spacing-lg); text-align: left; }
-.chapter-card-container { display: flex; flex-direction: column; background-color: var(--color-card-bg); border-radius: var(--border-radius); box-shadow: var(--shadow); transition: transform var(--transition-fast), box-shadow var(--transition-fast); }
-.chapter-card-container:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); }
-.chapter-card { padding: var(--spacing-lg); text-decoration: none; color: var(--color-text); flex-grow: 1; }
-.chapter-card h3 { margin: 0 0 var(--spacing-sm) 0; }
-.chapter-card h3::before { content: '📚 '; }
-.chapter-card p { color: var(--color-text-light); margin-bottom: var(--spacing-sm); }
-.chapter-card span { font-size: 0.9rem; color: #90a4ae; font-style: italic; }
-.grammar-links { border-top: 1px solid var(--color-border); padding: var(--spacing-md); background-color: #fafafa; border-radius: 0 0 var(--border-radius) var(--border-radius); }
-.grammar-link { display: inline-block; background-color: #e8eaf6; color: var(--color-primary); padding: var(--spacing-xs) var(--spacing-md); margin: var(--spacing-xs); border-radius: 15px; font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: background-color var(--transition-fast), transform var(--transition-fast); }
-.grammar-link:hover { background-color: #c5cae9; transform: translateY(-1px); }
-
-/* --- 7. Chapter Page Styles --- */
-.chapter { background-color: var(--color-card-bg); padding: var(--spacing-xl); border-radius: var(--border-radius); box-shadow: var(--shadow); }
-.chapter-summary { font-style: italic; background-color: #e8eaf6; padding: var(--spacing-lg); border-radius: var(--border-radius); margin-bottom: var(--spacing-xl); border-left: 5px solid var(--color-primary); }
-.chapter-summary::before { content: '💡 '; font-style: normal; font-weight: bold; }
-table { width: 100%; border-collapse: collapse; }
-th, td { padding: var(--spacing-sm) var(--spacing-md); text-align: left; border-bottom: 1px solid var(--color-border); }
-th { background-color: #f8f9fa; font-family: var(--font-heading); }
-tbody tr:hover { background-color: #f1f3f5; }
-.grammar-rule, .kultur-tipp, .sprech-training { padding: var(--spacing-lg); margin: var(--spacing-lg) 0; border-radius: var(--border-radius); border-left-width: 5px; border-left-style: solid; }
-.grammar-rule { background-color: var(--color-info-bg); border-left-color: var(--color-info-border); }
-.kultur-tipp { background-color: var(--color-kultur-bg); border-left-color: var(--color-kultur-border); }
-.sprech-training { background-color: var(--color-sprech-bg); border-left-color: var(--color-sprech-border); }
-.info-box-title { font-family: var(--font-heading); font-weight: bold; display: block; margin-bottom: var(--spacing-sm); font-size: 1.1rem; }
-.info-box-title::before { margin-right: var(--spacing-sm); font-size: 1.2rem; }
-.grammar-rule .info-box-title::before { content: '📜'; }
-.kultur-tipp .info-box-title::before { content: '🌍'; }
-.sprech-training .info-box-title::before { content: '🗣️'; }
-.example-text { background: #fafafa; border: 1px solid #eee; padding: var(--spacing-md); margin: var(--spacing-md) 0; border-radius: var(--border-radius); font-style: italic; }
-.irregular { color: #c62828; font-weight: bold; }
-.verb-ending { color: #1565c0; font-weight: bold; }
-
-/* --- 8. Interactive Elements (Flashcards, Quiz, Modal) --- */
-.interactive-section { margin-top: var(--spacing-xl); padding-top: var(--spacing-lg); border-top: 1px dashed var(--color-border); }
-.flashcard-container { display: flex; flex-wrap: wrap; gap: var(--spacing-lg); justify-content: center; margin-top: var(--spacing-lg); }
-.flashcard { background-color: transparent; width: 280px; height: 160px; perspective: 1000px; cursor: pointer; }
-.flashcard-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; box-shadow: var(--shadow); border-radius: var(--border-radius); }
-.flashcard.is-flipped .flashcard-inner { transform: rotateY(180deg); }
-.flashcard-front, .flashcard-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; display: flex; justify-content: center; align-items: center; padding: 20px; border-radius: var(--border-radius); font-size: 1.2rem; text-align: center; }
-.flashcard-front { background-color: var(--color-card-bg); border: 1px solid var(--color-border); color: var(--color-primary); }
-.flashcard-back { background-color: var(--color-primary); color: white; transform: rotateY(180deg); }
-
-.quiz-question { margin-bottom: var(--spacing-lg); background: #fafafa; padding: var(--spacing-lg); border-radius: var(--border-radius); border: 1px solid var(--color-border); }
-.quiz-question p { font-weight: bold; margin-bottom: var(--spacing-sm); }
-.quiz-options label { display: block; margin-bottom: var(--spacing-sm); cursor: pointer; padding: var(--spacing-md); border-radius: var(--border-radius); transition: background-color var(--transition-fast); border: 1px solid var(--color-border); }
-.quiz-options label:hover { background-color: #e9ecef; }
-.quiz-options input { margin-right: 10px; accent-color: var(--color-primary); transform: scale(1.2); }
-.quiz-check-btn { display: inline-block; margin-top: var(--spacing-lg); padding: 0.8rem 2rem; background-color: var(--color-accent); color: var(--color-primary); border: none; border-radius: var(--border-radius); cursor: pointer; font-size: 1.1rem; font-weight: bold; transition: background-color var(--transition-fast), transform var(--transition-fast); }
-.quiz-check-btn:hover { background-color: var(--color-accent-hover); transform: translateY(-2px); }
-.correct { background-color: var(--color-success-bg) !important; border-color: var(--color-success) !important; color: var(--color-success); font-weight: bold; }
-.correct::before { content: '✔ '; }
-.incorrect { background-color: var(--color-danger-bg) !important; border-color: var(--color-danger) !important; color: var(--color-danger); font-weight: bold; }
-.incorrect::before { content: '✖ '; }
-
-.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(5px); animation: fadeIn 0.3s; }
-.modal-content { background-color: var(--color-card-bg); margin: 10vh auto; padding: var(--spacing-xl); border-radius: var(--border-radius); box-shadow: 0 5px 25px rgba(0,0,0,0.3); width: 90%; max-width: 600px; position: relative; animation: slideIn 0.4s; }
-.modal-close { position: absolute; top: var(--spacing-md); right: var(--spacing-md); color: #aaa; font-size: 2rem; font-weight: bold; cursor: pointer; transition: color var(--transition-fast), transform var(--transition-fast); }
-.modal-close:hover { color: var(--color-text); transform: rotate(90deg); }
-.modal-content h3 { margin-top: 0; color: var(--color-primary); }
-.modal-body ul { list-style-type: none; padding: 0; }
-.modal-body li { background-color: var(--color-secondary); border-left: 3px solid var(--color-accent); padding: var(--spacing-md); margin-bottom: var(--spacing-sm); border-radius: 4px; }
-@keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
-@keyframes slideIn { from {transform: translateY(-50px); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
-
-/* --- 9. Footer --- */
-.site-footer-main { background: #343a40; color: #ced4da; text-align: center; padding: var(--spacing-xl); margin-top: var(--spacing-xl); }
-
-/* --- 10. Mobile Navigation & Responsive --- */
-.menu-toggle {
-    display: none;
-    cursor: pointer;
-    font-size: 2rem;
-    background: none;
-    border: none;
-    color: var(--color-header-text);
-    z-index: 1001; /* Above the nav panel */
-    transition: transform 0.3s ease;
-}
-
-@media (max-width: 1024px) {
-    .menu-toggle { display: block; }
-    .main-nav {
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 300px;
-        height: 100%;
-        background-color: #1c2e5a; /* Slightly lighter for depth */
-        box-shadow: -5px 0 15px rgba(0,0,0,0.2);
-        transform: translateX(100%);
-        transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        overflow-y: auto; /* Allow scrolling for many chapters */
-    }
-    .main-nav.active { transform: translateX(0); }
-    .main-nav ul {
-        flex-direction: column;
-        padding: calc(var(--header-height) + var(--spacing-lg)) var(--spacing-md);
-        height: auto;
-        align-items: flex-start;
-    }
-    .main-nav li {
-        width: 100%;
-        height: auto;
-    }
-    .main-nav a {
-        display: block;
-        width: 100%;
-        padding: var(--spacing-md);
-        border-radius: var(--border-radius);
-        color: var(--color-header-text);
-    }
-    .main-nav a.active {
-        background-color: var(--color-accent);
-        color: var(--color-primary);
-        border-bottom: none;
-    }
-    .main-nav a:hover {
-        background-color: rgba(255, 255, 255, 0.15);
-    }
-}
-
-@media (max-width: 576px) {
-    body { font-size: 16px; }
-    main { margin: var(--spacing-lg) auto; }
-    h1 { font-size: 1.8rem; }
-    h2 { font-size: 1.5rem; }
-    .chapter { padding: var(--spacing-lg); }
-    .modal-content { padding: var(--spacing-lg); }
-}
-
-.welcome-actions {
-    margin-top: 1.5rem;
-    margin-bottom: 2.5rem;
-}
-
-.action-button {
-    display: inline-block;
-    padding: 0.8rem 2rem;
-    background-color: var(--color-accent);
-    color: var(--color-primary);
-    border: 2px solid transparent;
-    border-radius: 50px; /* Pill shape */
-    font-size: 1.1rem;
-    font-weight: 700;
-    font-family: var(--font-heading);
-    text-decoration: none;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-.action-button:hover {
-    background-color: var(--color-accent-hover);
-    color: var(--color-primary);
-    transform: translateY(-3px);
-    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.15);
-    text-decoration: none;
-}
-
-.action-button:active {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* --- Add these new rules to your existing style.css --- */
-
-/* --- Welcome Section Buttons on Homepage --- */
-.action-button.secondary {
-    background-color: transparent;
-    color: var(--color-primary);
-    border-color: var(--color-primary);
-}
-
-.action-button.secondary:hover {
-    background-color: var(--color-primary);
-    color: var(--color-header-text);
-}
-
-/* --- Exam Preparation Page Styles --- */
-.exam-prep-header {
-    text-align: center;
-    margin-bottom: var(--spacing-xl);
-}
-
-.exam-task {
-    background-color: var(--color-card-bg);
-    padding: var(--spacing-lg) var(--spacing-xl);
-    margin-bottom: var(--spacing-xl);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-}
-
-.exam-task h3 {
-    margin-top: 0;
-    margin-bottom: var(--spacing-md);
-    border-bottom: 2px solid var(--color-border);
-    padding-bottom: var(--spacing-sm);
-}
-
-.exam-task h3::before {
-    margin-right: var(--spacing-sm);
-}
-
-.task-hören h3::before { content: '🎧'; }
-.task-lesen h3::before { content: '📖'; }
-.task-schreiben h3::before { content: '✍️'; }
-.task-grammatik h3::before { content: '🔧'; }
-.task-sprechen h3::before { content: '💬'; }
-
-
-/* Task-specific styles */
-.task-box {
-    background-color: #f8f9fa;
-    border-left: 4px solid var(--color-primary);
-    padding: var(--spacing-lg);
-    margin: var(--spacing-lg) 0;
-    border-radius: var(--border-radius);
-}
-
-.task-box ul {
-    list-style-position: inside;
-    padding-left: 0;
-}
-
-/* Writing & Form Exercise Styles */
-.writing-exercise, .form-exercise, .grammar-exercise, .speaking-exercise {
-    margin-top: var(--spacing-lg);
-}
-.email-template {
-    border: 1px solid var(--color-border);
-    padding: var(--spacing-md);
-    border-radius: var(--border-radius);
-    background-color: #fdfdfd;
-}
-.email-template textarea {
-    width: 100%;
-    min-height: 150px;
-    border: 1px solid var(--color-border);
-    padding: var(--spacing-md);
-    font-family: var(--font-body);
-    font-size: 1rem;
-    margin: var(--spacing-sm) 0;
-    border-radius: var(--border-radius);
-    resize: vertical;
-}
-
-.solution-box {
-    background-color: var(--color-sprech-bg);
-    border: 1px solid var(--color-sprech-border);
-    padding: var(--spacing-lg);
-    margin-top: var(--spacing-lg);
-    border-radius: var(--border-radius);
-    display: none; /* Initially hidden */
-}
-.solution-box h5 {
-    color: var(--color-success);
-    margin-top: 0;
-    margin-bottom: var(--spacing-sm);
-}
-.solution-box.visible {
-    display: block;
-}
-
-/* Form Exercise Styles */
-.form-group {
-    margin-bottom: var(--spacing-lg);
-}
-.form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: var(--spacing-sm);
-}
-.form-group input[type="text"] {
-    width: 100%;
-    padding: var(--spacing-md);
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius);
-    font-size: 1rem;
-}
-.form-group .radio-group label {
-    font-weight: normal;
-    display: block; /* Stack them for clarity */
-    margin-bottom: var(--spacing-sm);
-}
-.form-group input.correct-input, .form-group select.correct-input {
-    background-color: var(--color-success-bg);
-    border-color: var(--color-success);
-}
-.form-group input.incorrect-input, .form-group select.incorrect-input {
-    background-color: var(--color-danger-bg);
-    border-color: var(--color-danger);
-}
-.form-group .feedback {
-    font-weight: bold;
-    font-size: 0.9rem;
-    margin-left: 1rem;
-}
-.feedback.correct { color: var(--color-success); }
-.feedback.incorrect { color: var(--color-danger); }
-
-/* Grammar Exercise Styles */
-.grammar-item {
-    margin-bottom: var(--spacing-lg);
-    padding-bottom: var(--spacing-lg);
-    border-bottom: 1px dashed var(--color-border);
-}
-.grammar-item:last-child { border-bottom: none; }
-.grammar-item p.sentence-to-fix {
-    font-style: italic;
-    color: var(--color-text-light);
-    background-color: #f8f9fa;
-    padding: var(--spacing-sm);
-    border-radius: var(--border-radius);
-}
-.grammar-item input {
-    width: 100%;
-    padding: var(--spacing-md);
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius);
-    margin-top: var(--spacing-sm);
-    font-size: 1rem;
-}
-.grammar-solution {
-    margin-top: var(--spacing-sm);
-    font-weight: bold;
-    color: var(--color-success);
-    display: none;
-}
-.grammar-solution.visible {
-    display: block;
-}
-/* --- Add these new rules to your existing style.css --- */
-
-/* --- Verb Conjugation Page Styles --- */
-.verb-controls {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-xl);
-    padding: var(--spacing-lg);
-    background-color: var(--color-card-bg);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-}
-
-#verb-search {
-    flex-grow: 1;
-    padding: var(--spacing-md);
-    font-size: 1rem;
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius);
-}
-
-.practice-toggle-container {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
-}
-
-.practice-label {
-    font-weight: 600;
-    color: var(--color-primary);
-}
-
-/* The switch - a checkbox with a slider */
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-}
-.switch input { 
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-}
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-}
-input:checked + .slider {
-    background-color: var(--color-success);
-}
-input:focus + .slider {
-    box-shadow: 0 0 1px var(--color-success);
-}
-input:checked + .slider:before {
-    transform: translateX(26px);
-}
-.slider.round { border-radius: 34px; }
-.slider.round:before { border-radius: 50%; }
-
-/* Verb Table Styles */
-.verb-category-section {
-    margin-bottom: var(--spacing-xl);
-}
-
-/* Rules to hide table content when section is collapsed */
-.verb-category-section.collapsed .verb-table thead tr:nth-child(2),
-.verb-category-section.collapsed .verb-table tbody {
-    display: none;
-}
-
-.verb-table {
-    width: 100%;
-    min-width: 100px; /* Ensure the table is wide enough for all columns */
-    border-collapse: collapse;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    border-radius: var(--border-radius);
-    /* --- KEY CHANGE FOR STABLE COLUMNS --- */
-    table-layout: fixed; /* Force the browser to use a fixed layout algorithm */
-}
-
-/* --- DEFINE COLUMN WIDTHS FOR THE FIXED LAYOUT --- */
-/* We target the second header row's cells to set the widths */
-.verb-table thead tr:nth-child(2) th:nth-child(1) {
-    width: 28%; /* Wider column for the infinitive and English translation */
-}
-.verb-table thead tr:nth-child(2) th:nth-child(n+2) {
-    width: 12%; /* Equal width for the 6 conjugation columns (6 * 12% = 72%) */
-}
-
-
-.verb-table th, .verb-table td {
-    padding: 0; /* Padding is now handled by inner elements */
-    text-align: left;
-    border-bottom: 1px solid var(--color-border);
-    vertical-align: middle;
-}
-
-.verb-table th {
-    padding: var(--spacing-md); /* Restore padding for header cells */
-}
-
-/* Shared styles for all header cells */
-.verb-table thead th {
-    background-color: var(--color-primary);
-    color: var(--color-header-text);
-    font-family: var(--font-heading);
-    font-size: 1.1rem;
-}
-
-/* Specific styles for the main category header to make it collapsible */
-.verb-table thead tr:first-child th {
-    cursor: pointer;
-    user-select: none;
-    position: relative;
-}
-
-/* The +/- indicator for collapsible sections */
-.verb-table thead tr:first-child th::after {
-    content: '−';
-    position: absolute;
-    right: var(--spacing-lg);
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.8rem;
-    line-height: 1;
-    font-weight: normal;
-}
-
-.verb-category-section.collapsed .verb-table thead tr:first-child th::after {
-    content: '+';
-}
-
-.verb-table tbody tr {
-    background-color: var(--color-card-bg);
-    transition: background-color var(--transition-fast);
-}
-
-.verb-table tbody tr:hover {
-    background-color: #f8f9fa;
-}
-
-.verb-table .verb-infinitive {
-    font-weight: 700;
-    font-size: 1.1rem;
-    padding: var(--spacing-md);
-}
-
-/* --- PRACTICE MODE LOGIC --- */
-
-/* 1. Style the new inner div. This is our target for all styling. */
-.verb-table .conjugation-cell > div {
-    padding: var(--spacing-xs); /* The padding is now on this element */
-    border-radius: 4px;
-    transition: background-color var(--transition-fast), color var(--transition-fast);
-    height: 100%; /* Ensure the clickable area fills the cell */
-}
-
-/* 2. HIDDEN state in practice mode: Hide text and show a colored block */
-.practice-mode .conjugation-cell > div {
-    padding: var(--spacing-md);
-    font-size: 0; /* Foolproof way to hide text content, including spans */
-    background-color: var(--color-text-light);
-    cursor: pointer;
-    user-select: none;
-}
-.practice-mode .conjugation-cell > div:hover {
-    background-color: var(--color-primary);
-}
-
-/* 3. REVEALED state in practice mode: Restore text and remove block color */
-.practice-mode .conjugation-cell.revealed > div {
-     padding: var(--spacing-xs);
-    font-size: inherit; /* Restore the font size */
-    background-color: transparent;
-    cursor: default;
-}
-
-.verb-table .prefix {
-    font-weight: bold;
-    color: var(--color-danger);
-}
-
-.english-text{
-    font-style: italic;
-    color: var(--color-text-light);
-    font-size: 0.9rem;
-    margin-top: var(--spacing-xs);
-}
-
-
-
-/* --- 5. Main Content Layout (Add this block here to target specific page main) --- */
-main {
-    max-width: 960px; /* Default for most pages */
-    margin: var(--spacing-xl) auto;
-    padding: 0 var(--spacing-md);
-}
-
-/* Specific main content width for the Flashcards page */
-.flashcards-page main {
-    max-width: 1200px; /* Wider for more flashcards per row on large screens */
-    padding: 0 var(--spacing-lg); /* Adjust padding for wider layout */
-}
-
-
-/* --- 8. Interactive Elements (Flashcards, Quiz, Modal) --- */
-
-/* Flashcard Categories Container (uses CSS Grid now) */
-.flashcard-categories {
-    display: grid;
-    /* Try to fit as many cards as possible, each at least 180px wide.
-       This allows 5-6 cards on a 1200px width, dynamically adjusting. */
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: var(--spacing-lg); /* Consistent spacing between cards */
-    margin-top: var(--spacing-lg);
-    margin-bottom: var(--spacing-xl);
-    justify-items: center; /* Center cards horizontally within their grid cells */
-}
-
-/* Base flashcard styling */
-.flashcard {
-    background-color: transparent; /* Allows inner elements to define background */
-    width: 100%; /* Ensure it fills its grid cell */
-    height: 140px; /* Fixed height for consistent appearance */
-    perspective: 1000px;
-    cursor: pointer;
-}
-.flashcard-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-    box-shadow: var(--shadow);
-    border-radius: var(--border-radius);
-}
-.flashcard.is-flipped .flashcard-inner {
-    transform: rotateY(180deg);
-}
-
-/* Front and Back of the Flashcard */
-.flashcard-front, .flashcard-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    display: flex; /* Use flexbox for centering content */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    padding: var(--spacing-sm); /* General padding for content (8px) */
-    border-radius: var(--border-radius);
-    text-align: center;
-    box-sizing: border-box; /* Crucial: padding included in width/height */
-    word-break: break-word; /* Allows long words to break and wrap */
-    overflow-wrap: break-word; /* Ensures long words don't overflow */
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 .flashcard-front {
     background-color: var(--color-card-bg);
     border: 1px solid var(--color-border);
     color: var(--color-primary);
-    font-size: 1.7rem; /* Adjusted for new card size */
+    font-size: 1.7rem;
     font-weight: 700;
-    line-height: 1.2; /* Tighter line height for single word */
+    line-height: 1.2;
 }
 .flashcard-back {
-    background-color: var(--color-primary); /* Changed to primary color for stronger branding */
+    background-color: var(--color-primary);
     color: white;
     transform: rotateY(180deg);
-    flex-direction: column; /* Stack content vertically */
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    font-size: 0.95rem; /* Base font size for back of card */
-    line-height: 1.3;
-    padding: var(--spacing-xs) var(--spacing-sm); /* More narrow vertical padding (4px top/bottom, 8px left/right) */
-}
-
-/* Specific styles for elements inside the flashcard-back */
-.flashcard-back .gender {
-    font-weight: 700;
-    font-size: 1.15rem; /* Slightly larger for the main word */
-    margin-bottom: 4px; /* Reduced margin */
-    line-height: 1.2;
-}
-.flashcard-back div { /* Targets plural, mk, en divs */
-    margin: 2px 0; /* Reduced margin */
-    font-size: 0.85rem; /* Smaller font for translations */
-    line-height: 1.2;
-}
-
-/* --- Additional Flashcard Specific Styles for Gender Colors (added for flashcards.html) --- */
-.flashcard-back .male {
-    color: #007bff; /* A clear blue, consistent with Bootstrap info color */
-}
-.flashcard-back .female {
-    color: #dc3545; /* A clear red, consistent with Bootstrap danger color */
-}
-.flashcard-back .neuter {
-    color: #28a745; /* A clear green, consistent with Bootstrap success color */
-}
-
-/* Override body background from original flashcard HTML to use design system */
-body {
-    background-color: var(--color-secondary); /* Enforce design system background */
-}
-
-/* --- Responsive Adjustments for Flashcards --- */
-/* These media queries help scale cards down gracefully on smaller screens */
-@media (max-width: 1200px) { /* Adjust max-width of main for smaller desktops/large tablets */
-    .flashcards-page main {
-        max-width: 960px; /* Revert to default max-width for main */
-        padding: 0 var(--spacing-md); /* Revert to default padding */
-    }
-    .flashcard-categories {
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* Will typically show 4-5 cards */
-    }
-    .flashcard {
-        height: 130px;
-    }
-    .flashcard-front {
-        font-size: 1.5rem;
-    }
-    .flashcard-back .gender {
-        font-size: 1.1rem;
-    }
-    .flashcard-back div {
-        font-size: 0.8rem;
-    }
-}
-
-@media (max-width: 768px) { /* Tablets and smaller */
-    .flashcard-categories {
-        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* At least 2-3 per row */
-        gap: var(--spacing-md);
-    }
-    .flashcard {
-        height: 110px;
-    }
-    .flashcard-front {
-        font-size: 1.3rem;
-    }
-    .flashcard-back .gender {
-        font-size: 1rem;
-    }
-    .flashcard-back div {
-        font-size: 0.75rem;
-    }
-}
-
-@media (max-width: 576px) { /* Phones */
-    .flashcard-categories {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* 2-3 per row minimum on very small screens */
-        gap: var(--spacing-sm);
-    }
-    .flashcard {
-        height: 90px;
-    }
-    .flashcard-front {
-        font-size: 1rem;
-    }
-    .flashcard-back .gender {
-        font-size: 0.85rem;
-    }
-    .flashcard-back div {
-        font-size: 0.65rem;
-    }
-}
-/* --- Sprechtraining Page & Interactive Cards Styles --- */
-/* --- Sprechtraining Page & Interactive Cards Styles --- */
-
-/* General page layout styles */
-.sprechtraining-page .chapter-summary {
-    background-color: var(--color-info-bg);
-    border-left-color: var(--color-info-border);
-    margin-bottom: var(--spacing-xl);
-}
-
-.sprech-section-intro {
-    font-size: 1.15rem;
-    max-width: 700px;
-    margin: 0 auto var(--spacing-lg) auto;
-    color: var(--color-text-light);
-    text-align: center;
-}
-
-.sprech-topic-container {
-    background-color: var(--color-card-bg);
-    padding: var(--spacing-xl);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    margin-bottom: var(--spacing-xl);
-}
-
-.sprech-topic-container h3 {
-    text-align: center;
-    border-bottom: 3px solid var(--color-accent);
-    padding-bottom: var(--spacing-sm);
-    margin: 0 0 var(--spacing-lg) 0;
-    color: var(--color-primary);
-}
-
-.sprech-topic-container h3::before {
-    content: '🗣️ ';
-    margin-right: var(--spacing-sm);
-}
-
-/* Base styles for all clickable topic cards */
-.sprech-training.sprecht-trigger {
-    cursor: pointer;
-    background-color: var(--color-sprech-bg);
-    border-left: 5px solid var(--color-sprech-border);
-    border-radius: var(--border-radius);
-    padding: var(--spacing-lg);
-    box-shadow: var(--shadow);
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-    
-    /* Flexbox for centering content */
-    display: flex; 
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    
-    /* Sizing */
-    min-height: 100px;
-    width: 100%;
-}
-
-.sprech-training.sprecht-trigger:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-}
-
-/* Style for the title text inside the card */
-.sprech-training.sprecht-trigger .info-box-title {
-    margin-bottom: 0;
-    color: var(--color-primary);
-    font-size: 1.2rem;
+    font-size: 0.95rem;
     line-height: 1.3;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    padding: var(--spacing-xs) var(--spacing-sm);
+}
+.flashcard-back .gender {
+    font-weight: 700;
+    font-size: 1.15rem;
+    margin-bottom: 4px;
+    line-height: 1.2;
+}
+.flashcard-back div {
+    margin: 2px 0;
+    font-size: 0.85rem;
+    line-height: 1.2;
+}
+.flashcard-back .male { color: #007bff; }
+.flashcard-back .female { color: #dc3545; }
+.flashcard-back .neuter { color: #28a745; }
+
+
+/* --- 8b. Quiz --- */
+.quiz-question { margin-bottom: var(--spacing-lg); background: #fafafa; padding: var(--spacing-lg); border-radius: var(--border-radius); border: 1px solid var(--color-border); }
+.quiz-question p { font-weight: bold; margin-bottom: var(--spacing-sm); }
+.quiz-options label { display: block; margin-bottom: var(--spacing-sm); cursor: pointer; padding: var(--spacing-md); border-radius: var(--border-radius); transition: background-color var(--transition-fast); border: 1px solid var(--color-border); }
+.quiz-options label:hover { background-color: #e9ecef; }
+.quiz-options input { margin-right: 10px; accent-color: var(--color-primary); transform: scale(1.2); }
+.quiz-check-btn { display: inline-block; margin-top: var(--spacing-lg); padding: 0.8rem 2rem; background-color: var(--color-accent); color: var(--color-primary); border: none; border-radius: var(--border-radius); cursor: pointer; font-size: 1.1rem; font-weight: bold; transition: background-color var(--transition-fast), transform var(--transition-fast); }
+.quiz-check-btn:hover { background-color: var(--color-accent-hover); transform: translateY(-2px); }
+.correct { background-color: var(--color-success-bg) !important; border-color: var(--color-success) !important; color: var(--color-success); font-weight: bold; }
+.correct::before { content: '✔ '; }
+.incorrect { background-color: var(--color-danger-bg) !important; border-color: var(--color-danger) !important; color: var(--color-danger); font-weight: bold; }
+.incorrect::before { content: '✖ '; }
+
+/* --- 8c. Modal --- */
+.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(5px); animation: fadeIn 0.3s; }
+.modal-content { background-color: var(--color-card-bg); margin: 10vh auto; padding: var(--spacing-xl); border-radius: var(--border-radius); box-shadow: 0 5px 25px rgba(0,0,0,0.3); width: 90%; max-width: 600px; position: relative; animation: slideIn 0.4s; }
+.modal-close { position: absolute; top: var(--spacing-md); right: var(--spacing-md); color: #aaa; font-size: 2rem; font-weight: bold; cursor: pointer; transition: color var(--transition-fast), transform var(--transition-fast); }
+.modal-close:hover { color: var(--color-text); transform: rotate(90deg); }
+@keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+@keyframes slideIn { from {transform: translateY(-50px); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
+.modal-content h3 { margin-top: 0; color: var(--color-primary); }
+.modal-body { max-height: 70vh; overflow-y: auto; padding-right: var(--spacing-sm); padding-left: var(--spacing-sm); }
+.modal-body ul { list-style-type: none; padding: 0; }
+.modal-body li { background-color: var(--color-secondary); border-left: 3px solid var(--color-accent); padding: var(--spacing-md); margin-bottom: var(--spacing-sm); border-radius: 4px; }
+
+
+/* --- 9. Exam & Exercise Page Styles --- */
+.exam-prep-header { text-align: center; margin-bottom: var(--spacing-xl); }
+.exam-task { background-color: var(--color-card-bg); padding: var(--spacing-lg) var(--spacing-xl); margin-bottom: var(--spacing-xl); border-radius: var(--border-radius); box-shadow: var(--shadow); }
+.exam-task h3 { margin-top: 0; margin-bottom: var(--spacing-md); border-bottom: 2px solid var(--color-border); padding-bottom: var(--spacing-sm); }
+.exam-task h3::before { margin-right: var(--spacing-sm); }
+.task-hören h3::before { content: '🎧'; }
+.task-lesen h3::before { content: '📖'; }
+.task-schreiben h3::before { content: '✍️'; }
+.task-grammatik h3::before { content: '🔧'; }
+.task-sprechen h3::before { content: '💬'; }
+
+.task-box { background-color: #f8f9fa; border-left: 4px solid var(--color-primary); padding: var(--spacing-lg); margin: var(--spacing-lg) 0; border-radius: var(--border-radius); }
+.task-box ul { list-style-position: inside; padding-left: 0; }
+
+.writing-exercise, .form-exercise, .grammar-exercise, .speaking-exercise { margin-top: var(--spacing-lg); }
+.email-template { border: 1px solid var(--color-border); padding: var(--spacing-md); border-radius: var(--border-radius); background-color: #fdfdfd; }
+.email-template textarea { width: 100%; min-height: 150px; border: 1px solid var(--color-border); padding: var(--spacing-md); font-family: var(--font-body); font-size: 1rem; margin: var(--spacing-sm) 0; border-radius: var(--border-radius); resize: vertical; }
+
+.solution-box { background-color: var(--color-sprech-bg); border: 1px solid var(--color-sprech-border); padding: var(--spacing-lg); margin-top: var(--spacing-lg); border-radius: var(--border-radius); display: none; }
+.solution-box h5 { color: var(--color-success); margin-top: 0; margin-bottom: var(--spacing-sm); }
+.solution-box.visible { display: block; }
+
+.form-group { margin-bottom: var(--spacing-lg); }
+.form-group label { display: block; font-weight: bold; margin-bottom: var(--spacing-sm); }
+.form-group input[type="text"] { width: 100%; padding: var(--spacing-md); border: 1px solid var(--color-border); border-radius: var(--border-radius); font-size: 1rem; }
+.form-group .radio-group label { font-weight: normal; display: block; margin-bottom: var(--spacing-sm); }
+.form-group input.correct-input, .form-group select.correct-input { background-color: var(--color-success-bg); border-color: var(--color-success); }
+.form-group input.incorrect-input, .form-group select.incorrect-input { background-color: var(--color-danger-bg); border-color: var(--color-danger); }
+.form-group .feedback { font-weight: bold; font-size: 0.9rem; margin-left: 1rem; }
+.feedback.correct { color: var(--color-success); }
+.feedback.incorrect { color: var(--color-danger); }
+
+.grammar-item { margin-bottom: var(--spacing-lg); padding-bottom: var(--spacing-lg); border-bottom: 1px dashed var(--color-border); }
+.grammar-item:last-child { border-bottom: none; }
+.grammar-item p.sentence-to-fix { font-style: italic; color: var(--color-text-light); background-color: #f8f9fa; padding: var(--spacing-sm); border-radius: var(--border-radius); }
+.grammar-item input { width: 100%; padding: var(--spacing-md); border: 1px solid var(--color-border); border-radius: var(--border-radius); margin-top: var(--spacing-sm); font-size: 1rem; }
+.grammar-solution { margin-top: var(--spacing-sm); font-weight: bold; color: var(--color-success); display: none; }
+.grammar-solution.visible { display: block; }
+
+
+/* --- 10. Verb Conjugation Page Styles --- */
+.verb-controls { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--spacing-lg); margin-bottom: var(--spacing-xl); padding: var(--spacing-lg); background-color: var(--color-card-bg); border-radius: var(--border-radius); box-shadow: var(--shadow); }
+#verb-search { flex-grow: 1; padding: var(--spacing-md); font-size: 1rem; border: 1px solid var(--color-border); border-radius: var(--border-radius); }
+.practice-toggle-container { display: flex; align-items: center; gap: var(--spacing-md); }
+.practice-label { font-weight: 600; color: var(--color-primary); }
+
+.switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; }
+.slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; }
+input:checked + .slider { background-color: var(--color-success); }
+input:focus + .slider { box-shadow: 0 0 1px var(--color-success); }
+input:checked + .slider:before { transform: translateX(26px); }
+.slider.round { border-radius: 34px; }
+.slider.round:before { border-radius: 50%; }
+
+.verb-category-section { margin-bottom: var(--spacing-xl); }
+.verb-category-section.collapsed .verb-table thead tr:nth-child(2),
+.verb-category-section.collapsed .verb-table tbody { display: none; }
+.verb-table { width: 100%; border-collapse: collapse; overflow: hidden; box-shadow: var(--shadow); border-radius: var(--border-radius); table-layout: fixed; }
+.verb-table thead tr:nth-child(2) th:nth-child(1) { width: 28%; }
+.verb-table thead tr:nth-child(2) th:nth-child(n+2) { width: 12%; }
+.verb-table th, .verb-table td { padding: 0; text-align: left; border-bottom: 1px solid var(--color-border); vertical-align: middle; }
+.verb-table th { padding: var(--spacing-md); }
+.verb-table thead th { background-color: var(--color-primary); color: var(--color-header-text); font-family: var(--font-heading); font-size: 1.1rem; }
+.verb-table thead tr:first-child th { cursor: pointer; user-select: none; position: relative; }
+.verb-table thead tr:first-child th::after { content: '−'; position: absolute; right: var(--spacing-lg); top: 50%; transform: translateY(-50%); font-size: 1.8rem; line-height: 1; font-weight: normal; }
+.verb-category-section.collapsed .verb-table thead tr:first-child th::after { content: '+'; }
+.verb-table tbody tr { background-color: var(--color-card-bg); transition: background-color var(--transition-fast); }
+.verb-table tbody tr:hover { background-color: #f8f9fa; }
+.verb-table .verb-infinitive { font-weight: 700; font-size: 1.1rem; padding: var(--spacing-md); }
+.verb-table .conjugation-cell > div { padding: var(--spacing-xs); border-radius: 4px; transition: background-color var(--transition-fast), color var(--transition-fast); height: 100%; }
+.practice-mode .conjugation-cell > div { padding: var(--spacing-md); font-size: 0; background-color: var(--color-text-light); cursor: pointer; user-select: none; }
+.practice-mode .conjugation-cell > div:hover { background-color: var(--color-primary); }
+.practice-mode .conjugation-cell.revealed > div { padding: var(--spacing-xs); font-size: inherit; background-color: transparent; cursor: default; }
+.verb-table .prefix { font-weight: bold; color: var(--color-danger); }
+.english-text{ font-style: italic; color: var(--color-text-light); font-size: 0.9rem; margin-top: var(--spacing-xs); }
+
+/* --- 11. Sprechtraining Page Styles --- */
+.sprechtraining-page .chapter-summary { background-color: var(--color-info-bg); border-left-color: var(--color-info-border); }
+.sprech-section-intro { font-size: 1.15rem; max-width: 700px; margin: 0 auto var(--spacing-lg) auto; color: var(--color-text-light); text-align: center; }
+.sprech-topic-container { background-color: var(--color-card-bg); padding: var(--spacing-xl); border-radius: var(--border-radius); box-shadow: var(--shadow); margin-bottom: var(--spacing-xl); }
+.sprech-topic-container h3 { text-align: center; border-bottom: 3px solid var(--color-accent); padding-bottom: var(--spacing-sm); margin: 0 0 var(--spacing-lg) 0; color: var(--color-primary); }
+.sprech-topic-container h3::before { content: '🗣️ '; margin-right: var(--spacing-sm); }
+.sprech-training.sprecht-trigger { cursor: pointer; box-shadow: var(--shadow); transition: transform var(--transition-fast), box-shadow var(--transition-fast); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; min-height: 100px; width: 100%; }
+.sprech-training.sprecht-trigger:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); }
+.sprech-training.sprecht-trigger .info-box-title { margin-bottom: 0; color: var(--color-primary); font-size: 1.2rem; line-height: 1.3; word-wrap: break-word; overflow-wrap: break-word; }
+.sprech-training.extra-trigger { background-color: var(--color-info-bg); border-left-color: var(--color-info-border); }
+
+#sprechModalBody .sprech-dialogue { background-color: var(--color-sprech-bg); border-left: 5px solid var(--color-sprech-border); padding: var(--spacing-md); margin: var(--spacing-md) 0; border-radius: var(--border-radius); line-height: 1.5; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+#sprechModalBody .sprech-dialogue p { margin-bottom: var(--spacing-sm); word-wrap: break-word; overflow-wrap: break-word; }
+#sprechModalBody .sprech-dialogue p:last-child { margin-bottom: 0; }
+#sprechModalBody .sprech-dialogue strong { color: var(--color-primary); }
+#sprechModalBody .sprech-dialogue .positive { color: var(--color-success); }
+#sprechModalBody .sprech-dialogue .negative { color: var(--color-danger); }
+#sprechModalBody strong.hard-question { color: var(--color-danger); }
+.modal-prompts-list { list-style-type: none; padding: 0; display: flex; flex-wrap: wrap; gap: var(--spacing-sm); }
+.modal-prompts-list li { background-color: var(--color-secondary); color: var(--color-primary); padding: var(--spacing-xs) var(--spacing-md); border-radius: 15px; font-size: 0.9rem; font-weight: 500; }
+
+/* --- 12. Footer --- */
+.site-footer-main { background: #343a40; color: #ced4da; text-align: center; padding: var(--spacing-xl); margin-top: var(--spacing-xl); }
+
+/* --- 13. Mobile Navigation & Responsive --- */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: var(--color-header-text);
+    z-index: 1001;
+    transition: transform 0.3s ease;
 }
 
-/* Styles for "Extra Exercises" Tiles */
-.sprech-training.extra-trigger {
-    background-color: var(--color-info-bg);
-    border-left-color: var(--color-info-border);
+@media (max-width: 1024px) {
+    .menu-toggle { display: block; }
+    .main-nav { position: fixed; top: 0; right: 0; width: 300px; height: 100%; background-color: #1c2e5a; box-shadow: -5px 0 15px rgba(0,0,0,0.2); transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1); overflow-y: auto; }
+    .main-nav.active { transform: translateX(0); }
+    .main-nav ul { flex-direction: column; padding: calc(var(--header-height) + var(--spacing-lg)) var(--spacing-md); height: auto; align-items: flex-start; }
+    .main-nav li { width: 100%; height: auto; }
+    .main-nav a { display: block; width: 100%; padding: var(--spacing-md); border-radius: var(--border-radius); color: var(--color-header-text); }
+    .main-nav a.active { background-color: var(--color-accent); color: var(--color-primary); border-bottom: none; }
+    .main-nav a:hover { background-color: rgba(255, 255, 255, 0.15); }
 }
-
-/* --- Styles for Modal Content --- */
-.modal-body {
-    max-height: 70vh;
-    overflow-y: auto;
-    padding-right: var(--spacing-sm);
-    padding-left: var(--spacing-sm);
-}
-
-#sprechModalBody .sprech-dialogue {
-    background-color: var(--color-sprech-bg); 
-    border-left: 5px solid var(--color-sprech-border);
-    padding: var(--spacing-md);
-    margin: var(--spacing-md) 0;
-    border-radius: var(--border-radius);
-    line-height: 1.5;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-
-#sprechModalBody .sprech-dialogue p {
-    margin-bottom: var(--spacing-sm);
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-}
-
-#sprechModalBody .sprech-dialogue p:last-child {
-    margin-bottom: 0;
-}
-
-#sprechModalBody .sprech-dialogue strong {
-    color: var(--color-primary);
-}
-
-#sprechModalBody .sprech-dialogue .positive {
-    color: var(--color-success);
-}
-
-#sprechModalBody .sprech-dialogue .negative {
-    color: var(--color-danger);
-}
-
-/* Style for the hard question text color */
-#sprechModalBody strong.hard-question {
-    color: var(--color-danger); /* High specificity to override other strong rules */
-}
-
-/* Style for the prompts list in the "Extra Exercises" modal */
-.modal-prompts-list {
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-sm);
-}
-
-.modal-prompts-list li {
-    background-color: var(--color-secondary);
-    color: var(--color-primary);
-    padding: var(--spacing-xs) var(--spacing-md);
-    border-radius: 15px;
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-/* --- Responsive Adjustments --- */
-/* These rules target elements used on this page */
 
 @media (max-width: 1200px) {
+    /* Flashcards */
+    .flashcards-page main { max-width: 960px; padding: 0 var(--spacing-md); }
+    .flashcard-categories { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+    .flashcard { height: 130px; }
+    .flashcard-front { font-size: 1.5rem; }
+    .flashcard-back .gender { font-size: 1.1rem; }
+    .flashcard-back div { font-size: 0.8rem; }
+    /* Sprechtraining */
     .sprech-training.sprecht-trigger { min-height: 90px; }
     .sprech-training.sprecht-trigger .info-box-title { font-size: 1.1rem; }
 }
 
 @media (max-width: 768px) {
-    .sprech-training.sprecht-trigger {
-        min-height: 80px;
-        padding: var(--spacing-md);
-    }
+    /* Flashcards */
+    .flashcard-categories { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: var(--spacing-md); }
+    .flashcard { height: 110px; }
+    .flashcard-front { font-size: 1.3rem; }
+    .flashcard-back .gender { font-size: 1rem; }
+    .flashcard-back div { font-size: 0.75rem; }
+    /* Sprechtraining */
+    .sprech-training.sprecht-trigger { min-height: 80px; padding: var(--spacing-md); }
     .sprech-training.sprecht-trigger .info-box-title { font-size: 1rem; }
 }
 
 @media (max-width: 576px) {
-    .sprech-topic-container {
-        padding: var(--spacing-lg);
-    }
-    #sprechModalBody .sprech-dialogue {
-        padding: var(--spacing-sm);
-    }
-    .sprech-training.sprecht-trigger {
-        min-height: 70px;
-        padding: var(--spacing-sm);
-    }
+    body { font-size: 16px; }
+    main { margin: var(--spacing-lg) auto; }
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.5rem; }
+    .chapter { padding: var(--spacing-lg); }
+    .modal-content { padding: var(--spacing-lg); }
+    /* Flashcards */
+    .flashcard-categories { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: var(--spacing-sm); }
+    .flashcard { height: 90px; }
+    .flashcard-front { font-size: 1rem; }
+    .flashcard-back .gender { font-size: 0.85rem; }
+    .flashcard-back div { font-size: 0.65rem; }
+    /* Sprechtraining */
+    .sprech-topic-container { padding: var(--spacing-lg); }
+    #sprechModalBody .sprech-dialogue { padding: var(--spacing-sm); }
+    .sprech-training.sprecht-trigger { min-height: 70px; padding: var(--spacing-sm); }
     .sprech-training.sprecht-trigger .info-box-title { font-size: 0.9rem; }
 }
