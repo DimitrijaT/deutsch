@@ -299,6 +299,353 @@ function handleGrammarModal() {
     };
 }
 
+// --- Sprechtraining Data Structure ---
+const sprechtData = {
+    wohnen: {
+        garten: {
+            title: "Garten",
+            dialogues: [
+                { question: "Hast du einen Garten?", answers: ["<span class='positive'>Ja</span>, ich habe einen Garten.", "<span class='negative'>Nein</span>, ich habe keinen Garten."] },
+                { question: "Ist dein Garten groß?", answers: ["<span class='positive'>Ja</span>, mein Garten ist groß.", "<span class='negative'>Nein</span>, er ist klein."] },
+                { question: "Wie ist dein Garten?", answers: ["Mein Garten ist sehr schön.", "Er ist klein, aber gemütlich."] },
+                { question: "Wie groß ist dein Garten?", answers: ["Mein Garten ist 10 Quadratmeter groß.", "Ich habe einen sehr großen Garten."] },
+                { question: "Was machst du gern im Garten?", answers: ["Ich lese gern im Garten.", "Ich arbeite gern im Garten."] }
+            ]
+        },
+        balkon: {
+            title: "Balkon",
+            dialogues: [
+                { question: "Hast du einen Balkon?", answers: ["<span class='positive'>Ja</span>, ich habe einen Balkon.", "<span class='negative'>Nein</span>, ich habe keinen Balkon."] },
+                { question: "Ist dein Balkon groß?", answers: ["<span class='positive'>Ja</span>, mein Balkon ist groß.", "<span class='negative'>Nein</span>, er ist klein."] },
+                { question: "Wie ist dein Balkon?", answers: ["Mein Balkon ist sonnig und gemütlich.", "Er ist klein, aber ich mag ihn."] },
+                { question: "Was machst du gern auf dem Balkon?", answers: ["Ich trinke gern Kaffee auf dem Balkon.", "Ich sitze gern dort und lese."] }
+            ]
+        },
+        küche: {
+            title: "Küche",
+            dialogues: [
+                { question: "Hast du eine Küche?", answers: ["<span class='positive'>Ja</span>, ich habe eine Küche.", "<span class='negative'>Nein</span>, ich habe keine Küche."] },
+                { question: "Ist deine Küche hell?", answers: ["<span class='positive'>Ja</span>, meine Küche ist hell.", "<span class='negative'>Nein</span>, sie ist ein bisschen dunkel."] },
+                { question: "Wie ist deine Küche?", answers: ["Meine Küche ist modern und hell.", "Sie ist klein, aber praktisch."] },
+                { question: "Gibt es einen Herd und einen Kühlschrank in deiner Küche?", answers: ["<span class='positive'>Ja</span>, es gibt alles.", "<span class='negative'>Nein</span>, ich habe keinen Herd."] },
+                { question: "Was machst du gern in der Küche?", answers: ["Ich koche gern in der Küche.", "Ich esse gern in der Küche."] }
+            ]
+        },
+        bad: {
+            title: "Bad",
+            dialogues: [
+                { question: "Hast du ein Bad?", answers: ["<span class='positive'>Ja</span>, ich habe ein Bad.", "<span class='negative'>Nein</span>, ich habe kein Bad."] },
+                { question: "Gibt es eine Dusche im Bad?", answers: ["<span class='positive'>Ja</span>, es gibt eine Dusche.", "<span class='negative'>Nein</span>, es gibt nur eine Badewanne."] },
+                { question: "Wie viele Badezimmer hast du?", answers: ["Ich habe ein Badezimmer.", "Ich habe zwei Badezimmer."] },
+                { question: "Gibt es eine Badewanne im Bad?", answers: ["<span class='positive'>Ja</span>, es gibt eine Badewanne.", "<span class='negative'>Nein</span>, es gibt nur eine Dusche."] },
+                { question: "Ist dein Bad modern?", answers: ["<span class='positive'>Ja</span>, mein Bad ist sehr modern.", "<span class='negative'>Nein</span>, es ist ein bisschen alt."] }
+            ]
+        },
+        wohnzimmer: {
+            title: "Wohnzimmer",
+            dialogues: [
+                { question: "Hast du ein Wohnzimmer?", answers: ["<span class='positive'>Ja</span>, ich habe ein Wohnzimmer.", "<span class='negative'>Nein</span>, ich habe kein Wohnzimmer."] },
+                { question: "Ist dein Wohnzimmer gemütlich?", answers: ["<span class='positive'>Ja</span>, mein Wohnzimmer ist sehr gemütlich.", "<span class='negative'>Nein</span>, es ist nicht so gemütlich."] },
+                { question: "Ist dein Wohnzimmer groß oder klein?", answers: ["Mein Wohnzimmer ist groß.", "Es ist klein, aber sehr gemütlich."] },
+                { question: "Was gibt es in deinem Wohnzimmer?", answers: ["In meinem Wohnzimmer gibt es ein großes Sofa und einen Fernseher.", "Es gibt auch ein Regal und viele Bücher."] },
+                { question: "Was machst du gern im Wohnzimmer?", answers: ["Ich schaue gern Filme im Wohnzimmer.", "Ich entspanne mich gern dort."] }
+            ]
+        },
+        möbel: {
+            title: "Möbel",
+            dialogues: [
+                { question: "Hast du einen Tisch?", answers: ["<span class='positive'>Ja</span>, ich habe einen Tisch.", "<span class='negative'>Nein</span>, ich habe keinen Tisch."] },
+                { question: "Ist dein Bett bequem?", answers: ["<span class='positive'>Ja</span>, mein Bett ist sehr bequem.", "<span class='negative'>Nein</span>, es ist nicht so bequem."] },
+                { question: "Hast du ein Bett?", answers: ["<span class='positive'>Ja</span>, ich habe ein Bett.", "<span class='negative'>Nein</span>, ich habe kein Bett, ich schlafe auf dem Sofa."] },
+                { question: "Welche Möbel hast du im Schlafzimmer?", answers: ["Ich habe ein Bett, einen Kleiderschrank und zwei Nachttische.", "Es gibt nur ein Bett und einen Stuhl."] },
+                { question: "Ist dein Sofa neu oder alt?", answers: ["Mein Sofa ist neu.", "Es ist alt, aber bequem."] },
+                { question: "Wie findest du deine Möbel?", answers: ["Ich finde meine Möbel sehr schön und praktisch.", "Sie sind okay, aber ich möchte neue."] },
+                { question: "Wo kaufst du Möbel?", answers: ["Ich kaufe Möbel in einem großen Möbelhaus.", "Ich kaufe sie online."] }
+            ]
+        },
+        wohnung_haus: {
+            title: "Wohnung / Haus",
+            dialogues: [
+                { question: "Wohnst du in einer Wohnung oder einem Haus?", answers: ["Ich wohne in einer Wohnung.", "Ich wohne in einem Haus."] },
+                { question: "Ist deine Wohnung neu?", answers: ["<span class='positive'>Ja</span>, meine Wohnung ist neu.", "<span class='negative'>Nein</span>, sie ist alt."] },
+                { question: "Wie viele Zimmer hat deine Wohnung/dein Haus?", answers: ["Meine Wohnung hat drei Zimmer.", "Mein Haus hat fünf Zimmer."] },
+                { question: "Wohnst du im Erdgeschoss oder in einem Stock?", answers: ["Ich wohne im Erdgeschoss.", "Ich wohne im zweiten Stock."] },
+                { question: "Wie gefällt dir deine Wohnung/dein Haus?", answers: ["Meine Wohnung gefällt mir sehr gut!", "Mein Haus ist okay, aber ich suche ein neues."] },
+                { question: "Ist deine Wohnung/dein Haus teuer?", answers: ["<span class='positive'>Ja</span>, die Miete ist teuer.", "<span class='negative'>Nein</span>, es ist günstig."] }
+            ]
+        }
+    },
+    essen_trinken: {
+        obst: {
+            title: "Obst",
+            dialogues: [
+                { question: "Isst du Bananen?", answers: ["<span class='positive'>Ja</span>, ich esse Bananen.", "<span class='negative'>Nein</span>, ich esse keine Bananen."] },
+                { question: "Magst du Äpfel?", answers: ["<span class='positive'>Ja</span>, ich mag Äpfel.", "<span class='negative'>Nein</span>, ich mag keine Äpfel."] },
+                { question: "Isst du gern Obst?", answers: ["<span class='positive'>Ja</span>, ich esse sehr gern Obst.", "<span class='negative'>Nein</span>, ich esse nicht gern Obst."] },
+                { question: "Welches Obst magst du am liebsten?", answers: ["Ich mag Äpfel und Bananen am liebsten.", "Ich liebe Orangen!"] },
+                { question: "Wo kaufst du Obst?", answers: ["Ich kaufe Obst im Supermarkt.", "Ich kaufe es auf dem Markt."] },
+                { question: "Was kostet ein Kilo Äpfel?", answers: ["Ein Kilo Äpfel kostet 2 Euro 50.", "Es kostet 2 Euro 50 Cent."] }
+            ]
+        },
+        gemüse: {
+            title: "Gemüse",
+            dialogues: [
+                { question: "Isst du Tomaten?", answers: ["<span class='positive'>Ja</span>, ich esse Tomaten.", "<span class='negative'>Nein</span>, ich esse keine Tomaten."] },
+                { question: "Magst du Gurken?", answers: ["<span class='positive'>Ja</span>, ich mag Gurken.", "<span class='negative'>Nein</span>, ich mag keine Gurken."] },
+                { question: "Isst du gern Gemüse?", answers: ["<span class='positive'>Ja</span>, ich esse gern Gemüse.", "<span class='negative'>Nein</span>, ich esse nicht so gern Gemüse."] },
+                { question: "Welches Gemüse magst du?", answers: ["Ich mag Tomaten und Gurken sehr gern.", "Ich esse gern Paprika und Zwiebeln."] },
+                { question: "Wo kaufst du Gemüse?", answers: ["Ich kaufe Gemüse am Gemüsestand.", "Ich kaufe es im Supermarkt."] },
+                { question: "Brauchst du Kartoffeln und Pilze für dein Gericht?", answers: ["<span class='positive'>Ja</span>, ich brauche Kartoffeln und Pilze.", "<span class='negative'>Nein</span>, ich brauche keine Pilze."] }
+            ]
+        },
+        lieblingsgetränk: {
+            title: "Lieblingsgetränk",
+            dialogues: [
+                { question: "Trinkst du Wasser gern?", answers: ["<span class='positive'>Ja</span>, ich trinke gern Wasser.", "<span class='negative'>Nein</span>, ich trinke nicht gern Wasser."] },
+                { question: "Trinkst du Kaffee?", answers: ["<span class='positive'>Ja</span>, ich trinke Kaffee.", "<span class='negative'>Nein</span>, ich trinke keinen Kaffee."] },
+                { question: "Was ist dein Lieblingsgetränk?", answers: ["Mein Lieblingsgetränk ist Wasser.", "Mein Lieblingsgetränk ist Kaffee."] },
+                { question: "Trinkst du gern Cola?", answers: ["<span class='positive'>Ja</span>, ich trinke gern Cola.", "<span class='negative'>Nein</span>, ich trinke lieber Saft."] },
+                { question: "Wo trinkst du gern einen Kaffee?", answers: ["Ich trinke gern Kaffee im Café.", "Ich trinke ihn zu Hause."] }
+            ]
+        },
+        frühstück: {
+            title: "Frühstück",
+            dialogues: [
+                { question: "Frühstückst du gern?", answers: ["<span class='positive'>Ja</span>, ich frühstücke gern.", "<span class='negative'>Nein</span>, ich frühstücke nicht gern."] },
+                { question: "Isst du Brot zum Frühstück?", answers: ["<span class='positive'>Ja</span>, ich esse Brot zum Frühstück.", "<span class='negative'>Nein</span>, ich esse Müsli."] },
+                { question: "Wann frühstückst du?", answers: ["Ich frühstücke um 7 Uhr.", "Ich frühstücke am Morgen."] },
+                { question: "Was isst du zum Frühstück?", answers: ["Zum Frühstück esse ich Brot mit Käse.", "Ich esse Müsli und Joghurt."] },
+                { question: "Was trinkst du zum Frühstück?", answers: ["Ich trinke Tee.", "Ich trinke Orangensaft."] }
+            ]
+        },
+        fleisch: {
+            title: "Fleisch",
+            dialogues: [
+                { question: "Isst du Schnitzel?", answers: ["<span class='positive'>Ja</span>, ich esse Schnitzel.", "<span class='negative'>Nein</span>, ich esse kein Schnitzel."] },
+                { question: "Magst du Hähnchen?", answers: ["<span class='positive'>Ja</span>, ich mag Hähnchen.", "<span class='negative'>Nein</span>, ich mag kein Hähnchen."] },
+                { question: "Isst du gern Fleisch?", answers: ["<span class='positive'>Ja</span>, ich esse gern Fleisch.", "<span class='negative'>Nein</span>, ich esse kein Fleisch, ich bin Vegetarier."] },
+                { question: "Wo kaufst du Fleisch?", answers: ["Ich kaufe Fleisch in der Metzgerei.", "Ich kaufe es im Supermarkt."] },
+                { question: "Was ist dein Lieblingsgericht mit Fleisch?", answers: ["Ich mag Hähnchen mit Reis.", "Ich esse gern Schnitzel."] }
+            ]
+        },
+        lieblingsessen: {
+            title: "Lieblingsessen",
+            dialogues: [
+                { question: "Magst du Pizza?", answers: ["<span class='positive'>Ja</span>, ich mag Pizza.", "<span class='negative'>Nein</span>, ich mag keine Pizza."] },
+                { question: "Kochst du gern?", answers: ["<span class='positive'>Ja</span>, ich koche gern.", "<span class='negative'>Nein</span>, ich koche nicht gern."] },
+                { question: "Was ist dein Lieblingsessen?", answers: ["Mein Lieblingsessen ist Pizza.", "Ich liebe Nudeln mit Tomatensoße."] },
+                { question: "Kochst du dein Lieblingsessen selbst?", answers: ["<span class='positive'>Ja</span>, ich koche es oft selbst.", "<span class='negative'>Nein</span>, ich bestelle es meistens."] },
+                { question: "Welche Zutaten brauchst du für dein Lieblingsessen?", answers: ["Für Pizza brauche ich Teig, Tomaten, Käse und Pilze.", "Für Nudeln brauche ich Nudeln und Tomaten."] }
+            ]
+        },
+        brot: {
+            title: "Brot",
+            dialogues: [
+                { question: "Magst du Brot?", answers: ["<span class='positive'>Ja</span>, ich mag Brot.", "<span class='negative'>Nein</span>, ich mag kein Brot."] },
+                { question: "Kaufst du Brot?", answers: ["<span class='positive'>Ja</span>, ich kaufe Brot.", "<span class='negative'>Nein</span>, ich backe es selbst."] },
+                { question: "Kaufst du dein Brot in der Bäckerei?", answers: ["<span class='positive'>Ja</span>, ich kaufe mein Brot in der Bäckerei.", "<span class='negative'>Nein</span>, ich kaufe es im Supermarkt."] },
+                { question: "Welches Brot magst du?", answers: ["Ich mag Vollkornbrot.", "Ich esse gern Brötchen."] },
+                { question: "Isst du gern Brot mit Käse?", answers: ["<span class='positive'>Ja</span>, ich esse gern Brot mit Käse.", "<span class='negative'>Nein</span>, ich esse lieber Brot mit Marmelade."] },
+                { question: "Wie oft kaufst du Brot?", answers: ["Ich kaufe jeden Tag Brot.", "Ich kaufe zweimal pro Woche Brot."] }
+            ]
+        }
+    },
+    freizeit: {
+        wochenende: {
+            title: "Wochenende",
+            dialogues: [
+                { question: "Ist das Wochenende schön?", answers: ["<span class='positive'>Ja</span>, das Wochenende ist schön.", "<span class='negative'>Nein</span>, es ist nicht so schön."] },
+                { question: "Hast du am Wochenende frei?", answers: ["<span class='positive'>Ja</span>, ich habe frei.", "<span class='negative'>Nein</span>, ich muss arbeiten."] },
+                { question: "Was machst du gern am Wochenende?", answers: ["Am Wochenende spiele ich gern Volleyball.", "Ich lese gern Bücher."] },
+                { question: "Was machst du dieses Wochenende?", answers: ["Dieses Wochenende treffe ich Freunde.", "Ich lerne Deutsch."] },
+                { question: "Wie war dein letztes Wochenende?", answers: ["Mein letztes Wochenende war sehr entspannend.", "Es war langweilig."] },
+                { question: "Hast du am Wochenende viel Zeit?", answers: ["<span class='positive'>Ja</span>, ich habe viel Zeit.", "<span class='negative'>Nein</span>, ich muss arbeiten."] }
+            ]
+        },
+        hobby: {
+            title: "Hobby",
+            dialogues: [
+                { question: "Hast du ein Hobby?", answers: ["<span class='positive'>Ja</span>, ich habe ein Hobby.", "<span class='negative'>Nein</span>, ich habe kein Hobby."] },
+                { question: "Liest du gern?", answers: ["<span class='positive'>Ja</span>, ich lese gern.", "<span class='negative'>Nein</span>, ich lese nicht gern."] },
+                { question: "Was sind deine Hobbys?", answers: ["Meine Hobbys sind Wandern und Musik hören.", "Ich koche gern und lese."] },
+                { question: "Wann machst du dein Hobby?", answers: ["Ich fotografiere am Wochenende.", "Ich lese jeden Abend."] },
+                { question: "Ist dein Hobby interessant?", answers: ["<span class='positive'>Ja</span>, mein Hobby ist sehr interessant.", "<span class='negative'>Nein</span>, es ist manchmal langweilig."] },
+                { question: "Warum machst du dieses Hobby?", answers: ["Ich mache es, weil es Spaß macht.", "Es ist sehr entspannend."] }
+            ]
+        },
+        sport: {
+            title: "Sport",
+            dialogues: [
+                { question: "Machst du Sport?", answers: ["<span class='positive'>Ja</span>, ich mache Sport.", "<span class='negative'>Nein</span>, ich mache keinen Sport."] },
+                { question: "Spielst du Fußball?", answers: ["<span class='positive'>Ja</span>, ich spiele Fußball.", "<span class='negative'>Nein</span>, ich spiele keinen Fußball."] },
+                { question: "Schwimmst du gern?", answers: ["<span class='positive'>Ja</span>, ich schwimme gern.", "<span class='negative'>Nein</span>, ich schwimme nicht gern."] },
+                { question: "Welchen Sport machst du gern?", answers: ["Ich spiele gern Fußball.", "Ich schwimme gern."] },
+                { question: "Wann machst du Sport?", answers: ["Ich mache Sport am Abend.", "Ich trainiere am Wochenende."] },
+                { question: "Wo spielst du Fußball?", answers: ["Ich spiele Fußball im Park.", "Ich spiele im Sportverein."] }
+            ]
+        },
+        freunde: {
+            title: "Freunde",
+            dialogues: [
+                { question: "Hast du Freunde?", answers: ["<span class='positive'>Ja</span>, ich habe Freunde.", "<span class='negative'>Nein</span>, ich habe nicht viele Freunde."] },
+                { question: "Triffst du gern Freunde?", answers: ["<span class='positive'>Ja</span>, ich treffe gern Freunde.", "<span class='negative'>Nein</span>, ich bin lieber allein."] },
+                { question: "Triffst du oft Freunde?", answers: ["<span class='positive'>Ja</span>, ich treffe Freunde oft.", "<span class='negative'>Nein</span>, ich treffe sie selten."] },
+                { question: "Was machst du gern mit Freunden?", answers: ["Ich gehe gern ins Kino mit Freunden.", "Wir kochen zusammen."] },
+                { question: "Wie oft triffst du deine Freunde?", answers: ["Ich treffe meine Freunde oft, einmal pro Woche.", "Ich treffe sie selten."] },
+                { question: "Wo trefft ihr euch?", answers: ["Wir treffen uns im Café.", "Wir treffen uns zu Hause."] }
+            ]
+        },
+        film: {
+            title: "Film",
+            dialogues: [
+                { question: "Magst du Filme?", answers: ["<span class='positive'>Ja</span>, ich mag Filme.", "<span class='negative'>Nein</span>, ich mag keine Filme."] },
+                { question: "Gehst du ins Kino?", answers: ["<span class='positive'>Ja</span>, ich gehe ins Kino.", "<span class='negative'>Nein</span>, ich gehe nicht ins Kino."] },
+                { question: "Schaust du gern Filme?", answers: ["<span class='positive'>Ja</span>, ich schaue gern Filme.", "<span class='negative'>Nein</span>, ich schaue keine Filme."] },
+                { question: "Wann schaust du Filme?", answers: ["Ich schaue Filme am Abend.", "Ich schaue Filme am Wochenende."] },
+                { question: "Welches Filmgenre magst du?", answers: ["Ich mag Komödien.", "Ich schaue gern Actionfilme."] },
+                { question: "Wie findest du Science-Fiction-Filme?", answers: ["Ich finde Science-Fiction-Filme sehr spannend.", "Ich finde sie langweilig."] }
+            ]
+        },
+        fahrrad: {
+            title: "Fahrrad",
+            dialogues: [
+                { question: "Hast du ein Fahrrad?", answers: ["<span class='positive'>Ja</span>, ich habe ein Fahrrad.", "<span class='negative'>Nein</span>, ich habe kein Fahrrad."] },
+                { question: "Ist dein Fahrrad neu?", answers: ["<span class='positive'>Ja</span>, mein Fahrrad ist neu.", "<span class='negative'>Nein</span>, es ist alt."] },
+                { question: "Fährst du gern Fahrrad?", answers: ["<span class='positive'>Ja</span>, ich fahre sehr gern Fahrrad.", "<span class='negative'>Nein</span>, das mache ich nicht gern."] },
+                { question: "Fährst du jeden Tag Fahrrad?", answers: ["<span class='positive'>Ja</span>, ich fahre jeden Tag Fahrrad.", "<span class='negative'>Nein</span>, ich fahre selten Fahrrad."] },
+                { question: "Wohin fährst du mit dem Fahrrad?", answers: ["Ich fahre mit dem Fahrrad zur Arbeit.", "Ich mache Radtouren im Park."] }
+            ]
+        },
+        theater: {
+            title: "Theater",
+            dialogues: [
+                { question: "Magst du Theater?", answers: ["<span class='positive'>Ja</span>, ich mag Theater.", "<span class='negative'>Nein</span>, ich mag kein Theater."] },
+                { question: "Gehst du oft ins Theater?", answers: ["<span class='positive'>Ja</span>, ich gehe oft ins Theater.", "<span class='negative'>Nein</span>, ich gehe selten ins Theater."] },
+                { question: "Gehst du gern ins Theater?", answers: ["<span class='positive'>Ja</span>, ich gehe gern ins Theater.", "<span class='negative'>Nein</span>, Theater ist nicht mein Ding."] },
+                { question: "Gehst du auch gern ins Konzert/Museum?", answers: ["<span class='positive'>Ja</span>, ich gehe gern ins Konzert.", "<span class='negative'>Nein</span>, Museen finde ich langweilig."] },
+                { question: "Wie findest du Opern?", answers: ["Ich finde Opern sehr interessant.", "Ich mag Opern nicht so sehr."] }
+            ]
+        },
+        urlaub_reise: {
+            title: "Urlaub und Reise",
+            dialogues: [
+                { question: "Fährst du gern in den Urlaub?", answers: ["<span class='positive'>Ja</span>, ich fahre gern in den Urlaub.", "<span class='negative'>Nein</span>, ich fahre nicht gern in den Urlaub."] },
+                { question: "Reist du gern?", answers: ["<span class='positive'>Ja</span>, ich reise gern.", "<span class='negative'>Nein</span>, ich reise nicht gern."] },
+                { question: "Machst du gern Urlaub?", answers: ["<span class='positive'>Ja</span>, ich mache sehr gern Urlaub.", "<span class='negative'>Nein</span>, ich mache nicht gern Urlaub."] },
+                { question: "Wann machst du Urlaub?", answers: ["Ich mache Urlaub im Sommer.", "Ich mache Urlaub im August."] },
+                { question: "Wohin fährst du gern in den Urlaub?", answers: ["Ich fahre gern ans Meer.", "Ich reise gern in die Berge."] },
+                { question: "Wie lange war dein letzter Urlaub?", answers: ["Mein letzter Urlaub war zwei Wochen lang.", "Er war nur eine Woche."] },
+                { question: "Wie war dein letzter Urlaub?", answers: ["Mein letzter Urlaub war super und sehr entspannend.", "Er war okay, aber das Wetter war nicht gut."] }
+            ]
+        },
+        vergangenheit: {
+            title: "Vergangenheit (war / hatte)",
+            dialogues: [
+                { question: "Warst du gestern zu Hause?", answers: ["<span class='positive'>Ja</span>, ich war zu Hause.", "<span class='negative'>Nein</span>, ich war nicht zu Hause."] },
+                { question: "Hattest du Spaß?", answers: ["<span class='positive'>Ja</span>, ich hatte Spaß.", "<span class='negative'>Nein</span>, ich hatte keinen Spaß."] },
+                { question: "Wie war dein Wochenende?", answers: ["Mein Wochenende war sehr schön.", "Es war nicht so gut."] },
+                { question: "Wo warst du gestern?", answers: ["Gestern war ich zu Hause.", "Ich war im Kino."] },
+                { question: "Wann hattest du Geburtstag?", answers: ["Ich hatte im Mai Geburtstag.", "Mein Geburtstag war letzte Woche."] },
+                { question: "Warst du schon einmal in Deutschland?", answers: ["<span class='positive'>Ja</span>, ich war schon in Berlin.", "<span class='negative'>Nein</span>, ich war noch nie in Deutschland."] },
+                { question: "Hattest du einen guten Tag?", answers: ["<span class='positive'>Ja</span>, ich hatte einen sehr guten Tag.", "<span class='negative'>Nein</span>, mein Tag war nicht so gut."] }
+            ]
+        }
+    }
+};
+
+// --- Sprechtraining Modal Logic ---
+document.addEventListener('DOMContentLoaded', () => {
+    // Basic menu toggle logic (ensure it's not duplicated if already in your script.js)
+    const menuToggle = document.getElementById('menu-toggle');
+    const mainNav = document.querySelector('.main-nav');
+    if (menuToggle && mainNav) {
+        menuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+        mainNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                }
+            });
+        });
+    }
+
+    // Highlight active navigation link
+    const navLinks = document.querySelectorAll('.main-nav a');
+    const currentPagePath = window.location.pathname.split('/').pop();
+    navLinks.forEach(link => {
+        if (link.href.includes(currentPagePath) && currentPagePath !== "") {
+            // Handle index.html specifically if it's the root path to avoid false positives
+            if (currentPagePath === 'index.html' && !link.href.endsWith('index.html') && !link.href.endsWith('/')) {
+                return;
+            }
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+    // Special handling for the root index.html if the URL is just '/'
+    if (currentPagePath === '' || currentPagePath === 'index.html') {
+        document.querySelector('.main-nav a[href="index.html"]')?.classList.add('active');
+    }
+
+
+    const sprechtModal = document.getElementById('sprechModal');
+    const sprechtModalTitle = document.getElementById('sprechModalTitle');
+    const sprechtModalBody = document.getElementById('sprechModalBody');
+    const sprechtModalClose = document.querySelector('#sprechModal .modal-close');
+
+    // Get all clickable sprecht-trigger cards
+    const sprechtTriggers = document.querySelectorAll('.sprecht-trigger');
+
+    sprechtTriggers.forEach(trigger => {
+        trigger.addEventListener('click', () => {
+            const topicKey = trigger.dataset.topic;
+            const subTopicKey = trigger.dataset.subtopic;
+
+            if (sprechtData[topicKey] && sprechtData[topicKey][subTopicKey]) {
+                const data = sprechtData[topicKey][subTopicKey];
+                sprechtModalTitle.textContent = `Thema: ${data.title}`;
+                sprechtModalBody.innerHTML = ''; // Clear previous content
+
+                data.dialogues.forEach(dialogue => {
+                    const dialogueDiv = document.createElement('div');
+                    dialogueDiv.classList.add('sprech-dialogue'); // Apply the sprech-training style to content
+
+                    const questionP = document.createElement('p');
+                    questionP.innerHTML = `<strong>Frage (A):</strong> ${dialogue.question}`;
+                    dialogueDiv.appendChild(questionP);
+
+                    dialogue.answers.forEach(answer => {
+                        const answerP = document.createElement('p');
+                        answerP.innerHTML = `<strong>Antwort (B):</strong> ${answer}`;
+                        dialogueDiv.appendChild(answerP);
+                    });
+                    sprechtModalBody.appendChild(dialogueDiv);
+                });
+
+                sprechtModal.style.display = 'block'; // Show the modal
+            }
+        });
+    });
+
+    // Close the modal when the close button is clicked
+    if (sprechtModalClose) {
+        sprechtModalClose.addEventListener('click', () => {
+            sprechtModal.style.display = 'none';
+        });
+    }
+
+    // Close the modal when clicking outside of it
+    window.addEventListener('click', (event) => {
+        if (event.target === sprechtModal) {
+            sprechtModal.style.display = 'none';
+        }
+    });
+});
 
 // --- INITIALIZE ON PAGE LOAD ---
 document.addEventListener('DOMContentLoaded', () => {

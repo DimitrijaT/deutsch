@@ -41,7 +41,19 @@ const verb_data = {
         { verb: "finden", ich: "finde", du: "findest", er_sie_es: "findet", wir: "finden", ihr: "findet", sie_Sie: "finden", english: "to find" },
         { verb: "trinken", ich: "trinke", du: "trinkst", er_sie_es: "trinkt", wir: "trinken", ihr: "trinkt", sie_Sie: "trinken", english: "to drink" },
         { verb: "schneiden", ich: "schneide", du: "schneidest", er_sie_es: "schneidet", wir: "schneiden", ihr: "schneidet", sie_Sie: "schneiden", english: "to cut" },
-        { verb: "waschen", ich: "wasche", du: "w<span class='irregular'>ä</span>schst", er_sie_es: "w<span class='irregular'>ä</span>scht", wir: "waschen", ihr: "wascht", sie_Sie: "waschen", english: "to wash" }
+        { verb: "waschen", ich: "wasche", du: "w<span class='irregular'>ä</span>schst", er_sie_es: "w<span class='irregular'>ä</span>scht", wir: "waschen", ihr: "wascht", sie_Sie: "waschen", english: "to wash" },
+        { verb: "zeigen", ich: "zeige", du: "zeigst", er_sie_es: "zeigt", wir: "zeigen", ihr: "zeigt", sie_Sie: "zeigen", english: "to show" },
+        { verb: "holen", ich: "hole", du: "holst", er_sie_es: "holt", wir: "holen", ihr: "holt", sie_Sie: "holen", english: "to fetch, to get, to pick up" },
+        { verb: "riechen", ich: "rieche", du: "riechst", er_sie_es: "riecht", wir: "riechen", ihr: "riecht", sie_Sie: "riechen", english: "to smell" },
+        { verb: "dauern", ich: "dauere", du: "dauerst", er_sie_es: "dauert", wir: "dauern", ihr: "dauert", sie_Sie: "dauern", english: "to last, to take (time)" },
+        { verb: "fotografieren", ich: "fotografiere", du: "fotografierst", er_sie_es: "fotografiert", wir: "fotografieren", ihr: "fotografiert", sie_Sie: "fotografieren", english: "to photograph" },
+        { verb: "bringen", ich: "bringe", du: "bringst", er_sie_es: "bringt", wir: "bringen", ihr: "bringt", sie_Sie: "bringen", english: "to bring" },
+        { verb: "organisieren", ich: "organisiere", du: "organisierst", er_sie_es: "organisiert", wir: "organisieren", ihr: "organisiert", sie_Sie: "organisieren", english: "to organize" },
+        { verb: "begrüßen", ich: "begrüße", du: "begrüßt", er_sie_es: "begrüßt", wir: "begrüßen", ihr: "begrüßt", sie_Sie: "begrüßen", english: "to greet" },
+        { verb: "chatten", ich: "chatte", du: "chatt<span class='irregular'>e</span>st", er_sie_es: "chatt<span class='irregular'>e</span>t", wir: "chatten", ihr: "chatt<span class='irregular'>e</span>t", sie_Sie: "chatten", english: "to chat" },
+        { verb: "nennen", ich: "nenne", du: "nennst", er_sie_es: "nennt", wir: "nennen", ihr: "nennt", sie_Sie: "nennen", english: "to name, to call (e.g., 'he is called')" },
+        { verb: "telefonieren", ich: "telefoniere", du: "telefonierst", er_sie_es: "telefoniert", wir: "telefonieren", ihr: "telefoniert", sie_Sie: "telefonieren", english: "to telephone" },
+        { verb: "starten", ich: "starte", du: "start<span class='irregular'>e</span>st", er_sie_es: "start<span class='irregular'>e</span>t", wir: "starten", ihr: "start<span class='irregular'>e</span>t", sie_Sie: "starten", english: "to start" },
     ],
     "Irregular Verbs (Strong / Vowel-Changing)": [
         { verb: "sein", ich: "<span class='irregular'>bin</span>", du: "<span class='irregular'>bist</span>", er_sie_es: "<span class='irregular'>ist</span>", wir: "<span class='irregular'>sind</span>", ihr: "<span class='irregular'>seid</span>", sie_Sie: "<span class='irregular'>sind</span>", english: "to be" },
@@ -79,6 +91,7 @@ const verb_data = {
         { verb: "mitkommen", ich: "komme... <span class='prefix'>mit</span>", du: "kommst... <span class='prefix'>mit</span>", er_sie_es: "kommt... <span class='prefix'>mit</span>", wir: "kommen... <span class='prefix'>mit</span>", ihr: "kommt... <span class='prefix'>mit</span>", sie_Sie: "kommen... <span class='prefix'>mit</span>", english: "to come along" },
         // { verb: "vorbereiten", ich: "bereite... <span class='prefix'>vor</span>", du: "bereitest... <span class='prefix'>vor</span>", er_sie_es: "bereitet... <span class='prefix'>vor</span>", wir: "bereiten... <span class='prefix'>vor</span>", ihr: "bereitet... <span class='prefix'>vor</span>", sie_Sie: "bereiten... <span class='prefix'>vor</span>", english: "to prepare" },
         // { verb: "zurückkommen", ich: "komme... <span class='prefix'>zurück</span>", du: "kommst... <span class='prefix'>zurück</span>", er_sie_es: "kommt... <span class='prefix'>zurück</span>", wir: "kommen... <span class='prefix'>zurück</span>", ihr: "kommt... <span class='prefix'>zurück</span>", sie_Sie: "kommen... <span class='prefix'>zurück</span>", english: "to come back" },        // { verb: "ausgehen", ich: "gehe... <span class='prefix'>aus</span>", du: "gehst... <span class='prefix'>aus</span>", er_sie_es: "geht... <span class='prefix'>aus</span>", wir: "gehen... <span class='prefix'>aus</span>", ihr: "geht... <span class='prefix'>aus</span>", sie_Sie: "gehen... <span class='prefix'>aus</span>", english: "to go out" }
+        { verb: "ankommen", ich: "komme... <span class='prefix'>an</span>", du: "kommst... <span class='prefix'>an</span>", er_sie_es: "kommt... <span class='prefix'>an</span>", wir: "kommen... <span class='prefix'>an</span>", ihr: "kommt... <span class='prefix'>an</span>", sie_Sie: "kommen... <span class='prefix'>an</span>", english: "to arrive" },
     ],
     "Verbs in Past Tense (Präteritum)": [
         { verb: "sein (war)", ich: "<span class='irregular'>war</span>", du: "warst", er_sie_es: "<span class='irregular'>war</span>", wir: "waren", ihr: "wart", sie_Sie: "waren", english: "to be (was/were)" },

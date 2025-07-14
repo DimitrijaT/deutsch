@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional German Vocabulary Trainer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/flashcard.css">
+</head>
+<body>
+    <!-- NEW: Main Site Header for Navigation -->
+    <header class="site-header">
+        <a href="index.html" class="logo">A1.1 German Course</a>
+        <nav class="main-nav">
+            <ul id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="kapitel1.html">Chapter 1</a></li>
+                <li><a href="kapitel2.html">Chapter 2</a></li>
+                <li><a href="kapitel3.html">Chapter 3</a></li>
+                <li><a href="kapitel4.html">Chapter 4</a></li>
+                <li><a href="kapitel5.html">Chapter 5</a></li>
+                <li><a href="kapitel6.html">Chapter 6</a></li>
+                <li><a href="kapitel7.html">Chapter 7</a></li>
+                <li><a href="kapitel8.html">Chapter 8</a></li>
+                <li><a href="kapitel9.html">Chapter 9</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle" id="menu-toggle">☰</div>
+    </header>
+
+    <div class="app-container">
+        <header class="page-header">
+            <h1>German Vocabulary Trainer</h1>
+            <p>Master German nouns, verbs, and phrases with this interactive tool.</p>
+        </header>
+
+        <div class="dashboard">
+            <!-- Column 1: Settings -->
+            <aside class="settings-sidebar">
+                <div class="panel">
+                    <h2 class="panel-title">⚙️ Settings</h2>
+                    <div class="control-group">
+                        <label for="category-filter">Filter by Topic:</label>
+                        <select id="category-filter"></select>
+                    </div>
+                    <div class="control-group">
+                        <label for="gender-filter">Filter by Gender (for Nouns):</label>
+                        <select id="gender-filter">
+                            <option value="all">All Genders</option>
+                            <option value="der">der (Masculine)</option>
+                            <option value="die">die (Feminine)</option>
+                            <option value="das">das (Neuter)</option>
+                        </select>
+                    </div>
+                     <div class="control-group">
+                        <label>Mode:</label>
+                        <button id="shuffle-btn" class="control-btn">Shuffle Deck</button>
+                    </div>
+                    <div class="control-group">
+                        <label>View:</label>
+                        <button id="view-toggle-btn" class="control-btn">Show Word List</button>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Column 2: Main Interactive Content -->
+            <main class="main-content">
+                <div class="flashcard-deck-container" id="flashcard-view">
+                    <div class="flashcard-deck" id="flashcard-deck">
+                        <div id="empty-deck-message">
+                            <p>🎉 Excellent! All cards in this round are learned.</p>
+                        </div>
+                    </div>
+                    <div class="assessment-buttons" id="assessment-buttons">
+                        <button id="btn-practice" class="assess-btn">
+                            <span class="icon">🤔</span>
+                            <span class="text">Needs Practice</span>
+                        </button>
+                        <button id="btn-know" class="assess-btn">
+                            <span class="icon">💡</span>
+                            <span class="text">I Knew It!</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="word-list-container">
+                    <h2 class="panel-title">📚 Word List</h2>
+                    <input type="text" id="word-list-search" placeholder="Search for a word...">
+                    <div class="table-wrapper">
+                        <table class="word-list-table">
+                            <thead>
+                                <tr>
+                                    <th data-sort="gender">Gender</th>
+                                    <th data-sort="noun">German</th>
+                                    <th data-sort="plural">Plural / Conjugation</th>
+                                    <th data-sort="english">English</th>
+                                </tr>
+                            </thead>
+                            <tbody id="word-list-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Column 3: Progress -->
+            <aside class="progress-sidebar">
+                <div class="panel">
+                    <h2 class="panel-title">📊 Progress</h2>
+                    <div class="progress-box">
+                        <h3>Remaining</h3>
+                        <p id="progress-total" class="progress-count">0</p>
+                    </div>
+                    <div class="progress-box">
+                        <h3>Known</h3>
+                        <p id="progress-known" class="progress-count">0</p>
+                    </div>
+                    <div class="progress-box">
+                        <h3>Practice Pile</h3>
+                        <p id="progress-practice" class="progress-count">0</p>
+                        <button id="restart-practice-btn" title="Click to add 'Needs Practice' cards back into the deck">🔁 Restart Practice Pile</button>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Ensure you are using the correct JS file -->
+    <script src="js/flashcards.js"></script>
+</body>
+</html>
