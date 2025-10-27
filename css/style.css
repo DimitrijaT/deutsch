@@ -578,3 +578,9 @@ input:checked + .slider:before { transform: translateX(26px); }
 
 
 
+.emoji-card-icon {
+    font-size: 5rem; /* Makes the emoji very large */
+    display: block;
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}

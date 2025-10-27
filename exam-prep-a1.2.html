@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A1.2 Final Exam Preparation - German Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .emoji-card {
+            font-size: 5rem;
+            text-align: center;
+            line-height: 1;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        }
+        .phrase-box {
+            text-align: left;
+            margin-top: 1rem;
+        }
+        .phrase-box p {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        .phrase-box .german {
+            font-weight: bold;
+            color: var(--color-primary);
+        }
+        .phrase-box .english {
+            font-style: italic;
+            color: var(--color-text-light);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <a href="index.html" class="logo">German Course Cockpit</a>
+        <nav class="main-nav">
+            <ul id="nav-links">
+                <li><a href="index.html">Courses</a></li>
+                <li><a href="verb-conjugations.html">Verbs</a></li>
+                <li><a href="flashcards.html">Vocabulary</a></li>
+                <li><a href="sprechtraining.html">Speaking</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle" id="menu-toggle">☰</div>
+    </header>
+
+    <main class="exam-prep-page">
+        <section class="exam-prep-header">
+            <h1>A1.2 Final Exam Preparation</h1>
+            <p class="sprech-section-intro">This is your complete guide to the A1.2 final exam. Here you will find a detailed breakdown, essential tips, and practice exercises for every section.</p>
+        </section>
+
+        <!-- Exam Structure Overview -->
+        <div class="exam-task">
+            <h3>Exam Structure at a Glance</h3>
+            <div class="task-box">
+                <h4>Written Part (Schriftlicher Teil) - 60 Minutes Total</h4>
+                <ul>
+                    <li><strong>Hören (Listening):</strong> 3 parts, approx. 15 minutes.</li>
+                    <li><strong>Lesen (Reading):</strong> 3 parts, approx. 25 minutes.</li>
+                    <li><strong>Schreiben (Writing):</strong> 2 parts (Form & E-Mail), approx. 20 minutes.</li>
+                </ul>
+            </div>
+            <div class="task-box">
+                <h4>Oral Part (Mündlicher Teil) - approx. 15 Minutes per Group of 4</h4>
+                <ul>
+                    <li><strong>Part 1: Sich vorstellen</strong> (Introduce yourself).</li>
+                    <li><strong>Part 2: Fragen stellen und antworten</strong> (Ask and answer questions on a topic).</li>
+                    <li><strong>Part 3: Bitten & Verbote formulieren</strong> (Formulate requests/prohibitions and react).</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- WRITTEN EXAM SECTION -->
+        <h2 id="written-exam">Written Exam (Schriftlicher Teil)</h2>
+
+        <div class="exam-task task-hören">
+            <h3>Hören (Listening)</h3>
+            <p>You will listen to short announcements and conversations and choose the correct answer. The key is to listen for specific information like times, places, names, and numbers.</p>
+            <div class="grammar-rule">
+                <span class="info-box-title">Top Tips for Listening</span>
+                <ul>
+                    <li>Read the questions *before* you listen. This helps you know what information to focus on.</li>
+                    <li>Don't panic if you don't understand every word. Focus on the main idea and the key words related to the question.</li>
+                    <li>Pay attention to numbers, dates, times, and place names.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="exam-task task-lesen" id="lesen-übung">
+            <h3>Lesen (Reading)</h3>
+            <p>You will read short texts like emails, advertisements, or signs and answer questions (True/False or multiple choice).</p>
+             <div class="grammar-rule">
+                <span class="info-box-title">Top Tips for Reading</span>
+                <ul>
+                    <li>Skim the text first to get a general idea of the topic.</li>
+                    <li>Read the questions carefully, then find the part of the text that contains the answer.</li>
+                    <li>Watch out for words like "nicht", "kein", "immer", or "nie" as they can completely change the meaning.</li>
+                </ul>
+            </div>
+            
+            <div class="quiz-question">
+                <strong>Practice Text 1: Email from Herr Beck</strong>
+                <div class="example-text">
+                    Liebe Frau Dehner, vielen Dank für die Einladung zu Ihrem Jazz-Konzert. Ich komme gern und ich freue mich sehr auf das Konzert. Ich danke Ihnen auch, dass ich in Ihrem Gästezimmer schlafen kann und kein Hotel suchen muss. Mein Zug kommt schon um circa 16 Uhr an. Kann ich Ihnen am Nachmittag dann vor dem Konzert etwas helfen? Bis bald und herzliche Grüße, Winfried Beck
+                </div>
+                <div class="quiz-options">
+                    <p>1. Herr Beck übernachtet im Hotel. (Mr. Beck is staying overnight in a hotel.)</p>
+                    <label><input type="radio" name="q1" value="false" data-correct="true"> Falsch (False)</label>
+                    <label><input type="radio" name="q1" value="true"> Richtig (True)</label>
+                </div>
+                <div class="quiz-options">
+                    <p>2. Herr Beck bietet Frau Dehner seine Hilfe an. (Mr. Beck offers his help to Ms. Dehner.)</p>
+                    <label><input type="radio" name="q2" value="false"> Falsch (False)</label>
+                    <label><input type="radio" name="q2" value="true" data-correct="true"> Richtig (True)</label>
+                </div>
+            </div>
+             <button class="quiz-check-btn" id="check-lesen-btn">Check Answers</button>
+        </div>
+
+        <div class="exam-task task-schreiben">
+            <h3>Schreiben (Writing)</h3>
+            <h4>Task A: Fill out a Form</h4>
+            <p>You will be given a short text with information about a person. Your task is to transfer this information correctly into a form.</p>
+            <div class="task-box">
+                <strong>Scenario:</strong> Your friend, Vladimir Serjakov, 30 years old, comes from Saint Petersburg in Russia and has lived in Hamburg for a month. He has a new job at TUI as a tour guide. Since yesterday, he has a fever of 39 degrees. Today he is going to the doctor.
+            </div>
+            <form id="formular-übung" class="form-exercise">
+                <fieldset>
+                    <legend>Patient Registration</legend>
+                    <div class="form-group"><label for="name">1. Family Name (Familienname):</label><input type="text" id="name" data-answer="Serjakov"><span class="feedback"></span></div>
+                    <div class="form-group"><label for="geburtsort">2. Place of Birth (Geburtsort):</label><input type="text" id="geburtsort" data-answer="Sankt Petersburg"><span class="feedback"></span></div>
+                    <div class="form-group"><label for="alter">3. Age (Alter):</label><input type="text" id="alter" data-answer="30"><span class="feedback"></span></div>
+                    <div class="form-group"><label for="beruf">4. Profession (Beruf):</label><input type="text" id="beruf" data-answer="Reiseleiter"><span class="feedback"></span></div>
+                    <div class="form-group"><label for="krankheit">5. Sickness (Krankheit):</label><input type="text" id="krankheit" data-answer="Fieber"><span class="feedback"></span></div>
+                </fieldset>
+            </form>
+            <button class="quiz-check-btn" id="check-formular-btn">Check Form</button>
+        </div>
+
+        <div class="exam-task task-schreiben">
+            <h4>Task B: Write a short E-Mail</h4>
+            <p>You will need to write a short, simple email (approx. 30 words) based on a given situation and three key points you must include.</p>
+
+            <div class="writing-exercise">
+                <h5>Practice Task 1</h5>
+                <div class="task-box">
+                    <p>Your new colleague, Herr Jensch, has invited you to his birthday party in the office on Tuesday at 3 PM. Write to Herr Jensch:</p>
+                    <ul>
+                        <li>Why are you writing? (Thank him for the invitation)</li>
+                        <li>Say you will arrive later.</li>
+                        <li>Ask if you can help.</li>
+                    </ul>
+                </div>
+                <div class="email-template"><textarea placeholder="Write your email here..."></textarea></div>
+                <button class="action-button secondary" id="show-solution-btn-1" style="margin-top: 1rem;">Show Sample Solution</button>
+                <div class="solution-box" id="email-solution-1">
+                    <h5>Sample Solution</h5>
+                    <div class="example-text">
+                        <p><strong>Sehr geehrter Herr Jensch,</strong></p>
+                        <p>vielen Dank für die Einladung.</p>
+                        <p>Es tut mir leid, aber ich komme später. Ich habe einen wichtigen Termin von 14:45 bis 15:30 Uhr.</p>
+                        <p>Brauchen Sie Hilfe? Ich kann Wein und Würste mitbringen.</p>
+                        <p><strong>Mit freundlichen Grüßen,</strong><br>Dimitrija</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="writing-exercise" style="margin-top: var(--spacing-xl);">
+                <h5>Practice Task 2</h5>
+                <div class="task-box">
+                    <p>You and a friend want to book rooms for your group at Hotel Hadrigan. Write an email to Herr Hübner.</p>
+                    <ul>
+                        <li>Why are you writing?</li>
+                        <li>Ask for information about the rooms.</li>
+                        <li>When will you arrive?</li>
+                    </ul>
+                </div>
+                <div class="email-template"><textarea placeholder="Write your email here..."></textarea></div>
+                <button class="action-button secondary" id="show-solution-btn-2" style="margin-top: 1rem;">Show Sample Solution</button>
+                <div class="solution-box" id="email-solution-2">
+                    <h5>Sample Solution</h5>
+                    <div class="example-text">
+                        <p><strong>Sehr geehrter Herr Hübner,</strong></p>
+                        <p>wir möchten Zimmer für unsere Gruppe reservieren.</p>
+                        <p>Haben Sie drei Doppelzimmer für uns, und gibt es Angebote für unsere Gruppe? Wie viel kostet alles zusammen?</p>
+                        <p>Wir kommen am 5. September um 8:00 Uhr an.</p>
+                        <p><strong>Mit freundlichen Grüßen,</strong><br>Dimitrija</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grammar-rule" style="margin-top: var(--spacing-xl);">
+                <span class="info-box-title">Key Phrases for Writing Emails</span>
+                <ul>
+                    <li><strong>Salutation (Formal):</strong> <code>Sehr geehrter Herr ...,</code> / <code>Sehr geehrte Frau ...,</code> / <code>Sehr geehrte Damen und Herren,</code></li>
+                    <li><strong>Salutation (Informal):</strong> <code>Lieber Tom,</code> / <code>Liebe Anna,</code></li>
+                    <li><strong>Thanking:</strong> <code>Danke für Ihre E-Mail.</code> (Thanks for your email.)</li>
+                    <li><strong>Requesting Information:</strong> <code>Können Sie mir Informationen schicken?</code> (Can you send me information?) / <code>Wie viel kostet ...?</code> (How much does ... cost?)</li>
+                    <li><strong>Suggesting a Date:</strong> <code>Geht es am ... um ... Uhr?</code> (Does ... at ... o'clock work?)</li>
+                    <li><strong>Declining:</strong> <code>Leider kann ich nicht kommen.</code> (Unfortunately, I can't come.)</li>
+                    <li><strong>Signing Off (Formal):</strong> <code>Mit freundlichen Grüßen</code></li>
+                    <li><strong>Signing Off (Informal):</strong> <code>Viele Grüße</code> / <code>Liebe Grüße</code></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ORAL EXAM SECTION -->
+        <h2 id="oral-exam">Oral Exam (Mündlicher Teil)</h2>
+
+        <div class="exam-task task-sprechen">
+            <h3>Part 1: Sich vorstellen (Introducing Yourself)</h3>
+            <p>You will introduce yourself using simple sentences. The examiner may also ask you to spell something or give a number.</p>
+            <div class="task-box">
+                <h4>Key Information to Prepare</h4>
+                <ul>
+                    <li><strong>Name:</strong> <code>Ich heiße Dimitrija. / Mein Name ist Dimitrija.</code></li>
+                    <li><strong>Age (Alter):</strong> <code>Ich bin 24 Jahre alt.</code></li>
+                    <li><strong>Country (Land):</strong> <code>Ich komme aus Mazedonien.</code></li>
+                    <li><strong>City (Wohnort):</strong> <code>Ich wohne in Skopje.</code></li>
+                    <li><strong>Languages (Sprachen):</strong> <code>Ich spreche Mazedonisch, Englisch und ein bisschen Deutsch.</code></li>
+                    <li><strong>Profession (Beruf):</strong> <code>Ich bin Softwareentwickler von Beruf.</code></li>
+                    <li><strong>Hobbies (Hobbys):</strong> <code>Meine Hobbys sind Lesen und Sport.</code></li>
+                </ul>
+                <h4>Spelling & Numbers (Buchstabieren & Zahlen)</h4>
+                <ul>
+                    <li><strong>Spelling your name:</strong> "Können Sie Ihren Vornamen buchstabieren?" -> <code>D-I-M-I-T-R-I-J-A</code></li>
+                    <li><strong>Date of Birth:</strong> "Wann sind Sie geboren?" -> <code>Ich bin am neunundzwanzigsten November zweitausend geboren. (29.11.2000)</code></li>
+                    <li><strong>Phone Number:</strong> "Ihre Handynummer?" -> <code>Meine Nummer ist ...</code></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="exam-task task-sprechen">
+            <h3>Part 2: Fragen stellen und antworten (Asking & Answering Questions)</h3>
+            <p>You will receive a card with a theme (e.g., "Family") and a keyword (e.g., "Children"). You must form a question using the keyword, and your partner will answer.</p>
+            
+            <h4>Theme: Familie (Family)</h4>
+            <div class="task-box">
+                <ul>
+                    <li><strong>Keyword: Kinder</strong> -> Question: <code>Haben Sie Kinder?</code> -> Answer: <code>Ja, ich habe ein Kind. / Nein, ich habe keine Kinder.</code></li>
+                    <li><strong>Keyword: Urlaub</strong> -> Question: <code>Machst du gern Urlaub mit deiner Familie?</code> -> Answer: <code>Ja, sehr gern.</code></li>
+                    <li><strong>Keyword: Eltern</strong> -> Question: <code>Wo wohnen deine Eltern?</code> -> Answer: <code>Sie wohnen in Skopje.</code></li>
+                    <li><strong>Keyword: Geburtstag</strong> -> Question: <code>Wann hat dein Vater Geburtstag?</code> -> Answer: <code>Er hat im Juli Geburtstag.</code></li>
+                </ul>
+            </div>
+
+            <h4>Theme: Arbeit (Work)</h4>
+            <div class="task-box">
+                <ul>
+                    <li><strong>Keyword: Computer</strong> -> Question: <code>Arbeiten Sie oft am Computer?</code> -> Answer: <code>Ja, jeden Tag.</code></li>
+                    <li><strong>Keyword: Sprache</strong> -> Question: <code>Welche Sprache sprechen Sie bei der Arbeit?</code> -> Answer: <code>Ich spreche Englisch bei der Arbeit.</code></li>
+                    <li><strong>Keyword: Samstag</strong> -> Question: <code>Arbeiten Sie am Samstag?</code> -> Answer: <code>Nein, am Samstag habe ich frei.</code></li>
+                    <li><strong>Keyword: Chef</strong> -> Question: <code>Wie heißt Ihr Chef?</code> -> Answer: <code>Mein Chef heißt Herr Schmidt.</code></li>
+                </ul>
+            </div>
+            
+            <h4>Theme: Reisen (Travel)</h4>
+            <div class="task-box">
+                <ul>
+                    <li><strong>Keyword: Bahnhof</strong> -> Question: <code>Wo ist der Bahnhof?</code> -> Answer: <code>Der Bahnhof ist da vorne links.</code></li>
+                    <li><strong>Keyword: Auto</strong> -> Question: <code>Reisen Sie oft mit dem Auto?</code> -> Answer: <code>Ja, ich fahre gern Auto.</code></li>
+                    <li><strong>Keyword: Fahrkarte</strong> -> Question: <code>Was kostet die Fahrkarte nach Berlin?</code> -> Answer: <code>Sie kostet 50 Euro.</code></li>
+                </ul>
+            </div>
+            
+            <h4>Theme: Einkaufen (Shopping)</h4>
+            <div class="task-box">
+                 <ul>
+                    <li><strong>Keyword: Kreditkarte</strong> -> Question: <code>Bezahlen Sie oft mit Kreditkarte?</code> -> Answer: <code>Ja, fast immer.</code></li>
+                    <li><strong>Keyword: Jacke</strong> -> Question: <code>Wo kann ich hier eine Jacke kaufen?</code> -> Answer: <code>Im zweiten Stock.</code></li>
+                    <li><strong>Keyword: Bäckerei</strong> -> Question: <code>Wo ist die Bäckerei? Ich möchte Brot kaufen.</code> -> Answer: <code>Die Bäckerei ist um die Ecke.</code></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="exam-task task-sprechen">
+            <h3>Part 3: Bitten & Verbote formulieren (Formulating Requests & Prohibitions)</h3>
+            <p>In the final part of the oral exam, you will see a picture (e.g., a glass of water, a "no smoking" sign). Your task is to use the picture to form a request (`Bitte`) or state a prohibition (`Verbot`). Your partner will then react to what you said.</p>
+            
+            <div class="grammar-rule">
+                <span class="info-box-title">Essential Phrases & Grammar for Part 3</span>
+                
+                <h4>How to Formulate a Request (eine Bitte)</h4>
+                <p>There are two main ways to make a request. Always remember to use "bitte" to be polite.</p>
+                <ul>
+                    <li><strong>Using the Imperative (Command Form):</strong>
+                        <ul>
+                            <li><strong>Informal (du):</strong> <code>Gib mir bitte...</code> (Give me...), <code>Mach bitte...</code> (Do/Make...), <code>Lies bitte...</code> (Read...)</li>
+                            <li><strong>Formal (Sie):</strong> <code>Geben Sie mir bitte...</code> (Please give me...), <code>Machen Sie bitte...</code> (Please do/make...), <code>Lesen Sie bitte...</code> (Please read...)</li>
+                        </ul>
+                    </li>
+                    <li><strong>Using a Question with "können":</strong> (This is very polite and common)
+                        <ul>
+                            <li><strong>Informal (du):</strong> <code>Kannst du mir bitte ... geben?</code> (Can you please give me...?)</li>
+                            <li><strong>Formal (Sie):</strong> <code>Können Sie mir bitte ... geben?</code> (Can you please give me...?)</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h4>How to Formulate a Prohibition (ein Verbot)</h4>
+                <p>The easiest and most common way is to use the modal verb "dürfen".</p>
+                <ul>
+                    <li><strong>Structure:</strong> <code>Hier darf man nicht...</code> (+ verb). For example: <code>Hier darf man nicht <strong>rauchen</strong>.</code> (One is not allowed to smoke here.)</li>
+                    <li><strong>Alternative:</strong> <code>... ist verboten.</code> For example: <code>Rauchen ist hier <strong>verboten</strong>.</code> (Smoking is forbidden here.)</li>
+                </ul>
+
+                <h4>How to React (Reagieren)</h4>
+                <ul>
+                    <li><strong>Reacting positively to a request:</strong> <code>Ja, natürlich.</code> / <code>Gerne.</code> / <code>Klar.</code> / <code>Hier, bitte.</code> (Yes, of course. / Gladly. / Sure. / Here you go.)</li>
+                    <li><strong>Reacting to a prohibition:</strong> <code>Entschuldigung.</code> / <code>Oh, das wusste ich nicht.</code> (Sorry. / Oh, I didn't know that.)</li>
+                </ul>
+            </div>
+
+            <h4 style="text-align: center; margin-top: 2rem;">Practice Scenarios</h4>
+
+            <!-- Category 1: Giving & Taking -->
+            <h5>Category 1: Requests for Objects (Geben & Nehmen)</h5>
+            <div class="chapter-grid">
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">🍎</div><div class="phrase-box"><p><span class="german">Gib mir bitte den Apfel.</span><br><span class="english">Please give me the apple.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">💧</div><div class="phrase-box"><p><span class="german">Geben Sie mir bitte ein Glas Wasser.</span><br><span class="english">Please give me a glass of water.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">🍺</div><div class="phrase-box"><p><span class="german">Gib mir bitte ein Bier.</span><br><span class="english">Please give me a beer.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">🍊</div><div class="phrase-box"><p><span class="german">Bringen Sie mir bitte einen Orangensaft.</span><br><span class="english">Please bring me an orange juice.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">☕</div><div class="phrase-box"><p><span class="german">Eine Tasse Kaffee, bitte.</span><br><span class="english">A cup of coffee, please.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">🥤</div><div class="phrase-box"><p><span class="german">Gib mir bitte eine Cola.</span><br><span class="english">Please give me a cola.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">🍓</div><div class="phrase-box"><p><span class="german">Geben Sie mir bitte das Obst.</span><br><span class="english">Please give me the fruit.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">🥦</div><div class="phrase-box"><p><span class="german">Gib mir bitte das Gemüse.</span><br><span class="english">Please give me the vegetables.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">🥖</div><div class="phrase-box"><p><span class="german">Gib mir bitte das Brot.</span><br><span class="english">Please give me the bread.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">🔑</div><div class="phrase-box"><p><span class="german">Geben Sie mir bitte den Schlüssel.</span><br><span class="english">Please give me the key.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">📱</div><div class="phrase-box"><p><span class="german">Kannst du mir bitte dein Handy geben?</span><br><span class="english">Can you please give me your phone?</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">📖</div><div class="phrase-box"><p><span class="german">Gib mir bitte das Deutschbuch.</span><br><span class="english">Please give me the German book.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">🧥</div><div class="phrase-box"><p><span class="german">Gib mir bitte deine Jacke.</span><br><span class="english">Please give me your jacket.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">👟</div><div class="phrase-box"><p><span class="german">Gib mir bitte die Schuhe.</span><br><span class="english">Please give me the shoes.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">👜</div><div class="phrase-box"><p><span class="german">Gib mir bitte die Tasche.</span><br><span class="english">Please give me the bag.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">💐</div><div class="phrase-box"><p><span class="german">Geben Sie mir bitte die Blumen.</span><br><span class="english">Please give me the flowers.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">📰</div><div class="phrase-box"><p><span class="german">Gib mir bitte die Zeitung.</span><br><span class="english">Please give me the newspaper.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card"> टिकट</div><div class="phrase-box"><p><span class="german">Geben Sie mir bitte die Fahrkarte.</span><br><span class="english">Please give me the ticket.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">🛂</div><div class="phrase-box"><p><span class="german">Zeigen Sie mir bitte Ihren Ausweis.</span><br><span class="english">Please show me your ID.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">📅</div><div class="phrase-box"><p><span class="german">Zeig mir bitte den Kalender.</span><br><span class="english">Please show me the calendar.</span></p></div></div></div>
+            </div>
+
+            <!-- Category 2: Actions -->
+            <h5 style="margin-top: 2rem;">Category 2: Requests for Actions (Aktionen & Befehle)</h5>
+            <div class="chapter-grid">
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">🚪</div><div class="phrase-box"><p><span class="german">Machen Sie bitte die Tür zu.</span><br><span class="english">Please close the door.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">🧅</div><div class="phrase-box"><p><span class="german">Schneide bitte die Zwiebeln.</span><br><span class="english">Please cut the onions.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">🍽️</div><div class="phrase-box"><p><span class="german">Deck den Tisch, bitte.</span><br><span class="english">Set the table, please.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">🌿</div><div class="phrase-box"><p><span class="german">Gib der Pflanze bitte Wasser.</span><br><span class="english">Please give the plant water.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">💻</div><div class="phrase-box"><p><span class="german">Schalten Sie den Computer ein, bitte.</span><br><span class="english">Please turn on the computer.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">🍳</div><div class="phrase-box"><p><span class="german">Kochen Sie bitte das Essen.</span><br><span class="english">Please cook the food.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">📻</div><div class="phrase-box"><p><span class="german">Mach das Radio leiser, bitte.</span><br><span class="english">Please turn the radio down.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">💰</div><div class="phrase-box"><p><span class="german">Zahlen Sie bitte.</span><br><span class="english">Please pay.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">📖</div><div class="phrase-box"><p><span class="german">Lesen Sie bitte das Wort im Wörterbuch.</span><br><span class="english">Please read the word in the dictionary.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">📞</div><div class="phrase-box"><p><span class="german">Ruf mich bitte an.</span><br><span class="english">Please call me.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">🚕</div><div class="phrase-box"><p><span class="german">Rufen Sie bitte ein Taxi.</span><br><span class="english">Please call a taxi.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">🚗</div><div class="phrase-box"><p><span class="german">Hol mich bitte mit dem Auto ab.</span><br><span class="english">Please pick me up with the car.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">🧳</div><div class="phrase-box"><p><span class="german">Helfen Sie mir bitte mit dem Koffer.</span><br><span class="english">Please help me with the suitcase.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">🐈</div><div class="phrase-box"><p><span class="german">Spiel bitte mit der Katze.</span><br><span class="english">Please play with the cat.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">🐕</div><div class="phrase-box"><p><span class="german">Geh bitte mit dem Hund spazieren.</span><br><span class="english">Please take the dog for a walk.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">🚲</div><div class="phrase-box"><p><span class="german">Schieben Sie das Fahrrad, bitte.</span><br><span class="english">Please push the bicycle.</span></p></div></div></div>
+            </div>
+
+            <!-- Category 3: Prohibitions -->
+            <h5 style="margin-top: 2rem;">Category 3: Prohibitions (Verbote)</h5>
+            <div class="chapter-grid">
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">🚭</div><div class="phrase-box"><p><span class="german">Hier darf man nicht rauchen.</span><br><span class="english">You are not allowed to smoke here.</span></p><hr><p><strong>Reaction:</strong> <span class="german">Entschuldigung.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">📵</div><div class="phrase-box"><p><span class="german">Hier darf man nicht telefonieren.</span><br><span class="english">You are not allowed to use your phone here.</span></p><hr><p><strong>Reaction:</strong> <span class="german">Oh, das wusste ich nicht.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">🍔</div><div class="phrase-box"><p><span class="german">Essen ist hier verboten.</span><br><span class="english">Eating is forbidden here.</span></p><hr><p><strong>Reaction:</strong> <span class="german">Entschuldigung.</span></p></div></div></div>
+                <div class="chapter-card-container"><div class="chapter-card"><div class="emoji-card">🏊‍♂️</div><div class="phrase-box"><p><span class="german">Hier darf man nicht schwimmen.</span><br><span class="english">You are not allowed to swim here.</span></p><hr><p><strong>Reaction:</strong> <span class="german">Okay, danke.</span></p></div></div></div>
+            </div>
+        </div>
+
+        <h2 id="resources">Additional Practice Resources</h2>
+        <div class="exam-task">
+             <h3>Useful Links for More Practice</h3>
+             <div class="task-box">
+                <p>Practice makes perfect! Use these official and interactive resources to get more comfortable with the exam format.</p>
+                <ul>
+                    <li><a href="https://www.goethe.de/ins/pt/de/spr/prf/gzsd1/ueb.html" target="_blank">Goethe-Zertifikat A1: Official Practice Materials</a></li>
+                    <li><a href="https://wordwall.net/play/16017/161/817" target="_blank">Wordwall: Listening Practice</a></li>
+                    <li><a href="https://wordwall.net/play/16017/506/689" target="_blank">Wordwall: Reading Practice</a></li>
+                    <li><a href="https://wordwall.net/play/73393/100/326" target="_blank">Wordwall: Formulating Requests (Speaking Part 3)</a></li>
+                </ul>
+             </div>
+        </div>
+    </main>
+
+    <footer class="site-footer-main">
+        <p>© 2025 Dimitrija Timeski - Professional German Course. All rights reserved.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/exam-prep.js"></script>
+</body>
+</html>
